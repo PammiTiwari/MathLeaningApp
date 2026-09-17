@@ -210,7 +210,10 @@ async function processPaper(pdfPath, id, year) {
     }
 
     console.error(`-> +${gained}`);
-    if (!gained) break;   // no progress — stop burning quota on this paper
+    // A stalled pass on a big batch means something is wrong with the paper —
+    // stop. But a handful of stragglers is usually one unparseable response,
+    // and the later passes retry them in smaller batches, so keep going.
+    if (!gained && todo.length > 4) break;
   }
 
   const questions = qs.map((q) => ({ ...q, ...(solved.get(q.n) ?? {}) }));

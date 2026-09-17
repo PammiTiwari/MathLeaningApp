@@ -353,7 +353,14 @@
         "(D) Assertion (A) is false, but Reason (R) is true."
       ],
       "section": "A",
-      "marks": 1
+      "marks": 1,
+      "correct": 3,
+      "answer": "(D) Assertion (A) is false, but Reason (R) is true.",
+      "keySteps": [
+        "Check LHL and RHL at $x=5$: $LHL = 3(5)-8=7$, $RHL = 2k$ — 0.5 marks",
+        "For continuity $2k=7 \\implies k=7/2$, so Assertion is false; Reason is the standard definition — 0.5 marks"
+      ],
+      "chapter": "continuity-and-differentiability"
     },
     {
       "n": 20,
@@ -365,7 +372,14 @@
         "(D) Assertion (A) is false, but Reason (R) is true."
       ],
       "section": "A",
-      "marks": 1
+      "marks": 1,
+      "correct": 3,
+      "answer": "(D) Assertion (A) is false, but Reason (R) is true.",
+      "keySteps": [
+        "Check surjectivity: $f(x)=0 \\implies x=5/3 \\notin Z$, so $f$ is not surjective and thus not bijective — 0.5 marks",
+        "Verify Reason: Bijective means both injective and surjective, which is true — 0.5 marks"
+      ],
+      "chapter": "relations-and-functions"
     },
     {
       "n": 21,
@@ -546,14 +560,35 @@
       "q": "(a) If $\\sqrt{1 - x^2} + \\sqrt{1 - y^2} = a(x - y)$, then prove that $\\frac{dy}{dx} = \\sqrt{\\frac{1 - y^2}{1 - x^2}}$.",
       "orAlternative": "(b) If $x = a \\left( \\cos \\theta + \\log \\tan \\frac{\\theta}{2} \\right)$ and $y = a \\sin \\theta$, then find $\\frac{d^2y}{dx^2}$ at $\\theta = \\frac{\\pi}{4}$.",
       "section": "D",
-      "marks": 5
+      "marks": 5,
+      "answer": "$\\frac{dy}{dx} = \\sqrt{\\frac{1 - y^2}{1 - x^2}}$ OR $\\frac{2\\sqrt{2}}{a}$",
+      "keySteps": [
+        "(a) Substitute $x = \\sin \\alpha, y = \\sin \\beta$ and simplify to $\\sin^{-1} x - \\sin^{-1} y = 2 \\cot^{-1} a$ — 2 marks",
+        "Differentiate both sides with respect to $x$ — 2 marks",
+        "Obtain the final expression $\\frac{dy}{dx} = \\sqrt{\\frac{1 - y^2}{1 - x^2}}$ — 1 mark",
+        "OR (b) Find $\\frac{dx}{d\\theta} = a \\frac{\\cos^2 \\theta}{\\sin \\theta}$ and $\\frac{dy}{d\\theta} = a \\cos \\theta$ — 2 marks",
+        "Find $\\frac{dy}{dx} = \\tan \\theta$ — 1 mark",
+        "Find $\\frac{d^2y}{dx^2} = \\frac{\\sin \\theta}{a \\cos^4 \\theta}$ — 1.5 marks",
+        "Evaluate at $\\theta = \\frac{\\pi}{4}$ to get $\\frac{2\\sqrt{2}}{a}$ — 0.5 marks"
+      ],
+      "chapter": "continuity-and-differentiability"
     },
     {
       "n": 35,
       "q": "(a) Find the image A' of the point $A(1, 6, 3)$ in the line $\\frac{x}{1} = \\frac{y - 1}{2} = \\frac{z - 2}{3}$. Also, find the equation of the line joining A and A'.",
       "orAlternative": "(b) Find a point P on the line $\\frac{x + 5}{1} = \\frac{y + 3}{4} = \\frac{z - 6}{-9}$ such that its distance from point $Q(2, 4, -1)$ is 7 units. Also, find the equation of line joining P and Q.",
       "section": "D",
-      "marks": 5
+      "marks": 5,
+      "answer": "$A'(1, 0, 7)$, Line: $\\frac{x-1}{0} = \\frac{y-6}{-3} = \\frac{z-3}{2}$ OR $P(-4, 1, -3)$, Line: $\\frac{x-2}{6} = \\frac{y-4}{3} = \\frac{z+1}{2}$",
+      "keySteps": [
+        "(a) Write general point $P(\\lambda, 2\\lambda+1, 3\\lambda+2)$ and use $\\vec{AP} \\cdot \\vec{d} = 0$ to find $\\lambda = 1$ — 2 marks",
+        "Find foot of perpendicular $P(1, 3, 5)$ and image $A'(1, 0, 7)$ — 2 marks",
+        "Find equation of line $AA'$: $\\frac{x-1}{0} = \\frac{y-6}{-3} = \\frac{z-3}{2}$ — 1 mark",
+        "OR (b) Write general point $P(\\lambda-5, 4\\lambda-3, -9\\lambda+6)$ and set up $PQ^2 = 49$ — 2 marks",
+        "Solve for $\\lambda = 1$ and find point $P(-4, 1, -3)$ — 2 marks",
+        "Find equation of line $PQ$: $\\frac{x-2}{6} = \\frac{y-4}{3} = \\frac{z+1}{2}$ — 1 mark"
+      ],
+      "chapter": "three-dimensional-geometry"
     },
     {
       "n": 36,
@@ -590,7 +625,15 @@
         }
       ],
       "section": "E",
-      "marks": 4
+      "marks": 4,
+      "answer": "(i) $0.018$, (ii) $\\frac{7}{18}$",
+      "keySteps": [
+        "(i) Use Total Probability Theorem: $P(D) = (0.1)(0.05) + (0.2)(0.03) + (0.7)(0.01)$ — 1 mark",
+        "Calculate $P(D) = 0.018$ — 1 mark",
+        "(ii) Use Bayes' Theorem: $P(V|D) = \\frac{P(V)P(D|V)}{P(D)} = \\frac{0.007}{0.018}$ — 1 mark",
+        "Calculate $P(V|D) = \\frac{7}{18}$ — 1 mark"
+      ],
+      "chapter": "probability"
     },
     {
       "n": 38,
@@ -611,7 +654,15 @@
       ],
       "orAlternative": "(iii) (b) Using first derivative test, calculate the maximum area the company can enclose with the 300 metres of boundary material, considering the parallel partition.",
       "section": "E",
-      "marks": 4
+      "marks": 4,
+      "answer": "(i) $2x + 3y = 300$, (ii) $A(x) = 100x - \\frac{2}{3}x^2$, (iii) $3750 \\text{ m}^2$",
+      "keySteps": [
+        "(i) Write boundary equation $2x + 3y = 300$ — 1 mark",
+        "(ii) Express area $A = xy$ as $A(x) = x(100 - \\frac{2}{3}x) = 100x - \\frac{2}{3}x^2$ — 1 mark",
+        "(iii) Find critical point $A'(x) = 100 - \\frac{4}{3}x = 0 \\implies x = 75$ — 1 mark",
+        "Verify maxima using derivative test and calculate $A(75) = 3750 \\text{ m}^2$ — 1 mark"
+      ],
+      "chapter": "application-of-derivatives"
     }
   ]
 }
