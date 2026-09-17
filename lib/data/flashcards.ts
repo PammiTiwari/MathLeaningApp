@@ -1,0 +1,45 @@
+export type Card = { front: string; back: string; ch: string };
+
+export const FLASHCARDS: Card[] = [
+  { ch: "relations-and-functions", front: "Equivalence relation ke liye kaunsi 3 properties chahiye?", back: "Reflexive + Symmetric + Transitive. Teeno ek saath." },
+  { ch: "relations-and-functions", front: "One-one prove karne ka format?", back: "Maan lo f(x₁) = f(x₂), phir dikhao x₁ = x₂." },
+  { ch: "relations-and-functions", front: "Onto prove karne ka format?", back: "Koi bhi y ∈ codomain lo, ek x dhoondh ke dikhao jisse f(x) = y, aur batao ki x domain mein hai." },
+  { ch: "inverse-trigonometric-functions", front: "cos⁻¹ ka principal range?", back: "[0, π] — answer kabhi negative nahi ho sakta." },
+  { ch: "inverse-trigonometric-functions", front: "sin⁻¹ ka principal range?", back: "[−π/2, π/2] — negative allowed hai." },
+  { ch: "inverse-trigonometric-functions", front: "sin⁻¹x + cos⁻¹x = ?", back: "π/2. (tan⁻¹+cot⁻¹ aur sec⁻¹+cosec⁻¹ bhi π/2)" },
+  { ch: "matrices", front: "AB define hone ke liye kya condition?", back: "A ke columns = B ke rows. Beech wale numbers match karne chahiye." },
+  { ch: "matrices", front: "Skew-symmetric matrix ke diagonal elements?", back: "Hamesha ZERO, kyunki aᵢᵢ = −aᵢᵢ." },
+  { ch: "matrices", front: "(AB)' = ?", back: "B'A' — order ulta ho jaata hai." },
+  { ch: "determinants", front: "A⁻¹ ka formula?", back: "A⁻¹ = adj(A)/|A|, sirf jab |A| ≠ 0." },
+  { ch: "determinants", front: "adj(A) kaise banta hai?", back: "Cofactor matrix ka TRANSPOSE. Transpose lena mat bhoolna!" },
+  { ch: "determinants", front: "|adj A| = ?", back: "|A|^(n−1), jahan n matrix ka order hai." },
+  { ch: "continuity-and-differentiability", front: "x = a par continuous hone ki condition?", back: "LHL = RHL = f(a). Teeno barabar." },
+  { ch: "continuity-and-differentiability", front: "Kya continuous function hamesha differentiable hota hai?", back: "NAHI. |x| at x=0 continuous hai par differentiable nahi. Ulta sach hai: differentiable ⟹ continuous." },
+  { ch: "continuity-and-differentiability", front: "d/dx (tan⁻¹x) = ?", back: "1/(1 + x²)" },
+  { ch: "continuity-and-differentiability", front: "y = xˣ ka derivative kaise nikaloge?", back: "Dono taraf log lagao (logarithmic differentiation), phir differentiate karo." },
+  { ch: "application-of-derivatives", front: "Second derivative test — max kab?", back: "f'(c) = 0 aur f''(c) < 0 ⟹ local MAXIMUM." },
+  { ch: "application-of-derivatives", front: "Function increasing kab hota hai?", back: "Jab f'(x) > 0." },
+  { ch: "integrals", front: "ILATE ka full form?", back: "Inverse, Logarithmic, Algebraic, Trigonometric, Exponential — by parts mein u chunne ke liye." },
+  { ch: "integrals", front: "∫₀ᵃ f(x) dx = ?", back: "∫₀ᵃ f(a−x) dx — board ka favourite property." },
+  { ch: "integrals", front: "Odd function ka ∫₋ₐᵃ = ?", back: "0. Symmetric limits mein odd function ka integral hamesha zero." },
+  { ch: "integrals", front: "∫ dx/(x² + a²) = ?", back: "(1/a) tan⁻¹(x/a) + C" },
+  { ch: "application-of-integrals", front: "Area nikalne ke 3 steps?", back: "1. Graph banao 2. Limits nikalo (curves ko equal karo) 3. Integrate karo. Units likhna mat bhoolna." },
+  { ch: "differential-equations", front: "Linear DE ka integrating factor?", back: "dy/dx + Py = Q ke liye IF = e^(∫P dx). Phir y·IF = ∫Q·IF dx + C." },
+  { ch: "differential-equations", front: "Degree kab 'not defined' hoti hai?", back: "Jab derivative kisi root, sin, cos ya log ke andar ho." },
+  { ch: "differential-equations", front: "Homogeneous DE mein kya substitute karte hain?", back: "y = vx, jisse dy/dx = v + x(dv/dx)." },
+  { ch: "vector-algebra", front: "Dot product ka answer kya hota hai?", back: "Ek NUMBER (scalar). Cross product ka answer ek VECTOR hota hai." },
+  { ch: "vector-algebra", front: "Triangle ka area vectors se?", back: "½ |a × b|. Parallelogram ke liye poora |a × b|." },
+  { ch: "vector-algebra", front: "Do vectors perpendicular kab?", back: "Jab a·b = 0 (aur dono non-zero hon)." },
+  { ch: "three-dimensional-geometry", front: "l² + m² + n² = ?", back: "1 — direction cosines ka square sum hamesha 1." },
+  { ch: "three-dimensional-geometry", front: "Skew lines ke beech shortest distance?", back: "d = |(a₂−a₁)·(b₁×b₂)| / |b₁×b₂|" },
+  { ch: "linear-programming", front: "Corner Point Theorem kya kehta hai?", back: "Optimal value hamesha feasible region ke kisi corner point (vertex) par milti hai." },
+  { ch: "linear-programming", front: "LPP mein kaunse 2 constraints likhna mat bhoolna?", back: "x ≥ 0 aur y ≥ 0 (non-negativity constraints)." },
+  { ch: "probability", front: "P(A|B) ka formula?", back: "P(A ∩ B) / P(B), jab P(B) ≠ 0." },
+  { ch: "probability", front: "Independent events ka test?", back: "P(A ∩ B) = P(A) × P(B)" },
+  { ch: "probability", front: "Bayes' theorem kis kaam aata hai?", back: "Effect se cause tak ulta jaane ke liye — 'kharaab bulb mila, kis factory se aaya?'" },
+  { ch: "probability", front: "Mean of random variable E(X) = ?", back: "Σ xᵢpᵢ — har value ko uski probability se multiply karke jodo." },
+];
+
+export function cardsFor(slug: string) {
+  return FLASHCARDS.filter((c) => c.ch === slug);
+}
