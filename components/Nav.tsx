@@ -61,18 +61,11 @@ export default function Nav() {
   const groupActive = (g: Group) => g.items.some((i) => isActive(i.href));
 
   return (
-    // transparent shell keeps the pill in the flow (so pages below start in the
-    // right place) while the pill itself reads as floating
-    <header className="no-print sticky top-0 z-50 px-3 pb-3 pt-4 sm:px-4 lg:pb-4 lg:pt-5">
-      <div ref={navRef} className="mx-auto flex max-w-5xl justify-center">
-        {/*
-          Same pill at every size. On a narrow screen it stretches to the full
-          width and carries the brand name, so it never collapses into a stub
-          floating in the middle; from md it hugs its links instead.
-        */}
-        <div className="flex h-[52px] w-full items-center justify-between gap-1 rounded-full bg-[#141318] px-1.5 shadow-[0_8px_30px_rgba(16,15,24,0.28)] ring-1 ring-white/5 md:w-auto md:justify-center lg:h-[60px] lg:gap-1.5 lg:px-2">
+    <header className="no-print sticky top-0 z-50 w-full border-b border-white/5 bg-[#141318] shadow-[0_2px_20px_rgba(16,15,24,0.22)]">
+      <div ref={navRef} className="mx-auto w-full max-w-6xl px-3 sm:px-5">
+        <div className="flex h-[62px] items-center justify-between gap-1 lg:h-[70px] lg:gap-1.5">
           {/* round logo badge, with the name beside it while there is room */}
-          <Link href="/" className="flex shrink-0 items-center gap-2.5 md:gap-0">
+          <Link href="/" className="flex shrink-0 items-center gap-2.5">
             <span
               aria-hidden
               className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white transition hover:scale-[1.04] lg:h-11 lg:w-11"
@@ -80,13 +73,13 @@ export default function Nav() {
               <BookOpen size={17} className="text-[#141318] lg:hidden" />
               <BookOpen size={19} className="hidden text-[#141318] lg:block" />
             </span>
-            <span className="font-display text-[15px] font-extrabold tracking-[-0.01em] text-white md:hidden">
+            <span className="font-display text-[15.5px] font-extrabold tracking-[-0.01em] text-white lg:text-[17px]">
               Himmat Rakh
             </span>
           </Link>
 
           {/* desktop links */}
-          <nav className="hidden items-center gap-0.5 px-1.5 md:flex">
+          <nav className="hidden items-center gap-0.5 md:flex lg:gap-1">
             {GROUPS.map((g) => {
               const active = groupActive(g);
               const isOpen = open === g.label;
@@ -171,7 +164,8 @@ export default function Nav() {
 
       {/* mobile sheet */}
       {mobile && (
-        <div className="a-rise mx-auto mt-2.5 max-w-4xl overflow-hidden rounded-2xl border border-line bg-card p-4 shadow-lift md:hidden">
+        <div className="a-rise border-t border-white/5 bg-card md:hidden">
+          <div className="mx-auto max-w-6xl p-4">
           {[...GROUPS, { label: "Aur", items: SOLO }].map((g) => (
             <div key={g.label} className="mb-4">
               <p className="mb-1.5 px-1 text-[10.5px] font-bold uppercase tracking-[0.14em] text-faint">
@@ -210,7 +204,8 @@ export default function Nav() {
             className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#141318] px-4 py-3 text-[13.5px] font-semibold text-white"
           >
             <LogOut size={14} /> Logout (arnav)
-          </button>
+            </button>
+          </div>
         </div>
       )}
     </header>

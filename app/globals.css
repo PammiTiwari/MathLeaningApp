@@ -9,12 +9,12 @@
   --font-hand: "Caveat", cursive;
   color-scheme: light;
 
-  /* height the floating nav shell occupies: padding + pill + padding */
-  --nav-h: 80px;           /* pt-4(16) + 52 + pb-3(12) */
+  /* height of the sticky bar, so anything that has to clear it stays in sync */
+  --nav-h: 62px;
 }
 
 @media (min-width: 1024px) {
-  :root { --nav-h: 96px; } /* lg:pt-5(20) + 60 + lg:pb-4(16) */
+  :root { --nav-h: 70px; }
 }
 
 html { scroll-behavior: smooth; }
@@ -72,9 +72,8 @@ body {
   margin-right: calc(50% - 50vw);
 }
 
-/* Pull a full-bleed banner up so the floating nav sits ON it rather than
-   above it. Tied to --nav-h so the two can never drift apart. */
-.under-nav { margin-top: calc(var(--nav-h) * -1); }
+/* Anything sticky below the bar starts where the bar ends. */
+.below-nav { top: var(--nav-h); }
 
 /* ---- animations ---- */
 @keyframes beat-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }

@@ -11,7 +11,7 @@ export default function Hero() {
   const img = IMAGES.hero;
   return (
     <section
-      className="full-bleed under-nav relative overflow-hidden"
+      className="full-bleed relative overflow-hidden"
       style={{ background: img.fallback }}
     >
       {/* photograph */}
@@ -31,7 +31,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-[#0E0D18]/55" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#0E0D18]/85 via-transparent to-[#0E0D18]/90" />
 
-      <div className="relative mx-auto flex min-h-[80vh] max-w-3xl flex-col items-center justify-center px-5 pb-24 pt-[150px] lg:pb-28 lg:pt-[170px] text-center sm:min-h-[84vh]">
+      <div className="relative mx-auto flex min-h-[calc(100vh-62px)] lg:min-h-[calc(100vh-70px)] max-w-3xl flex-col items-center justify-center px-5 py-24 lg:py-28 text-center">
         <span className="rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-white/90 backdrop-blur-sm">
           CBSE Class 12 · Mathematics (041)
         </span>

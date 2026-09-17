@@ -16,7 +16,7 @@ export default function PageBanner({
 }) {
   return (
     <section
-      className="full-bleed under-nav relative mb-8 overflow-hidden"
+      className="full-bleed relative mb-8 overflow-hidden"
       style={{ background: image.fallback }}
     >
       <picture>
@@ -31,7 +31,7 @@ export default function PageBanner({
       <div className="absolute inset-0 bg-[#0E0D18]/60" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#0E0D18]/80 via-transparent to-[#0E0D18]/75" />
 
-      <div className="relative mx-auto max-w-6xl px-4 pb-12 pt-[132px] lg:pb-14 lg:pt-[152px] sm:px-6">
+      <div className="relative mx-auto max-w-6xl px-4 py-14 lg:py-16 sm:px-6">
         {eyebrow && (
           <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.18em] text-white/60">
             {eyebrow}

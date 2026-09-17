@@ -44,7 +44,7 @@ export default function FormulasPage() {
         </button>
       </PageBanner>
 
-      <div className="no-print sticky top-[76px] lg:top-[88px] z-20 mb-6">
+      <div className="no-print below-nav sticky z-20 mb-6">
         <div className="relative">
           <Search size={15} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-faint" />
           <input
