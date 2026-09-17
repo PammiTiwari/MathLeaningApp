@@ -3,9 +3,11 @@
  *
  *   node scripts/pipeline.mjs <pdf-dir> [maxPapers]
  *
- * Per paper: 1 transcribe call + 2 solve calls. Results land in
- * lib/data/board-papers/<id>.json. Already-finished papers are skipped,
- * so the script can be stopped and restarted freely.
+ * Per paper: one transcribe call, then solve passes that shrink their batch
+ * size until every question has an answer. Results land in
+ * lib/data/board-papers/<id>.json. Finished papers are skipped and partly
+ * solved ones resume from their existing transcription, so the script can be
+ * stopped and restarted freely.
  */
 import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync } from "fs";
 import { join, basename } from "path";
@@ -179,24 +181,42 @@ async function processPaper(pdfPath, id, year) {
     if (qs.length < 30) throw new Error(`only ${qs.length} questions transcribed`);
   }
 
-  const solutions = [];
-  const todo = qs.filter((q) => !q.answer);
-  const halves = [todo.filter((q) => q.n <= 20), todo.filter((q) => q.n > 20)];
-  for (const [k, half] of halves.entries()) {
-    if (!half.length) continue;
-    process.stderr.write(`   solving ${half.length} in half ${k + 1} `);
-    try {
-      const sols = salvageArray(await call([{ text: `${SOLVE_HEAD}\n\n${half.map(fmt).join("\n\n")}` }]));
-      solutions.push(...sols.filter((x) => x && x.n && x.answer));
-      console.error(`-> ${sols.length}`);
-    } catch (e) { console.error(`-> FAILED (${e.message})`); }
-    await sleep(4000);
+  // Solve in batches, then sweep up whatever the model truncated away. The
+  // long-answer half in particular produces enough marking-scheme text to hit
+  // the output cap, which is why papers kept stalling around 31/38. Each sweep
+  // asks only about the questions still missing, so the batches shrink and the
+  // responses fit.
+  const solved = new Map();
+  const batchesOf = (list, size) =>
+    Array.from({ length: Math.ceil(list.length / size) }, (_, i) => list.slice(i * size, i * size + size));
+
+  for (let pass = 1; pass <= 4; pass++) {
+    const todo = qs.filter((q) => !q.answer && !solved.has(q.n));
+    if (!todo.length) break;
+
+    // pass 1 sends big batches (cheap); later passes shrink to fit the cap
+    const size = pass === 1 ? 20 : pass === 2 ? 8 : 4;
+    process.stderr.write(`   pass ${pass}: ${todo.length} left `);
+    let gained = 0;
+
+    for (const batch of batchesOf(todo, size)) {
+      try {
+        const sols = salvageArray(await call([{ text: `${SOLVE_HEAD}\n\n${batch.map(fmt).join("\n\n")}` }]));
+        for (const s of sols) if (s?.n && s.answer && !solved.has(s.n)) { solved.set(s.n, s); gained++; }
+      } catch (e) {
+        process.stderr.write(`(${e.message}) `);
+      }
+      await sleep(3000);
+    }
+
+    console.error(`-> +${gained}`);
+    if (!gained) break;   // no progress — stop burning quota on this paper
   }
 
-  const questions = qs.map((q) => ({ ...q, ...(solutions.find((s) => s.n === q.n) || {}) }));
-  const solved = questions.filter((q) => q.answer).length;
+  const questions = qs.map((q) => ({ ...q, ...(solved.get(q.n) ?? {}) }));
+  const solvedCount = questions.filter((q) => q.answer).length;
   writeFileSync(outFile, JSON.stringify({ id, year, set: id.split("-").slice(1).join("-"), questions }, null, 2));
-  console.error(`   saved ${solved}/${questions.length} solved -> ${outFile}`);
+  console.error(`   saved ${solvedCount}/${questions.length} solved -> ${outFile}`);
 }
 
 const dir = process.argv[2];
