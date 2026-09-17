@@ -11,11 +11,12 @@ export default function Hero() {
   const img = IMAGES.hero;
   return (
     <section
-      className="relative left-1/2 right-1/2 -mx-[50vw] -mt-20 w-screen overflow-hidden"
+      className="full-bleed under-nav relative overflow-hidden"
       style={{ background: img.fallback }}
     >
       {/* photograph */}
       <picture>
+        <source media="(min-width: 1920px)" srcSet={img.src(2560)} />
         <source media="(min-width: 1280px)" srcSet={img.src(2000)} />
         <source media="(min-width: 640px)" srcSet={img.src(1400)} />
         <img
@@ -30,7 +31,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-[#0E0D18]/55" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#0E0D18]/85 via-transparent to-[#0E0D18]/90" />
 
-      <div className="relative mx-auto flex min-h-[80vh] max-w-3xl flex-col items-center justify-center px-5 pb-24 pt-[150px] text-center sm:min-h-[84vh]">
+      <div className="relative mx-auto flex min-h-[80vh] max-w-3xl flex-col items-center justify-center px-5 pb-24 pt-[150px] lg:pb-28 lg:pt-[170px] text-center sm:min-h-[84vh]">
         <span className="rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-white/90 backdrop-blur-sm">
           CBSE Class 12 · Mathematics (041)
         </span>
@@ -48,16 +49,16 @@ export default function Hero() {
           aur derivations aur board-level tough questions tak jaata hai.
         </p>
 
-        <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+        <div className="mt-9 flex w-full max-w-[340px] flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:items-center sm:justify-center">
           <Link
             href="/chapters"
-            className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-[14px] font-bold text-head shadow-lg transition hover:bg-white/90"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3.5 text-[14px] font-bold text-head shadow-lg transition hover:bg-white/90"
           >
             Padhna shuru karo <ArrowRight size={16} />
           </Link>
           <Link
             href="/papers"
-            className="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-3.5 text-[14px] font-bold text-white backdrop-blur-sm transition hover:bg-white/20"
+            className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/30 bg-white/10 px-6 py-3.5 text-[14px] font-bold text-white backdrop-blur-sm transition hover:bg-white/20"
           >
             <FileText size={16} /> Board papers
           </Link>

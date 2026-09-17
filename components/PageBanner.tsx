@@ -16,10 +16,11 @@ export default function PageBanner({
 }) {
   return (
     <section
-      className="relative left-1/2 right-1/2 -mx-[50vw] -mt-20 mb-8 w-screen overflow-hidden"
+      className="full-bleed under-nav relative mb-8 overflow-hidden"
       style={{ background: image.fallback }}
     >
       <picture>
+        <source media="(min-width: 1536px)" srcSet={image.src(2400)} />
         <source media="(min-width: 640px)" srcSet={image.src(1600)} />
         <img
           src={image.src(800)}
@@ -30,7 +31,7 @@ export default function PageBanner({
       <div className="absolute inset-0 bg-[#0E0D18]/60" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#0E0D18]/80 via-transparent to-[#0E0D18]/75" />
 
-      <div className="relative mx-auto max-w-6xl px-4 pb-12 pt-[132px] sm:px-6">
+      <div className="relative mx-auto max-w-6xl px-4 pb-12 pt-[132px] lg:pb-14 lg:pt-[152px] sm:px-6">
         {eyebrow && (
           <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.18em] text-white/60">
             {eyebrow}

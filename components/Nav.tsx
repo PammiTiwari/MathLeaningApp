@@ -63,21 +63,22 @@ export default function Nav() {
   return (
     // transparent shell keeps the pill in the flow (so pages below start in the
     // right place) while the pill itself reads as floating
-    <header className="no-print sticky top-0 z-50 px-3 pb-3 pt-4 sm:px-4">
-      <div ref={navRef} className="mx-auto flex max-w-4xl justify-center">
+    <header className="no-print sticky top-0 z-50 px-3 pb-3 pt-4 sm:px-4 lg:pb-4 lg:pt-5">
+      <div ref={navRef} className="mx-auto flex max-w-5xl justify-center">
         {/*
           Same pill at every size. On a narrow screen it stretches to the full
           width and carries the brand name, so it never collapses into a stub
           floating in the middle; from md it hugs its links instead.
         */}
-        <div className="flex h-[52px] w-full items-center justify-between gap-1 rounded-full bg-[#141318] px-1.5 shadow-[0_8px_30px_rgba(16,15,24,0.28)] ring-1 ring-white/5 md:w-auto md:justify-center">
+        <div className="flex h-[52px] w-full items-center justify-between gap-1 rounded-full bg-[#141318] px-1.5 shadow-[0_8px_30px_rgba(16,15,24,0.28)] ring-1 ring-white/5 md:w-auto md:justify-center lg:h-[60px] lg:gap-1.5 lg:px-2">
           {/* round logo badge, with the name beside it while there is room */}
           <Link href="/" className="flex shrink-0 items-center gap-2.5 md:gap-0">
             <span
               aria-hidden
-              className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white transition hover:scale-[1.04]"
+              className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white transition hover:scale-[1.04] lg:h-11 lg:w-11"
             >
-              <BookOpen size={17} className="text-[#141318]" />
+              <BookOpen size={17} className="text-[#141318] lg:hidden" />
+              <BookOpen size={19} className="hidden text-[#141318] lg:block" />
             </span>
             <span className="font-display text-[15px] font-extrabold tracking-[-0.01em] text-white md:hidden">
               Himmat Rakh
@@ -95,7 +96,7 @@ export default function Nav() {
                     onClick={() => setOpen(isOpen ? null : g.label)}
                     onMouseEnter={() => open && setOpen(g.label)}
                     aria-expanded={isOpen}
-                    className={`flex items-center gap-1 rounded-full px-3.5 py-2 text-[13.5px] font-medium transition ${
+                    className={`flex items-center gap-1 rounded-full px-3.5 py-2 text-[13.5px] font-medium transition lg:px-4 lg:py-2.5 lg:text-[14.5px] ${
                       active || isOpen ? "bg-white/12 text-white" : "text-white/70 hover:bg-white/8 hover:text-white"
                     }`}
                   >
@@ -138,7 +139,7 @@ export default function Nav() {
               <Link
                 key={s.href}
                 href={s.href}
-                className={`rounded-full px-3.5 py-2 text-[13.5px] font-medium transition ${
+                className={`rounded-full px-3.5 py-2 text-[13.5px] font-medium transition lg:px-4 lg:py-2.5 lg:text-[14.5px] ${
                   isActive(s.href) ? "bg-white/12 text-white" : "text-white/70 hover:bg-white/8 hover:text-white"
                 }`}
               >
@@ -151,7 +152,7 @@ export default function Nav() {
           <button
             onClick={logout}
             title="Logout"
-            className="group hidden h-10 items-center gap-2 rounded-full bg-white pl-4 pr-3.5 text-[13px] font-semibold text-[#141318] transition hover:bg-white/90 md:flex"
+            className="group hidden h-10 items-center gap-2 rounded-full bg-white pl-4 pr-3.5 text-[13px] font-semibold text-[#141318] transition hover:bg-white/90 md:flex lg:h-11 lg:pl-5 lg:pr-4 lg:text-[14px]"
           >
             arnav
             <LogOut size={13} className="text-[#141318]/45 transition group-hover:text-[#141318]" />
