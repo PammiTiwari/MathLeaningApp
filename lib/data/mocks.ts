@@ -33,21 +33,32 @@ const marksOf = (ids: string[]) =>
 /* ------------------------------------------------------------------ *
  * 1. FULL PAPERS — one per real board set, exactly as it was sat
  * ------------------------------------------------------------------ */
-const FULL: Mock[] = BOARD_PAPERS.map((p, i) => {
-  const ids = p.questions.map((q) => `${p.id}-q${q.n}`);
-  return {
-    id: `board-${p.id}`,
-    no: i + 1,
-    title: `Mock Paper ${String(i + 1).padStart(2, "0")}`,
-    subtitle: `CBSE ${p.year} board exam, Set ${setLabel(p.set)} — jaisa asli paper tha. 38 questions, poore 3 ghante.`,
-    minutes: 180,
-    marks: marksOf(ids),
-    questionIds: ids,
-    badge: "FULL PAPER",
-    kind: "full",
-    source: `CBSE ${p.year} · Set ${setLabel(p.set)}`,
-  };
-});
+const inPool = new Set(BOARD_QUESTIONS.map((q) => q.id));
+
+const FULL: Mock[] = [...BOARD_PAPERS]
+  // number the papers the way CBSE prints them: 65/1/1 is Mock Paper 01
+  .sort((a, b) => (a.year + a.set).localeCompare(b.year + b.set))
+  .map((p, i) => {
+    // a question validation pulled from the pool cannot be sat or marked, so
+    // it is left out and the paper honestly reports the smaller total
+    const ids = p.questions.map((q) => `${p.id}-q${q.n}`).filter((id) => inPool.has(id));
+    const dropped = p.questions.length - ids.length;
+    return {
+      id: `board-${p.id}`,
+      no: i + 1,
+      title: `Mock Paper ${String(i + 1).padStart(2, "0")}`,
+      subtitle:
+        `CBSE ${p.year} board exam, Set ${setLabel(p.set)} — jaisa asli paper tha. ` +
+        `${ids.length} questions, poore 3 ghante.` +
+        (dropped ? ` (${dropped} sawaal hata diya — uske options asli paper se theek se nahi padhe ja sake.)` : ""),
+      minutes: 180,
+      marks: marksOf(ids),
+      questionIds: ids,
+      badge: "FULL PAPER",
+      kind: "full",
+      source: `CBSE ${p.year} · Set ${setLabel(p.set)}`,
+    };
+  });
 
 /* ------------------------------------------------------------------ *
  * 2. SECTION DRILLS — pooled across every board set

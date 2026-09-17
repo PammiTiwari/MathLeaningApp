@@ -96,7 +96,8 @@
         "Identify the original graph as $y = \\cos x$ on $[0, \\pi]$ — 0.5 mark",
         "Recognize that the inverse function is $y = \\cos^{-1} x$ — 0.5 mark"
       ],
-      "chapter": "inverse-trigonometric-functions"
+      "chapter": "inverse-trigonometric-functions",
+      "needsFigure": true
     },
     {
       "n": 6,
@@ -373,7 +374,16 @@
         "Assertion (A) is false, but Reason (R) is true."
       ],
       "section": "A",
-      "marks": 1
+      "marks": 1,
+      "correct": 3,
+      "answer": "Assertion (A) is false, but Reason (R) is true.",
+      "keySteps": [
+        "Calculate LHL at $x=5$: $3(5)-8 = 7$ — 0.25 mark",
+        "Calculate RHL at $x=5$: $2k$ — 0.25 mark",
+        "Equate LHL and RHL for continuity: $2k=7 \\implies k=7/2$. Since Assertion says $k=5/2$, (A) is false — 0.25 mark",
+        "Verify Reason (R) is the standard definition of continuity, which is true — 0.25 mark"
+      ],
+      "chapter": "continuity-and-differentiability"
     },
     {
       "n": 21,
@@ -546,20 +556,50 @@
       "n": 33,
       "q": "Find the absolute maximum and absolute minimum of function $f(x) = 2x^3 - 15x^2 + 36x + 1$ on $[1, 5]$.",
       "section": "D",
-      "marks": 5
+      "marks": 5,
+      "correct": null,
+      "answer": "Absolute Maximum: 56 at $x=5$, Absolute Minimum: 24 at $x=1$",
+      "keySteps": [
+        "Find $f'(x) = 6x^2 - 30x + 36$ — 1 mark",
+        "Solve $f'(x) = 0$ to find critical points $x=2, 3$ — 1 mark",
+        "Evaluate $f(x)$ at endpoints: $f(1)=24, f(5)=56$ — 1 mark",
+        "Evaluate $f(x)$ at critical points: $f(2)=29, f(3)=28$ — 1 mark",
+        "Compare values to identify absolute maximum 56 and absolute minimum 24 — 1 mark"
+      ],
+      "chapter": "application-of-derivatives"
     },
     {
       "n": 34,
       "q": "A school wants to allocate students into three clubs : Sports, Music and Drama, under following conditions :\n\\begin{itemize}\n\\item The number of students in Sports club should be equal to the sum of the number of students in Music and Drama club.\n\\item The number of students in Music club should be 20 more than half the number of students in Sports club.\n\\item The total number of students to be allocated in all three clubs are 180.\n\\end{itemize}\nFind the number of students allocated to different clubs, using matrix method.",
       "section": "D",
-      "marks": 5
+      "marks": 5,
+      "correct": null,
+      "answer": "Sports: 90, Music: 65, Drama: 25",
+      "keySteps": [
+        "Formulate equations: $x-y-z=0$, $-x+2y=40$, $x+y+z=180$ — 1 mark",
+        "Write in matrix form $AX=B$ and find $|A|=4$ — 1 mark",
+        "Compute the matrix of cofactors and $adj(A)$ — 1.5 marks",
+        "Apply $X = A^{-1}B = \\frac{1}{|A|}adj(A)B$ — 1 mark",
+        "Solve for $x=90, y=65, z=25$ — 0.5 mark"
+      ],
+      "chapter": "matrices"
     },
     {
       "n": 35,
       "q": "Find the image A' of the point $A(1, 6, 3)$ in the line $\\frac{x}{1} = \\frac{y - 1}{2} = \\frac{z - 2}{3}$. Also, find the equation of the line joining A and A'.",
       "orAlternative": "Find a point P on the line $\\frac{x + 5}{1} = \\frac{y + 3}{4} = \\frac{z - 6}{-9}$ such that its distance from point $Q(2, 4, -1)$ is 7 units. Also, find the equation of line joining P and Q.",
       "section": "D",
-      "marks": 5
+      "marks": 5,
+      "correct": null,
+      "answer": "Image $A'(1, 0, 7)$, Line $AA': x=1, \\frac{y-6}{-3} = \\frac{z-3}{2}$",
+      "keySteps": [
+        "Find general point $P(\\lambda, 2\\lambda+1, 3\\lambda+2)$ on the line — 1 mark",
+        "Use dot product of $\\vec{AP}$ and line direction $(1, 2, 3)$ to find $\\lambda=1$ — 1 mark",
+        "Find foot of perpendicular $F(1, 3, 5)$ — 1 mark",
+        "Use midpoint formula to find image $A'(1, 0, 7)$ — 1 mark",
+        "Find equation of line $AA'$ using points $A$ and $A'$ — 1 mark"
+      ],
+      "chapter": "three-dimensional-geometry"
     },
     {
       "n": 36,
@@ -575,7 +615,16 @@
         }
       ],
       "section": "E",
-      "marks": 4
+      "marks": 4,
+      "correct": null,
+      "answer": "(i) $0.018$, (ii) $\\frac{7}{18}$",
+      "keySteps": [
+        "Define events $E_1, E_2, E_3$ for loan types and $D$ for default — 0.5 mark",
+        "Calculate total probability $P(D) = (0.1)(0.05) + (0.2)(0.03) + (0.7)(0.01) = 0.018$ — 1.5 marks",
+        "Apply Bayes' Theorem: $P(E_3|D) = \\frac{P(E_3)P(D|E_3)}{P(D)}$ — 1 mark",
+        "Substitute values: $\\frac{0.007}{0.018} = \\frac{7}{18}$ — 1 mark"
+      ],
+      "chapter": "probability"
     },
     {
       "n": 37,
@@ -596,7 +645,16 @@
       ],
       "orAlternative": "Using first derivative test, calculate the maximum area the company can enclose with the 300 metres of boundary material, considering the parallel partition.",
       "section": "E",
-      "marks": 4
+      "marks": 4,
+      "correct": null,
+      "answer": "(i) $2x + 3y = 300$, (ii) $A(x) = 100x - \\frac{2}{3}x^2$, (iii) Max Area: $3750$ sq m",
+      "keySteps": [
+        "Write boundary equation $2x + 3y = 300$ — 1 mark",
+        "Express Area $A = xy$ as $A(x) = x(100 - \\frac{2}{3}x)$ — 1 mark",
+        "Find $A'(x) = 100 - \\frac{4}{3}x$ and set to zero to find $x=75$ — 1 mark",
+        "Use second derivative test $A''(x) = -4/3 < 0$ and calculate max area $A(75) = 3750$ — 1 mark"
+      ],
+      "chapter": "application-of-derivatives"
     },
     {
       "n": 38,
@@ -617,7 +675,15 @@
       ],
       "orAlternative": "What pairs should be added to the relation $R_2$ to make it an equivalence relation ?",
       "section": "E",
-      "marks": 4
+      "marks": 4,
+      "correct": null,
+      "answer": "(i) $R_4$, (ii) $R_5$, (iii) $R_1$ and $R_3$",
+      "keySteps": [
+        "Identify $R_4$ as reflexive, transitive but not symmetric — 1 mark",
+        "Identify $R_5$ as reflexive, symmetric but not transitive — 1 mark",
+        "Identify $R_1$ and $R_3$ as symmetric but neither reflexive nor transitive — 2 marks"
+      ],
+      "chapter": "relations-and-functions"
     }
   ]
 }

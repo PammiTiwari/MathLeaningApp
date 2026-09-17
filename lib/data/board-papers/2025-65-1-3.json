@@ -265,7 +265,8 @@
         "Identify the original graph as $y = \\sin x$ on its principal domain — 0.5 mark",
         "Recognize the graph of $y = \\sin^{-1} x$ as its reflection in $y=x$ — 0.5 mark"
       ],
-      "chapter": "inverse-trigonometric-functions"
+      "chapter": "inverse-trigonometric-functions",
+      "needsFigure": true
     },
     {
       "n": 15,
