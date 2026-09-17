@@ -21,6 +21,9 @@ type RawQuestion = {
   answer?: string;
   keySteps?: string[];
   chapter?: string;
+  /** set by scripts/validate.mjs */
+  needsFigure?: boolean;   // the printed paper has a figure we cannot show
+  suspect?: boolean;       // options clearly do not match the question
 };
 
 type RawPaper = { id: string; year: string; set: string; questions: RawQuestion[] };
@@ -30,6 +33,13 @@ import { RAW_PAPERS } from "./board-papers/index";
 const RAW: RawPaper[] = RAW_PAPERS as RawPaper[];
 
 const TYPE_OF: Record<string, QType> = { A: "mcq", B: "vsa", C: "sa", D: "la", E: "case" };
+
+/** Where a student can see the original printed paper, figures and all. */
+const PAPER_PDF: Record<string, string> = {
+  "2026": "https://www.cbse.gov.in/cbsenew/question-paper/2026/XII/Mathematics.zip",
+  "2025": "https://www.cbse.gov.in/cbsenew/question-paper/2025/XII/MATHEMATICS.zip",
+  "2024": "https://www.cbse.gov.in/cbsenew/question-paper/2024/XII/MATHEMATICS.zip",
+};
 
 const VALID_CHAPTERS = new Set([
   "relations-and-functions", "inverse-trigonometric-functions", "matrices", "determinants",
@@ -49,7 +59,7 @@ export const BOARD_PAPERS: RawPaper[] = RAW
 
 /** Flattened into the app's Question shape, with globally unique ids. */
 export const BOARD_QUESTIONS: Question[] = BOARD_PAPERS.flatMap((p) =>
-  p.questions.map((q): Question => {
+  p.questions.filter((q) => !q.suspect).map((q): Question => {
     const isAR = q.section === "A" && looksLikeAssertionReason(q);
     const body = q.orAlternative
       ? `${q.q}\n\n**OR**\n\n${q.orAlternative}`
@@ -65,6 +75,9 @@ export const BOARD_QUESTIONS: Question[] = BOARD_PAPERS.flatMap((p) =>
       answer: q.answer ?? "",
       keySteps: q.keySteps,
       parts: q.parts?.map((pt) => ({ ...pt, answer: "" })),
+      needsFigure: q.needsFigure,
+      paperSource: `CBSE ${p.year} · Set ${setLabel(p.set)} · Q${q.n}`,
+      paperPdf: PAPER_PDF[p.year],
     };
   })
 );

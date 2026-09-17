@@ -11,7 +11,7 @@ import { Rich } from "@/components/Tex";
 import { Card, Pill, Bar } from "@/components/ui";
 import {
   Timer, Camera, X, Send, AlertTriangle, CheckCircle2, Loader2,
-  ArrowLeft, ArrowRight, Trophy, RotateCcw,
+  ArrowLeft, ArrowRight, Trophy, RotateCcw, ImageOff, ExternalLink,
 } from "lucide-react";
 
 type Ans = {
@@ -389,7 +389,26 @@ export default function ExamRunner({ params }: { params: Promise<{ paperId: stri
               <span className="text-xs text-faint">{q.marks} {q.marks === 1 ? "mark" : "marks"}</span>
             </div>
 
+            {q.needsFigure && (
+              <div className="mb-3 flex items-start gap-2.5 rounded-xl border border-saffron/30 bg-saffronSoft p-3">
+                <ImageOff size={15} className="mt-0.5 shrink-0 text-saffron" />
+                <p className="text-[12.5px] leading-snug text-body">
+                  Is sawaal ke saath asli paper mein ek <strong className="text-head">graph/figure</strong> chhapa
+                  tha jo yahan nahi dikhaya ja sakta. Neeche ka text padh ke attempt karo, ya asli paper
+                  kholo.{" "}
+                  {q.paperPdf && (
+                    <a href={q.paperPdf} target="_blank" rel="noreferrer"
+                      className="font-semibold text-saffron underline">
+                      original PDF <ExternalLink size={10} className="inline" />
+                    </a>
+                  )}
+                </p>
+              </div>
+            )}
             <Rich text={q.q} className="text-[16px] leading-relaxed text-head" />
+            {q.paperSource && (
+              <p className="mt-2 text-[11px] font-medium text-faint">{q.paperSource}</p>
+            )}
 
             {/* MCQ */}
             {q.options ? (

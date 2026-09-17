@@ -11,6 +11,9 @@ export type Question = {
   answer: string;          // model answer
   keySteps?: string[];     // marking-scheme step points — used by the AI evaluator
   parts?: { q: string; marks: number; answer: string }[]; // for case-based
+  needsFigure?: boolean;   // original paper prints a figure we cannot reproduce
+  paperSource?: string;    // e.g. "CBSE 2025 · Set 65/1/1 · Q18"
+  paperPdf?: string;       // link to the official paper
 };
 
 export const AR_OPTIONS = [
