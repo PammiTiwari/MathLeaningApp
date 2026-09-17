@@ -2,7 +2,9 @@
 
 import { useRef, useState } from "react";
 import { CHAPTERS } from "@/lib/data/chapters";
-import { PageHead, Card, Pill } from "@/components/ui";
+import { Card, Pill } from "@/components/ui";
+import PageBanner from "@/components/PageBanner";
+import { IMAGES } from "@/lib/images";
 import { Rich } from "@/components/Tex";
 import { Send, Camera, X, Loader2, Sparkles, AlertTriangle } from "lucide-react";
 
@@ -58,7 +60,8 @@ export default function DoubtPage() {
 
   return (
     <div className="mx-auto max-w-3xl">
-      <PageHead
+      <PageBanner
+        image={IMAGES.graph}
         eyebrow="AI tutor"
         title="Doubt pucho, bina jhijhak"
         sub="Koi bhi sawaal - chapter ka concept ho, ya book ka koi question jo samajh nahi aa raha. Photo bhi kheench ke bhej sakte ho. Jawab step-by-step milega, Hinglish mein."

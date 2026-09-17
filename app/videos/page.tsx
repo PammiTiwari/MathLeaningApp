@@ -3,13 +3,16 @@
 import Link from "next/link";
 import { CHAPTERS, PLAYLISTS } from "@/lib/data/chapters";
 import { KHAN_VIDEOS, KHAN_CHANNELS, KHAN_COURSE_HUB, topicVideosFor } from "@/lib/data/videos";
-import { PageHead, Card, Pill } from "@/components/ui";
+import { Card, Pill } from "@/components/ui";
+import PageBanner from "@/components/PageBanner";
+import { IMAGES } from "@/lib/images";
 import { PlayCircle, ExternalLink, Youtube } from "lucide-react";
 
 export default function VideosHome() {
   return (
     <div>
-      <PageHead
+      <PageBanner
+        image={IMAGES.graph}
         eyebrow="Video lessons"
         title="Dekhke samjho"
         sub="Har chapter ke liye Khan Academy ke free videos aur topic-wise links. Khan Academy India ka poora NCERT Class 12 course free hai - videos ke saath practice exercises bhi."

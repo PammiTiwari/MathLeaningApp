@@ -3,13 +3,16 @@
 import Link from "next/link";
 import { CHAPTERS } from "@/lib/data/chapters";
 import { notesFor } from "@/lib/data/notes";
-import { PageHead, Card } from "@/components/ui";
+import { Card } from "@/components/ui";
+import PageBanner from "@/components/PageBanner";
+import { IMAGES } from "@/lib/images";
 import { NotebookPen, Printer } from "lucide-react";
 
 export default function NotesHome() {
   return (
     <div>
-      <PageHead
+      <PageBanner
+        image={IMAGES.notes}
         eyebrow="Handwritten notes"
         title="Ek page, poora chapter"
         sub="Har chapter POORA cover kiya hai - definitions, saare formulas, aur har method ke step-by-step tareeke. Short rakha hai par kuch chhoda nahi. Exam se ek raat pehle sirf yahi kaafi hai. Print bhi kar sakte ho."

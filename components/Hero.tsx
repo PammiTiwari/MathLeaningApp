@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { IMAGES } from "@/lib/images";
+import { IMAGES, PHOTO_CREDIT } from "@/lib/images";
 import { ArrowRight, FileText } from "lucide-react";
 
 /**
@@ -11,7 +11,7 @@ export default function Hero() {
   const img = IMAGES.hero;
   return (
     <section
-      className="relative left-1/2 right-1/2 -mx-[50vw] w-screen overflow-hidden"
+      className="relative left-1/2 right-1/2 -mx-[50vw] -mt-[57px] w-screen overflow-hidden"
       style={{ background: img.fallback }}
     >
       {/* photograph */}
@@ -30,7 +30,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-[#0E0D18]/55" />
       <div className="absolute inset-0 bg-gradient-to-b from-[#0E0D18]/85 via-transparent to-[#0E0D18]/90" />
 
-      <div className="relative mx-auto flex min-h-[78vh] max-w-3xl flex-col items-center justify-center px-5 py-24 text-center sm:min-h-[80vh]">
+      <div className="relative mx-auto flex min-h-[80vh] max-w-3xl flex-col items-center justify-center px-5 pb-24 pt-[120px] text-center sm:min-h-[84vh]">
         <span className="rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.16em] text-white/90 backdrop-blur-sm">
           CBSE Class 12 · Mathematics (041)
         </span>
@@ -79,7 +79,7 @@ export default function Hero() {
       </div>
 
       <span className="absolute bottom-3 right-4 text-[10px] text-white/35">
-        photo: {img.credit}
+        photo: {PHOTO_CREDIT}
       </span>
     </section>
   );

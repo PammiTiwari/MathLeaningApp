@@ -78,7 +78,7 @@ export default function Nav() {
     <header
       className={`no-print sticky top-0 z-50 transition-colors duration-300 ${
         overHero
-          ? "border-b border-transparent bg-transparent"
+          ? "border-b border-transparent bg-gradient-to-b from-black/45 to-transparent"
           : "border-b border-line bg-page/85 backdrop-blur-xl"
       }`}
     >

@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { CHAPTERS, UNITS } from "@/lib/data/chapters";
-import { PageHead, Card, Pill } from "@/components/ui";
+import { Card, Pill } from "@/components/ui";
+import PageBanner from "@/components/PageBanner";
+import { IMAGES } from "@/lib/images";
 import { getLesson } from "@/lib/data/lessons";
 import { Clock, Layers } from "lucide-react";
 
@@ -10,7 +12,8 @@ export default function ChaptersPage() {
 
   return (
     <div>
-      <PageHead
+      <PageBanner
+        image={IMAGES.chapters}
         eyebrow="Poora syllabus"
         title="13 Chapters, 80 Marks"
         sub="Har chapter Hinglish mein samjhaya gaya hai - kahani se shuru, formula ke saath, aur board tips ke saath khatam. Unit ke hisaab se grouped hai taaki pata rahe kis par kitna time dena hai."

@@ -4,7 +4,9 @@ import { useMemo, useState } from "react";
 import Link from "next/link";
 import { FORMULAS, ALL_FORMULA_COUNT } from "@/lib/data/formulas";
 import { getChapter } from "@/lib/data/chapters";
-import { PageHead, Card, Pill } from "@/components/ui";
+import { Card, Pill } from "@/components/ui";
+import PageBanner from "@/components/PageBanner";
+import { IMAGES } from "@/lib/images";
 import { Formula } from "@/components/Tex";
 import { Search, Printer, X } from "lucide-react";
 
@@ -28,17 +30,19 @@ export default function FormulasPage() {
 
   return (
     <div>
-      <PageHead
+      <PageBanner
+        image={IMAGES.hero}
         eyebrow="Formula sheet"
         title={`${ALL_FORMULA_COUNT} formulas, ek jagah`}
         sub="Poore syllabus ke saare zaroori formulas, chapter ke hisaab se. Exam se pehle wali raat ke liye yahi page kaafi hai - print kar lo aur deewar par chipka do."
-        right={
-          <button onClick={() => window.print()}
-            className="no-print flex items-center gap-1.5 rounded-lg border border-line px-3.5 py-2 text-xs font-semibold text-muted hover:bg-sunk">
-            <Printer size={13} /> Print
-          </button>
-        }
-      />
+      >
+        <button
+          onClick={() => window.print()}
+          className="no-print mt-5 inline-flex items-center gap-1.5 rounded-lg border border-white/25 bg-white/10 px-4 py-2.5 text-xs font-bold text-white backdrop-blur-sm transition hover:bg-white/20"
+        >
+          <Printer size={13} /> Print karo
+        </button>
+      </PageBanner>
 
       <div className="no-print sticky top-[60px] z-20 mb-6">
         <div className="relative">

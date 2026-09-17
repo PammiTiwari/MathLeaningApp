@@ -2,13 +2,16 @@
 
 import Link from "next/link";
 import { OFFICIAL_PAPERS, BOARD_PAPERS, COMPARTMENT_PAPERS, SYLLABUS_PDF, CBSE_PYQ_PAGE, CBSE_SQP_ARCHIVE, ALL_PAPERS_PAGE } from "@/lib/data/papers";
-import { PageHead, Card, Pill } from "@/components/ui";
+import { Card, Pill } from "@/components/ui";
+import PageBanner from "@/components/PageBanner";
+import { IMAGES } from "@/lib/images";
 import { FileText, Download, ExternalLink, BookMarked, FolderArchive, Trophy } from "lucide-react";
 
 export default function PapersPage() {
   return (
     <div>
-      <PageHead
+      <PageBanner
+        image={IMAGES.papers}
         eyebrow="Question papers"
         title="Previous year & sample papers"
         sub="Saare links CBSE ki official website se hain - koi third-party copy nahi. Question paper ke saath marking scheme bhi hai, taaki pata chale ki examiner marks kaise deta hai."
