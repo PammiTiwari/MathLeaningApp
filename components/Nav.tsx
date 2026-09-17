@@ -30,29 +30,15 @@ const GROUPS: Group[] = [
 
 const SOLO: Item[] = [
   { href: "/notes", label: "Notes", desc: "Poora chapter, ek sheet par", icon: NotebookPen },
-  { href: "/doubt", label: "Doubt pucho", desc: "AI tutor, 24×7", icon: MessageCircleQuestion },
+  { href: "/doubt", label: "Doubt pucho", desc: "AI tutor, 24x7", icon: MessageCircleQuestion },
 ];
 
 export default function Nav() {
   const path = usePathname();
-  const [open, setOpen] = useState<string | null>(null);   // desktop dropdown
+  const [open, setOpen] = useState<string | null>(null);
   const [mobile, setMobile] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
 
-  // The home page opens with a dark full-bleed photograph, so the bar floats
-  // over it in white until you scroll past the fold.
-  const overHero = path === "/" && !scrolled && !mobile;
-
-  useEffect(() => {
-    if (path !== "/") { setScrolled(true); return; }
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, [path]);
-
-  // close on route change, outside click, Escape
   useEffect(() => { setOpen(null); setMobile(false); }, [path]);
   useEffect(() => {
     function onDoc(e: MouseEvent) {
@@ -75,161 +61,146 @@ export default function Nav() {
   const groupActive = (g: Group) => g.items.some((i) => isActive(i.href));
 
   return (
-    <header
-      className={`no-print sticky top-0 z-50 transition-colors duration-300 ${
-        overHero
-          ? "border-b border-transparent bg-gradient-to-b from-black/45 to-transparent"
-          : "border-b border-line bg-page/85 backdrop-blur-xl"
-      }`}
-    >
-      <div ref={navRef} className="mx-auto flex h-14 w-full max-w-6xl items-center gap-2 px-4 sm:px-6">
-        {/* ---- logo ---- */}
-        <Link href="/" className="mr-1 flex shrink-0 items-center gap-2.5">
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-primary to-saffron shadow-soft">
-            <BookOpen size={16} className="text-white" />
-          </span>
-          <span className={`font-display text-[16px] font-extrabold tracking-[-0.02em] transition-colors ${overHero ? "text-white" : "text-head"}`}>
-            Himmat Rakh
-          </span>
-        </Link>
+    // transparent shell keeps the pill in the flow (so pages below start in the
+    // right place) while the pill itself reads as floating
+    <header className="no-print sticky top-0 z-50 px-4 pb-3 pt-4">
+      <div ref={navRef} className="mx-auto flex max-w-4xl justify-center">
+        <div className="flex h-[52px] items-center gap-1 rounded-full bg-[#141318] pl-1.5 pr-1.5 shadow-[0_8px_30px_rgba(16,15,24,0.28)] ring-1 ring-white/5">
+          {/* round logo badge */}
+          <Link
+            href="/"
+            aria-label="Himmat Rakh"
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white transition hover:scale-[1.04]"
+          >
+            <BookOpen size={17} className="text-[#141318]" />
+          </Link>
 
-        {/* ---- desktop nav ---- */}
-        <nav className="ml-2 hidden items-center gap-0.5 md:flex">
-          {GROUPS.map((g) => {
-            const active = groupActive(g);
-            const isOpen = open === g.label;
-            return (
-              <div key={g.label} className="relative">
-                <button
-                  onClick={() => setOpen(isOpen ? null : g.label)}
-                  onMouseEnter={() => open && setOpen(g.label)}
-                  className={`flex items-center gap-1 rounded-lg px-3 py-1.5 text-[13.5px] font-semibold transition ${
-                    active || isOpen
-                      ? overHero ? "bg-white/15 text-white" : "bg-primarySoft text-primary"
-                      : overHero ? "text-white/85 hover:bg-white/10 hover:text-white" : "text-body hover:bg-sunk hover:text-head"
-                  }`}
-                  aria-expanded={isOpen}
-                >
-                  {g.label}
-                  <ChevronDown size={13} className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
-                </button>
+          {/* desktop links */}
+          <nav className="hidden items-center gap-0.5 px-1.5 md:flex">
+            {GROUPS.map((g) => {
+              const active = groupActive(g);
+              const isOpen = open === g.label;
+              return (
+                <div key={g.label} className="relative">
+                  <button
+                    onClick={() => setOpen(isOpen ? null : g.label)}
+                    onMouseEnter={() => open && setOpen(g.label)}
+                    aria-expanded={isOpen}
+                    className={`flex items-center gap-1 rounded-full px-3.5 py-2 text-[13.5px] font-medium transition ${
+                      active || isOpen ? "bg-white/12 text-white" : "text-white/70 hover:bg-white/8 hover:text-white"
+                    }`}
+                  >
+                    {g.label}
+                    <ChevronDown size={13} className={`transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                  </button>
 
-                {isOpen && (
-                  <div className="a-rise absolute left-0 top-[calc(100%+6px)] w-[270px] overflow-hidden rounded-xl border border-line bg-card p-1.5 shadow-lift">
-                    {g.items.map((it) => (
-                      <Link
-                        key={it.href}
-                        href={it.href}
-                        className={`flex items-start gap-2.5 rounded-lg px-2.5 py-2.5 transition ${
-                          isActive(it.href) ? "bg-primarySoft" : "hover:bg-sunk"
-                        }`}
-                      >
-                        <span className={`mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-lg ${
-                          isActive(it.href) ? "bg-primary text-white" : "bg-sunk text-muted"
-                        }`}>
-                          <it.icon size={14} />
-                        </span>
-                        <span className="min-w-0">
-                          <span className={`block text-[13.5px] font-semibold leading-tight ${
-                            isActive(it.href) ? "text-primary" : "text-head"
+                  {isOpen && (
+                    <div className="a-rise absolute left-1/2 top-[calc(100%+12px)] w-[272px] -translate-x-1/2 overflow-hidden rounded-2xl border border-line bg-card p-1.5 shadow-lift">
+                      {g.items.map((it) => (
+                        <Link
+                          key={it.href}
+                          href={it.href}
+                          className={`flex items-start gap-2.5 rounded-xl px-2.5 py-2.5 transition ${
+                            isActive(it.href) ? "bg-primarySoft" : "hover:bg-sunk"
+                          }`}
+                        >
+                          <span className={`mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-lg ${
+                            isActive(it.href) ? "bg-primary text-white" : "bg-sunk text-muted"
                           }`}>
-                            {it.label}
+                            <it.icon size={14} />
                           </span>
-                          <span className="mt-0.5 block text-[11.5px] leading-snug text-muted">{it.desc}</span>
-                        </span>
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            );
-          })}
+                          <span className="min-w-0">
+                            <span className={`block text-[13.5px] font-semibold leading-tight ${
+                              isActive(it.href) ? "text-primary" : "text-head"
+                            }`}>
+                              {it.label}
+                            </span>
+                            <span className="mt-0.5 block text-[11.5px] leading-snug text-muted">{it.desc}</span>
+                          </span>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
 
-          {SOLO.map((s) => (
-            <Link
-              key={s.href}
-              href={s.href}
-              className={`rounded-lg px-3 py-1.5 text-[13.5px] font-semibold transition ${
-                isActive(s.href)
-                  ? overHero ? "bg-white/15 text-white" : "bg-primarySoft text-primary"
-                  : overHero ? "text-white/85 hover:bg-white/10 hover:text-white" : "text-body hover:bg-sunk hover:text-head"
-              }`}
-            >
-              {s.label}
-            </Link>
-          ))}
-        </nav>
+            {SOLO.map((s) => (
+              <Link
+                key={s.href}
+                href={s.href}
+                className={`rounded-full px-3.5 py-2 text-[13.5px] font-medium transition ${
+                  isActive(s.href) ? "bg-white/12 text-white" : "text-white/70 hover:bg-white/8 hover:text-white"
+                }`}
+              >
+                {s.label}
+              </Link>
+            ))}
+          </nav>
 
-        {/* ---- right: one compact stat chip ---- */}
-        <div className="ml-auto flex items-center gap-2">
+          {/* white pill: who is signed in, click to sign out */}
           <button
             onClick={logout}
             title="Logout"
-            className={`hidden h-9 items-center gap-1.5 rounded-lg border px-3 text-[12.5px] font-semibold transition sm:flex ${
-              overHero
-                ? "border-white/25 bg-white/10 text-white/85 hover:bg-white/20 hover:text-white"
-                : "border-line bg-card text-muted hover:border-line2 hover:text-head"
-            }`}
+            className="group hidden h-10 items-center gap-2 rounded-full bg-white pl-4 pr-3.5 text-[13px] font-semibold text-[#141318] transition hover:bg-white/90 md:flex"
           >
-            <LogOut size={13} /> Logout
+            arnav
+            <LogOut size={13} className="text-[#141318]/45 transition group-hover:text-[#141318]" />
           </button>
+
+          {/* mobile toggle */}
           <button
             onClick={() => setMobile((v) => !v)}
-            className={`grid h-9 w-9 place-items-center rounded-lg border transition md:hidden ${
-              overHero ? "border-white/25 bg-white/10 text-white" : "border-line bg-card text-body hover:bg-sunk"
-            }`}
             aria-label="Menu"
+            className="grid h-10 w-10 place-items-center rounded-full bg-white text-[#141318] md:hidden"
           >
             {mobile ? <X size={17} /> : <Menu size={17} />}
           </button>
         </div>
       </div>
 
-      {/* ---- mobile panel ---- */}
+      {/* mobile sheet */}
       {mobile && (
-        <div className="a-rise border-t border-line bg-card md:hidden">
-          <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6">
-
-            <button
-              onClick={logout}
-              className="mb-4 flex w-full items-center justify-center gap-2 rounded-xl border border-line bg-sunk px-4 py-3 text-[13.5px] font-semibold text-muted"
-            >
-              <LogOut size={14} /> Logout
-            </button>
-
-            {[...GROUPS, { label: "Aur", items: SOLO }].map((g) => (
-              <div key={g.label} className="mb-4 last:mb-0">
-                <p className="mb-1.5 px-1 text-[10.5px] font-bold uppercase tracking-[0.14em] text-faint">
-                  {g.label}
-                </p>
-                <div className="grid gap-1">
-                  {g.items.map((it) => (
-                    <Link
-                      key={it.href}
-                      href={it.href}
-                      className={`flex items-center gap-3 rounded-lg px-2.5 py-2.5 ${
-                        isActive(it.href) ? "bg-primarySoft" : "hover:bg-sunk"
-                      }`}
-                    >
-                      <span className={`grid h-8 w-8 shrink-0 place-items-center rounded-lg ${
-                        isActive(it.href) ? "bg-primary text-white" : "bg-sunk text-muted"
+        <div className="a-rise mx-auto mt-3 max-w-md overflow-hidden rounded-2xl border border-line bg-card p-4 shadow-lift md:hidden">
+          {[...GROUPS, { label: "Aur", items: SOLO }].map((g) => (
+            <div key={g.label} className="mb-4">
+              <p className="mb-1.5 px-1 text-[10.5px] font-bold uppercase tracking-[0.14em] text-faint">
+                {g.label}
+              </p>
+              <div className="grid gap-1">
+                {g.items.map((it) => (
+                  <Link
+                    key={it.href}
+                    href={it.href}
+                    className={`flex items-center gap-3 rounded-xl px-2.5 py-2.5 ${
+                      isActive(it.href) ? "bg-primarySoft" : "hover:bg-sunk"
+                    }`}
+                  >
+                    <span className={`grid h-8 w-8 shrink-0 place-items-center rounded-lg ${
+                      isActive(it.href) ? "bg-primary text-white" : "bg-sunk text-muted"
+                    }`}>
+                      <it.icon size={15} />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className={`block text-[14px] font-semibold leading-tight ${
+                        isActive(it.href) ? "text-primary" : "text-head"
                       }`}>
-                        <it.icon size={15} />
+                        {it.label}
                       </span>
-                      <span className="min-w-0 flex-1">
-                        <span className={`block text-[14px] font-semibold leading-tight ${
-                          isActive(it.href) ? "text-primary" : "text-head"
-                        }`}>
-                          {it.label}
-                        </span>
-                        <span className="mt-0.5 block text-[11.5px] leading-snug text-muted">{it.desc}</span>
-                      </span>
-                    </Link>
-                  ))}
-                </div>
+                      <span className="mt-0.5 block text-[11.5px] leading-snug text-muted">{it.desc}</span>
+                    </span>
+                  </Link>
+                ))}
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
+
+          <button
+            onClick={logout}
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#141318] px-4 py-3 text-[13.5px] font-semibold text-white"
+          >
+            <LogOut size={14} /> Logout (arnav)
+          </button>
         </div>
       )}
     </header>
