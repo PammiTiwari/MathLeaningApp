@@ -25,6 +25,8 @@ export function anyQuestion(id: string) {
   return ALL_QUESTIONS.find((q) => q.id === id);
 }
 
+const paperOf = (qid: string) => qid.replace(/-q\d+$/, "");
+
 const marksOf = (ids: string[]) =>
   ids.reduce((sum, id) => sum + (anyQuestion(id)?.marks ?? 0), 0);
 
@@ -56,13 +58,16 @@ function sectionMock(
   id: string, title: string, subtitle: string, badge: string,
   filter: (q: Question) => boolean, perPaper: number, minutesPerMark: number
 ): Mock | null {
+  // take at most `perPaper` from each set so one paper can't dominate the drill
+  const takenPerPaper = new Map<string, number>();
   const picked: string[] = [];
-  for (const p of BOARD_PAPERS) {
-    const mine = p.questions
-      .map((q) => `${p.id}-q${q.n}`)
-      .filter((qid) => { const q = anyQuestion(qid); return q && filter(q); })
-      .slice(0, perPaper);
-    picked.push(...mine);
+  for (const q of BOARD_QUESTIONS) {
+    if (!filter(q)) continue;
+    const paper = paperOf(q.id);
+    const taken = takenPerPaper.get(paper) ?? 0;
+    if (taken >= perPaper) continue;
+    takenPerPaper.set(paper, taken + 1);
+    picked.push(q.id);
   }
   if (picked.length < 3) return null;
   const marks = marksOf(picked);
@@ -71,7 +76,7 @@ function sectionMock(
     minutes: Math.max(20, Math.round(marks * minutesPerMark)),
     marks,
     questionIds: picked,
-    source: `${BOARD_PAPERS.length} board sets se`,
+    source: `${takenPerPaper.size} board set${takenPerPaper.size > 1 ? "s" : ""} se`,
   } as Mock;
 }
 
@@ -134,6 +139,8 @@ export function getMock(id: string) {
 
 export const MOCK_STATS = {
   papers: MOCKS.length,
+  /** sets contributing questions, including ones only partly solved */
+  contributingSets: new Set(BOARD_QUESTIONS.map((q) => paperOf(q.id))).size,
   fullPapers: FULL.length,
   questions: ALL_QUESTIONS.length,
   boardQuestions: BOARD_QUESTIONS.length,

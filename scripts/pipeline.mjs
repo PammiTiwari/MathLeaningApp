@@ -139,39 +139,52 @@ ${q.orAlternative ? "OR-ALTERNATIVE: " + q.orAlternative : ""}`;
 
 async function processPaper(pdfPath, id, year) {
   const outFile = join(OUT_DIR, `${id}.json`);
+
+  // Resume: reuse an existing transcription so a partly-solved paper costs
+  // only the calls for the questions still missing an answer. Transcribing a
+  // 5 MB scan is the expensive call, and the daily quota is small.
+  let qs = [];
   if (existsSync(outFile)) {
     const prev = JSON.parse(readFileSync(outFile, "utf8"));
-    if (prev.questions?.length === 38 && prev.questions.every((q) => q.answer)) {
+    const have = prev.questions ?? [];
+    if (have.length >= 30 && have.every((q) => q.answer)) {
       console.error(`= ${id} already complete, skipping`);
       return;
     }
+    if (have.length >= 30) {
+      qs = have;
+      console.error(`\n>> ${id} (resuming — ${have.filter((q) => q.answer).length}/${have.length} solved)`);
+    }
   }
 
-  console.error(`\n>> ${id}`);
   const data = readFileSync(pdfPath).toString("base64");
 
   // A truncated response is common on the lighter models, so ask again until
   // enough of the paper comes back rather than throwing the whole paper away.
-  let qs = [];
-  for (let attempt = 1; attempt <= 3 && qs.length < 30; attempt++) {
-    process.stderr.write(`   transcribing${attempt > 1 ? ` (retry ${attempt - 1})` : ""} `);
-    try {
-      const raw = await call([{ text: TRANSCRIBE }, { inline_data: { mime_type: "application/pdf", data } }]);
-      const got = salvageArray(raw)
-        .filter((q) => q?.n >= 1 && q.n <= 38 && q.q)
-        .map((q) => ({ ...q, ...blueprint(q.n) }));
-      if (got.length > qs.length) qs = got;
-      console.error(`-> ${got.length} questions`);
-    } catch (e) {
-      console.error(`-> ${e.message}`);
+  if (!qs.length) {
+    console.error(`\n>> ${id}`);
+    for (let attempt = 1; attempt <= 3 && qs.length < 30; attempt++) {
+      process.stderr.write(`   transcribing${attempt > 1 ? ` (retry ${attempt - 1})` : ""} `);
+      try {
+        const raw = await call([{ text: TRANSCRIBE }, { inline_data: { mime_type: "application/pdf", data } }]);
+        const got = salvageArray(raw)
+          .filter((q) => q?.n >= 1 && q.n <= 38 && q.q)
+          .map((q) => ({ ...q, ...blueprint(q.n) }));
+        if (got.length > qs.length) qs = got;
+        console.error(`-> ${got.length} questions`);
+      } catch (e) {
+        console.error(`-> ${e.message}`);
+      }
     }
+    if (qs.length < 30) throw new Error(`only ${qs.length} questions transcribed`);
   }
-  if (qs.length < 30) throw new Error(`only ${qs.length} questions transcribed`);
 
   const solutions = [];
-  for (const [k, half] of [qs.filter((q) => q.n <= 20), qs.filter((q) => q.n > 20)].entries()) {
+  const todo = qs.filter((q) => !q.answer);
+  const halves = [todo.filter((q) => q.n <= 20), todo.filter((q) => q.n > 20)];
+  for (const [k, half] of halves.entries()) {
     if (!half.length) continue;
-    process.stderr.write(`   solving half ${k + 1} `);
+    process.stderr.write(`   solving ${half.length} in half ${k + 1} `);
     try {
       const sols = salvageArray(await call([{ text: `${SOLVE_HEAD}\n\n${half.map(fmt).join("\n\n")}` }]));
       solutions.push(...sols.filter((x) => x && x.n && x.answer));

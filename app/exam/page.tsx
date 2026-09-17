@@ -46,7 +46,7 @@ export default function ExamHome() {
       <PageHead
         eyebrow="Timed mock exams"
         title={`${MOCK_STATS.papers} papers, sab timed`}
-        sub={`${MOCK_STATS.boardQuestions} asli board questions ${MOCK_STATS.boardSets} CBSE sets se. Timer chalega, tum answers likhoge — type karke ya copy ki photo kheench ke — aur submit karte hi AI examiner step marks ke saath check karega.`}
+        sub={`${MOCK_STATS.boardQuestions} asli board questions ${MOCK_STATS.contributingSets} CBSE sets se. Timer chalega, tum answers likhoge — type karke ya copy ki photo kheench ke — aur submit karte hi AI examiner step marks ke saath check karega.`}
       />
 
       {/* pattern */}

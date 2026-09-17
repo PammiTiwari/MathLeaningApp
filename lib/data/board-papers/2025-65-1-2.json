@@ -1,0 +1,623 @@
+{
+  "id": "2025-65-1-2",
+  "year": "2025",
+  "set": "65-1-2",
+  "questions": [
+    {
+      "n": 1,
+      "q": "If E and F are two independent events such that $P(E) = \\frac{2}{3}$, $P(F) = \\frac{3}{7}$, then $P(E/\\overline{F})$ is equal to :",
+      "options": [
+        "\\frac{1}{6}",
+        "\\frac{1}{2}",
+        "\\frac{2}{3}",
+        "\\frac{7}{9}"
+      ],
+      "section": "A",
+      "marks": 1,
+      "correct": 2,
+      "answer": "$2/3$",
+      "keySteps": [
+        "Identify that if E and F are independent, then E and $\\overline{F}$ are also independent — 0.5 mark",
+        "Apply the property $P(E/\\overline{F}) = P(E)$ for independent events — 0.5 mark"
+      ],
+      "chapter": "probability"
+    },
+    {
+      "n": 2,
+      "q": "If $\\vec{\\alpha} = \\hat{i} - 4\\hat{j} + 9\\hat{k}$ and $\\vec{\\beta} = 2\\hat{i} - 8\\hat{j} + \\lambda\\hat{k}$ are two mutually parallel vectors, then $\\lambda$ is equal to :",
+      "options": [
+        "-18",
+        "18",
+        "\\frac{-34}{9}",
+        "\\frac{34}{9}"
+      ],
+      "section": "A",
+      "marks": 1,
+      "correct": 1,
+      "answer": "$18$",
+      "keySteps": [
+        "Set up the condition for parallel vectors: $\\frac{1}{2} = \\frac{-4}{-8} = \\frac{9}{\\lambda}$ — 0.5 mark",
+        "Solve for $\\lambda = 18$ — 0.5 mark"
+      ],
+      "chapter": "vector-algebra"
+    },
+    {
+      "n": 3,
+      "q": "$\\int \\frac{1 - 2 \\sin x}{\\cos^2 x} dx$ is equal to :",
+      "options": [
+        "\\tan x - 2 \\sec x + C",
+        "-\\tan x + 2 \\sec x + C",
+        "-\\tan x - 2 \\sec x + C",
+        "\\tan x + 2 \\sec x + C"
+      ],
+      "section": "A",
+      "marks": 1,
+      "correct": 0,
+      "answer": "$\\tan x - 2 \\sec x + C$",
+      "keySteps": [
+        "Split the integral into $\\int \\sec^2 x dx - 2 \\int \\sec x \\tan x dx$ — 0.5 mark",
+        "Integrate to get $\\tan x - 2 \\sec x + C$ — 0.5 mark"
+      ],
+      "chapter": "integrals"
+    },
+    {
+      "n": 4,
+      "q": "If $\\vec{a} + \\vec{b} + \\vec{c} = \\vec{0}$, $|\\vec{a}| = \\sqrt{37}$, $|\\vec{b}| = 3$ and $|\\vec{c}| = 4$, then angle between $\\vec{b}$ and $\\vec{c}$ is",
+      "options": [
+        "\\frac{\\pi}{6}",
+        "\\frac{\\pi}{4}",
+        "\\frac{\\pi}{3}",
+        "\\frac{\\pi}{2}"
+      ],
+      "section": "A",
+      "marks": 1,
+      "correct": 2,
+      "answer": "$\\pi/3$",
+      "keySteps": [
+        "Use $\\vec{b} + \\vec{c} = -\\vec{a}$ and square both sides: $|\\vec{b}|^2 + |\\vec{c}|^2 + 2\\vec{b}\\cdot\\vec{c} = |\\vec{a}|^2$ — 0.5 mark",
+        "Substitute values $9 + 16 + 2(3)(4)\\cos\\theta = 37$ to find $\\cos\\theta = 1/2$ — 0.5 mark"
+      ],
+      "chapter": "vector-algebra"
+    },
+    {
+      "n": 5,
+      "q": "The graph of a trigonometric function is as shown. Which of the following will represent graph of its inverse ?\n\n[Graph showing y = cos x on [0, pi]]",
+      "options": [
+        "(A) [Graph of tan x]",
+        "(B) [Graph of sin x]",
+        "(C) [Graph of cot^-1 x]",
+        "(D) [Graph of cos^-1 x]"
+      ],
+      "section": "A",
+      "marks": 1,
+      "correct": 3,
+      "answer": "Graph (D)",
+      "keySteps": [
+        "Identify the original graph as $y = \\cos x$ on $[0, \\pi]$ — 0.5 mark",
+        "Recognize that the inverse function is $y = \\cos^{-1} x$ — 0.5 mark"
+      ],
+      "chapter": "inverse-trigonometric-functions"
+    },
+    {
+      "n": 6,
+      "q": "If A is a square matrix of order 3 such that $\\det(A) = 9$, then $\\det(9 A^{-1})$ is equal to",
+      "options": [
+        "9",
+        "9^2",
+        "9^3",
+        "9^4"
+      ],
+      "section": "A",
+      "marks": 1,
+      "correct": 1,
+      "answer": "$81$",
+      "keySteps": [
+        "Apply the property $|kA| = k^n |A|$ to get $|9 A^{-1}| = 9^3 |A^{-1}|$ — 0.5 mark",
+        "Use $|A^{-1}| = 1/|A|$ to calculate $729/9 = 81$ — 0.5 mark"
+      ],
+      "chapter": "determinants"
+    },
+    {
+      "n": 7,
+      "q": "If $f(x) = |x| + |x - 1|$, then which of the following is correct ?",
+      "options": [
+        "f(x) is both continuous and differentiable, at x = 0 and x = 1.",
+        "f(x) is differentiable but not continuous, at x = 0 and x = 1.",
+        "f(x) is continuous but not differentiable, at x = 0 and x = 1.",
+        "f(x) is neither continuous nor differentiable, at x = 0 and x = 1."
+      ],
+      "section": "A",
+      "marks": 1,
+      "correct": 2,
+      "answer": "Continuous but not differentiable at $x=0, 1$",
+      "keySteps": [
+        "Note that $|x|$ and $|x-1|$ are continuous everywhere, so their sum is continuous — 0.5 mark",
+        "Identify that $|x|$ is not differentiable at $x=0$ and $|x-1|$ is not differentiable at $x=1$ — 0.5 mark"
+      ],
+      "chapter": "continuity-and-differentiability"
+    },
+    {
+      "n": 8,
+      "q": "Which of the following is not a homogeneous function of x and y ?",
+      "options": [
+        "y^2 - xy",
+        "x - 3y",
+        "\\sin^2 \\frac{y}{x} + \\frac{y}{x}",
+        "\\tan x - \\sec y"
+      ],
+      "section": "A",
+      "marks": 1,
+      "correct": 3,
+      "answer": "$\\tan x - \\sec y$",
+      "keySteps": [
+        "Check homogeneity using $f(tx, ty) = t^n f(x, y)$ for each option — 0.5 mark",
+        "Identify that $\\tan x - \\sec y$ fails the condition — 0.5 mark"
+      ],
+      "chapter": "differential-equations"
+    },
+    {
+      "n": 9,
+      "q": "Let A be a matrix of order $m \\times n$ and B is a matrix such that $A^T B$ and $B A^T$ are defined. Then, the order of B is :",
+      "options": [
+        "m \\times m",
+        "n \\times n",
+        "m \\times n",
+        "n \\times m"
+      ],
+      "section": "A",
+      "marks": 1,
+      "correct": 2,
+      "answer": "$m \\times n$",
+      "keySteps": [
+        "From $A^T B$ defined, $B$ must have $m$ rows — 0.5 mark",
+        "From $B A^T$ defined, $B$ must have $n$ columns — 0.5 mark"
+      ],
+      "chapter": "matrices"
+    },
+    {
+      "n": 10,
+      "q": "If the feasible region of a linear programming problem with objective function $Z = ax + by$, is bounded, then which of the following is correct ?",
+      "options": [
+        "It will only have a maximum value.",
+        "It will only have a minimum value.",
+        "It will have both maximum and minimum values.",
+        "It will have neither maximum nor minimum value."
+      ],
+      "section": "A",
+      "marks": 1,
+      "correct": 2,
+      "answer": "Both maximum and minimum values",
+      "keySteps": [
+        "State the theorem that a linear objective function on a bounded feasible region attains both extrema — 1 mark"
+      ],
+      "chapter": "linear-programming"
+    },
+    {
+      "n": 11,
+      "q": "If $A = \\begin{bmatrix} -1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}$, then $A^{-1}$ is",
+      "options": [
+        "\\begin{bmatrix} -1 & 0 & 0 \\\\ 0 & -1 & 0 \\\\ 0 & 0 & -1 \\end{bmatrix}",
+        "\\begin{bmatrix} 1 & 0 & 0 \\\\ 0 & -1 & 0 \\\\ 0 & 0 & -1 \\end{bmatrix}",
+        "\\begin{bmatrix} -1 & 0 & 0 \\\\ 0 & -1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}",
+        "\\begin{bmatrix} -1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}"
+      ],
+      "section": "A",
+      "marks": 1,
+      "correct": 3,
+      "answer": "$\\begin{bmatrix} -1 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1 \\end{bmatrix}$",
+      "keySteps": [
+        "Observe that $A$ is a diagonal matrix where $A^2 = I$ — 0.5 mark",
+        "Conclude $A^{-1} = A$ — 0.5 mark"
+      ],
+      "chapter": "matrices"
+    },
+    {
+      "n": 12,
+      "q": "The integrating factor of the differential equation $\\frac{dy}{dx} + y = \\frac{1+y}{x}$ is",
+      "options": [
+        "xe^x",
+        "\\frac{e^x}{x}",
+        "\\frac{x}{e^x}",
+        "xe^{\\frac{1}{x}}"
+      ],
+      "section": "A",
+      "marks": 1,
+      "correct": 1,
+      "answer": "$e^x/x$",
+      "keySteps": [
+        "Rewrite the equation in standard form $\\frac{dy}{dx} + (1 - \\frac{1}{x})y = \\frac{1}{x}$ — 0.5 mark",
+        "Calculate $IF = e^{\\int (1 - 1/x) dx} = e^{x - \\ln x} = e^x/x$ — 0.5 mark"
+      ],
+      "chapter": "differential-equations"
+    },
+    {
+      "n": 13,
+      "q": "Let $A = [a_{ij}]$ be a square matrix of order 3 such that $a_{ij} = j - 2i$. Then which of the following is true ?",
+      "options": [
+        "a_{12} > 0",
+        "all a_{ij} < 0",
+        "a_{13} + a_{31} = -6",
+        "a_{23} > a_{32}"
+      ],
+      "section": "A",
+      "marks": 1,
+      "correct": 3,
+      "answer": "$a_{23} > a_{32}$",
+      "keySteps": [
+        "Calculate $a_{23} = 3 - 2(2) = -1$ and $a_{32} = 2 - 2(3) = -4$ — 0.5 mark",
+        "Verify the inequality $-1 > -4$ — 0.5 mark"
+      ],
+      "chapter": "matrices"
+    },
+    {
+      "n": 14,
+      "q": "The absolute maximum value of function $f(x) = x^3 - 3x + 2$ in $[0, 2]$ is :",
+      "options": [
+        "0",
+        "2",
+        "4",
+        "5"
+      ],
+      "section": "A",
+      "marks": 1,
+      "correct": 2,
+      "answer": "$4$",
+      "keySteps": [
+        "Find critical points: $f'(x) = 3x^2 - 3 = 0 \\implies x = 1$ — 0.5 mark",
+        "Compare $f(0)=2, f(1)=0, f(2)=4$ to find absolute maximum — 0.5 mark"
+      ],
+      "chapter": "application-of-derivatives"
+    },
+    {
+      "n": 15,
+      "q": "If $\\int \\frac{2^{\\frac{1}{x}}}{x^2} dx = k \\cdot 2^{\\frac{1}{x}} + C$, then k is equal to",
+      "options": [
+        "\\frac{-1}{\\log 2}",
+        "-\\log 2",
+        "-1",
+        "\\frac{1}{2}"
+      ],
+      "section": "A",
+      "marks": 1,
+      "correct": 0,
+      "answer": "$-1/\\log 2$",
+      "keySteps": [
+        "Substitute $u = 1/x, du = -1/x^2 dx$ to get $\\int -2^u du$ — 0.5 mark",
+        "Integrate to get $-2^{1/x}/\\ln 2$, identifying $k = -1/\\ln 2$ — 0.5 mark"
+      ],
+      "chapter": "integrals"
+    },
+    {
+      "n": 16,
+      "q": "If A and B are invertible matrices, then which of the following is not correct ?",
+      "options": [
+        "(A + B)^{-1} = B^{-1} + A^{-1}",
+        "(AB)^{-1} = B^{-1}A^{-1}",
+        "adj(A) = |A| A^{-1}",
+        "|A^{-1}| = |A|^{-1}"
+      ],
+      "section": "A",
+      "marks": 1,
+      "correct": 0,
+      "answer": "$(A + B)^{-1} = B^{-1} + A^{-1}$",
+      "keySteps": [
+        "Verify standard matrix properties for options [1], [2], and [3] — 0.5 mark",
+        "Identify that the sum of inverses is not the inverse of the sum — 0.5 mark"
+      ],
+      "chapter": "matrices"
+    },
+    {
+      "n": 17,
+      "q": "The corner points of the feasible region in graphical representation of a L.P.P. are $(2, 72)$, $(15, 20)$ and $(40, 15)$. If $Z = 18x + 9y$ be the objective function, then",
+      "options": [
+        "Z is maximum at (2, 72), minimum at (15, 20)",
+        "Z is maximum at (15, 20) minimum at (40, 15)",
+        "Z is maximum at (40, 15), minimum at (15, 20)",
+        "Z is maximum at (40, 15), minimum at (2, 72)"
+      ],
+      "section": "A",
+      "marks": 1,
+      "correct": 2,
+      "answer": "Max at (40, 15), Min at (15, 20)",
+      "keySteps": [
+        "Calculate $Z$ at corner points: $Z(2,72)=684, Z(15,20)=450, Z(40,15)=855$ — 0.5 mark",
+        "Identify the maximum and minimum values — 0.5 mark"
+      ],
+      "chapter": "linear-programming"
+    },
+    {
+      "n": 18,
+      "q": "The area of the shaded region bounded by the curves $y^2 = x$, $x = 4$ and the x-axis is given by\n\n[Graph showing the first quadrant region of y^2=x up to x=4]",
+      "options": [
+        "\\int_0^4 x dx",
+        "\\int_0^2 y^2 dy",
+        "2 \\int_0^4 \\sqrt{x} dx",
+        "\\int_0^4 \\sqrt{x} dx"
+      ],
+      "section": "A",
+      "marks": 1,
+      "correct": 3,
+      "answer": "$\\int_0^4 \\sqrt{x} dx$",
+      "keySteps": [
+        "Identify the region is in the first quadrant bounded by $y = \\sqrt{x}$ — 0.5 mark",
+        "Set up the area integral $\\int_0^4 y dx$ — 0.5 mark"
+      ],
+      "chapter": "application-of-integrals"
+    },
+    {
+      "n": 19,
+      "q": "Assertion (A) : Let Z be the set of integers. A function $f : Z \\to Z$ defined as $f(x) = 3x - 5, \\forall x \\in Z$ is a bijective.\nReason (R) : A function is a bijective if it is both surjective and injective.",
+      "options": [
+        "Both Assertion (A) and Reason (R) are true and Reason (R) is the correct explanation of the Assertion (A).",
+        "Both Assertion (A) and Reason (R) are true, but Reason (R) is not the correct explanation of the Assertion (A).",
+        "Assertion (A) is true, but Reason (R) is false.",
+        "Assertion (A) is false, but Reason (R) is true."
+      ],
+      "section": "A",
+      "marks": 1,
+      "correct": 3,
+      "answer": "Assertion is false, Reason is true",
+      "keySteps": [
+        "Check surjectivity: $y=3x-5 \\implies x=(y+5)/3$, which is not an integer for all $y \\in Z$ — 0.5 mark",
+        "Confirm the definition of bijective function in Reason — 0.5 mark"
+      ],
+      "chapter": "relations-and-functions"
+    },
+    {
+      "n": 20,
+      "q": "Assertion (A) : $f(x) = \\begin{cases} 3x - 8, & x \\le 5 \\\\ 2k, & x > 5 \\end{cases}$ is continuous at $x = 5$ for $k = \\frac{5}{2}$.\nReason (R) : For a function f to be continuous at $x = a$, $\\lim_{x \\to a^-} f(x) = \\lim_{x \\to a^+} f(x) = f(a)$.",
+      "options": [
+        "Both Assertion (A) and Reason (R) are true and Reason (R) is the correct explanation of the Assertion (A).",
+        "Both Assertion (A) and Reason (R) are true, but Reason (R) is not the correct explanation of the Assertion (A).",
+        "Assertion (A) is true, but Reason (R) is false.",
+        "Assertion (A) is false, but Reason (R) is true."
+      ],
+      "section": "A",
+      "marks": 1
+    },
+    {
+      "n": 21,
+      "q": "Two friends while flying kites from different locations, find the strings of their kites crossing each other. The strings can be represented by vectors $\\vec{a} = 3\\hat{i} + \\hat{j} + 2\\hat{k}$ and $\\vec{b} = 2\\hat{i} - 2\\hat{j} + 4\\hat{k}$. Determine the angle formed between the kite strings. Assume there is no slack in the strings.",
+      "orAlternative": "Find a vector of magnitude 21 units in the direction opposite to that of $\\vec{AB}$ where A and B are the points $A(2, 1, 3)$ and $B(8, -1, 0)$ respectively.",
+      "section": "B",
+      "marks": 2,
+      "answer": "$\\cos^{-1} \\left( \\frac{\\sqrt{21}}{7} \\right)$",
+      "keySteps": [
+        "Calculate the dot product $\\vec{a} \\cdot \\vec{b} = 6 - 2 + 8 = 12$ — 0.5 mark",
+        "Calculate magnitudes $|\\vec{a}| = \\sqrt{14}$ and $|\\vec{b}| = 2\\sqrt{6}$ — 0.5 mark",
+        "Apply formula $\\cos \\theta = \\frac{\\vec{a} \\cdot \\vec{b}}{|\\vec{a}||\\vec{b}|}$ — 0.5 mark",
+        "Final angle $\\theta = \\cos^{-1} \\left( \\frac{12}{2\\sqrt{84}} \\right) = \\cos^{-1} \\left( \\frac{\\sqrt{21}}{7} \\right)$ — 0.5 mark"
+      ],
+      "chapter": "vector-algebra"
+    },
+    {
+      "n": 22,
+      "q": "Find the values of 'a' for which $f(x) = x^2 - 2ax + b$ is an increasing function for $x > 0$.",
+      "section": "B",
+      "marks": 2,
+      "answer": "$a \\le 0$",
+      "keySteps": [
+        "Find the derivative $f'(x) = 2x - 2a$ — 0.5 mark",
+        "Set condition for increasing function $f'(x) \\ge 0 \\implies 2x - 2a \\ge 0$ — 0.5 mark",
+        "Analyze condition $x \\ge a$ for all $x > 0$ — 0.5 mark",
+        "Conclude $a \\le 0$ — 0.5 mark"
+      ],
+      "chapter": "application-of-derivatives"
+    },
+    {
+      "n": 23,
+      "q": "Differentiate $2^{\\cos^2 x}$ w.r.t. $\\cos^2 x$.",
+      "orAlternative": "If $\\tan^{-1}(x^2 + y^2) = a^2$, then find $\\frac{dy}{dx}$.",
+      "section": "B",
+      "marks": 2,
+      "answer": "$2^{\\cos^2 x} \\ln 2$",
+      "keySteps": [
+        "Let $u = \\cos^2 x$ — 0.5 mark",
+        "Differentiate $2^u$ with respect to $u$ — 1 mark",
+        "Obtain final result $2^u \\ln 2 = 2^{\\cos^2 x} \\ln 2$ — 0.5 mark"
+      ],
+      "chapter": "continuity-and-differentiability"
+    },
+    {
+      "n": 24,
+      "q": "Evaluate : $\\sin^{-1} \\left( \\sin \\frac{3\\pi}{5} \\right)$",
+      "section": "B",
+      "marks": 2,
+      "answer": "$\\frac{2\\pi}{5}$",
+      "keySteps": [
+        "Check if $\\frac{3\\pi}{5}$ is in the principal value branch $[-\\pi/2, \\pi/2]$ — 0.5 mark",
+        "Rewrite $\\sin \\frac{3\\pi}{5}$ as $\\sin(\\pi - \\frac{2\\pi}{5}) = \\sin \\frac{2\\pi}{5}$ — 1 mark",
+        "Evaluate $\\sin^{-1}(\\sin \\frac{2\\pi}{5}) = \\frac{2\\pi}{5}$ — 0.5 mark"
+      ],
+      "chapter": "inverse-trigonometric-functions"
+    },
+    {
+      "n": 25,
+      "q": "The diagonals of a parallelogram are given by $\\vec{a} = 2\\hat{i} - \\hat{j} + \\hat{k}$ and $\\vec{b} = \\hat{i} + 3\\hat{j} - \\hat{k}$. Find the area of the parallelogram.",
+      "section": "B",
+      "marks": 2,
+      "answer": "$\\frac{\\sqrt{62}}{2}$ sq units",
+      "keySteps": [
+        "Compute the cross product of diagonals $\\vec{a} \\times \\vec{b} = -2\\hat{i} + 3\\hat{j} + 7\\hat{k}$ — 1 mark",
+        "Calculate the magnitude $|\\vec{a} \\times \\vec{b}| = \\sqrt{4 + 9 + 49} = \\sqrt{62}$ — 0.5 mark",
+        "Apply area formula $\\frac{1}{2} |\\vec{a} \\times \\vec{b}|$ to get $\\frac{\\sqrt{62}}{2}$ — 0.5 mark"
+      ],
+      "chapter": "vector-algebra"
+    },
+    {
+      "n": 26,
+      "q": "Verify that lines given by $\\vec{r} = (1 - \\lambda)\\hat{i} + (\\lambda - 2)\\hat{j} + (3 - 2\\lambda)\\hat{k}$ and $\\vec{r} = (\\mu + 1)\\hat{i} + (2\\mu - 1)\\hat{j} - (2\\mu + 1)\\hat{k}$ are skew lines. Hence, find shortest distance between the lines.",
+      "orAlternative": "During a cricket match, the position of the bowler, the wicket keeper and the leg slip fielder are in a line given by $\\vec{B} = 2\\hat{i} + 8\\hat{j}$, $\\vec{W} = 6\\hat{i} + 12\\hat{j}$ and $\\vec{F} = 12\\hat{i} + 18\\hat{j}$ respectively. Calculate the ratio in which the wicketkeeper divides the line segment joining the bowler and the leg slip fielder.",
+      "section": "C",
+      "marks": 3,
+      "answer": "$\\frac{8}{\\sqrt{29}}$ units",
+      "keySteps": [
+        "Identify $\\vec{a}_1, \\vec{b}_1, \\vec{a}_2, \\vec{b}_2$ from line equations — 0.5 mark",
+        "Compute $(\\vec{a}_2 - \\vec{a}_1) \\cdot (\\vec{b}_1 \\times \\vec{b}_2) = 8 \\neq 0$ to verify skewness — 1 mark",
+        "Compute $|\\vec{b}_1 \\times \\vec{b}_2| = \\sqrt{29}$ — 0.5 mark",
+        "Apply shortest distance formula $SD = \\frac{|(\\vec{a}_2 - \\vec{a}_1) \\cdot (\\vec{b}_1 \\times \\vec{b}_2)|}{|\\vec{b}_1 \\times \\vec{b}_2|} = \\frac{8}{\\sqrt{29}}$ — 1 mark"
+      ],
+      "chapter": "three-dimensional-geometry"
+    },
+    {
+      "n": 27,
+      "q": "Solve the following linear programming problem graphically :\nMaximise $Z = 20x + 30y$\nSubject to the constraints :\n$x + y \\le 80$\n$2x + 3y \\ge 100$\n$x \\ge 14$\n$y \\ge 14$",
+      "section": "C",
+      "marks": 3,
+      "answer": "Maximum $Z = 2260$ at $(14, 66)$",
+      "keySteps": [
+        "Plot the lines and identify the feasible region — 1 mark",
+        "Find corner points: $(14, 24), (14, 66), (66, 14), (29, 14)$ — 1 mark",
+        "Evaluate $Z$ at corner points and identify maximum — 1 mark"
+      ],
+      "chapter": "linear-programming"
+    },
+    {
+      "n": 28,
+      "q": "The area of an expanding rectangle is increasing at the rate of $48 \\text{ cm}^2/\\text{s}$. The length of the rectangle is always square of its breadth. At what rate the length of rectangle increasing at an instant, when breadth = 4.5 cm ?",
+      "section": "C",
+      "marks": 3,
+      "answer": "$\\frac{64}{9}$ cm/s",
+      "keySteps": [
+        "Express area $A = b^3$ using $l = b^2$ — 0.5 mark",
+        "Differentiate w.r.t. time: $\\frac{dA}{dt} = 3b^2 \\frac{db}{dt} = 48$ — 1 mark",
+        "Find $\\frac{db}{dt} = \\frac{64}{81}$ when $b = 4.5$ — 0.5 mark",
+        "Find $\\frac{dl}{dt} = 2b \\frac{db}{dt} = 2(4.5)(\\frac{64}{81}) = \\frac{64}{9}$ — 1 mark"
+      ],
+      "chapter": "application-of-derivatives"
+    },
+    {
+      "n": 29,
+      "q": "The probability distribution for the number of students being absent in a class on a Saturday is as follows :\n\\begin{tabular}{|l|c|c|c|c|}\n\\hline\n\\textbf{X} & 0 & 2 & 4 & 5 \\\\\n\\hline\n\\textbf{P(X)} & p & 2p & 3p & p \\\\\n\\hline\n\\end{tabular}\nWhere X is the number of students absent.\n(i) Calculate p.\n(ii) Calculate the mean of the number of absent students on Saturday.",
+      "orAlternative": "For the vacancy advertised in the newspaper, 3000 candidates submitted their applications. From the data it was revealed that two third of the total applicants were females and other were males. The selection for the job was done through a written test. The performance of the applicants indicates that the probability of a male getting a distinction in written test is 0.4 and that a female getting a distinction is 0.35. Find the probability that the candidate chosen at random will have a distinction in the written test.",
+      "section": "C",
+      "marks": 3,
+      "answer": "$p = \\frac{1}{7}$, Mean $= 3$",
+      "keySteps": [
+        "Use $\\sum P(X) = 1 \\implies 7p = 1 \\implies p = 1/7$ — 1 mark",
+        "Apply mean formula $E(X) = \\sum x_i p_i$ — 1 mark",
+        "Calculate $E(X) = 0(p) + 2(2p) + 4(3p) + 5(p) = 21p = 3$ — 1 mark"
+      ],
+      "chapter": "probability"
+    },
+    {
+      "n": 30,
+      "q": "Find : $\\int \\frac{\\cos 2x}{(\\sin x + \\cos x)^2} dx$",
+      "orAlternative": "Evaluate : $\\int_0^{\\pi/2} \\frac{5 \\sin x + 3 \\cos x}{\\sin x + \\cos x} dx$",
+      "section": "C",
+      "marks": 3,
+      "answer": "$\\ln |\\sin x + \\cos x| + C$",
+      "keySteps": [
+        "Simplify numerator $\\cos 2x = (\\cos x - \\sin x)(\\cos x + \\sin x)$ — 1 mark",
+        "Cancel common factor to get $\\int \\frac{\\cos x - \\sin x}{\\cos x + \\sin x} dx$ — 1 mark",
+        "Integrate using substitution $u = \\sin x + \\cos x$ to get $\\ln |\\sin x + \\cos x| + C$ — 1 mark"
+      ],
+      "chapter": "integrals"
+    },
+    {
+      "n": 31,
+      "q": "Sketch the graph of $y = |x + 3|$ and find the area of the region enclosed by the curve, x-axis, between $x = -6$ and $x = 0$, using integration.",
+      "section": "C",
+      "marks": 3,
+      "answer": "$9$ sq units",
+      "keySteps": [
+        "Sketch the V-shaped graph of $y = |x+3|$ — 1 mark",
+        "Set up integral $\\int_{-6}^{-3} -(x+3) dx + \\int_{-3}^0 (x+3) dx$ — 1 mark",
+        "Evaluate integrals to get $4.5 + 4.5 = 9$ — 1 mark"
+      ],
+      "chapter": "application-of-integrals"
+    },
+    {
+      "n": 32,
+      "q": "Differentiate $\\tan^{-1} \\frac{\\sqrt{1 - x^2}}{x}$ w.r.t. $\\cos^{-1}(2x\\sqrt{1 - x^2})$, $x \\in \\left( \\frac{1}{\\sqrt{2}}, 1 \\right)$",
+      "orAlternative": "Find $\\frac{dy}{dx}$, if $y = x^{\\tan x} + \\frac{\\sqrt{x^2 + 1}}{2}$.",
+      "section": "D",
+      "marks": 5,
+      "answer": "$-\\frac{1}{2}$",
+      "keySteps": [
+        "Substitute $x = \\cos \\theta$ in $u$ to get $u = \\cos^{-1} x$ — 1.5 marks",
+        "Substitute $x = \\cos \\theta$ in $v$ to get $v = \\pi/2 - 2\\cos^{-1} x$ — 1.5 marks",
+        "Find $\\frac{du}{dx} = -\\frac{1}{\\sqrt{1-x^2}}$ and $\\frac{dv}{dx} = \\frac{2}{\\sqrt{1-x^2}}$ — 1 mark",
+        "Compute $\\frac{du}{dv} = \\frac{du/dx}{dv/dx} = -1/2$ — 1 mark"
+      ],
+      "chapter": "continuity-and-differentiability"
+    },
+    {
+      "n": 33,
+      "q": "Find the absolute maximum and absolute minimum of function $f(x) = 2x^3 - 15x^2 + 36x + 1$ on $[1, 5]$.",
+      "section": "D",
+      "marks": 5
+    },
+    {
+      "n": 34,
+      "q": "A school wants to allocate students into three clubs : Sports, Music and Drama, under following conditions :\n\\begin{itemize}\n\\item The number of students in Sports club should be equal to the sum of the number of students in Music and Drama club.\n\\item The number of students in Music club should be 20 more than half the number of students in Sports club.\n\\item The total number of students to be allocated in all three clubs are 180.\n\\end{itemize}\nFind the number of students allocated to different clubs, using matrix method.",
+      "section": "D",
+      "marks": 5
+    },
+    {
+      "n": 35,
+      "q": "Find the image A' of the point $A(1, 6, 3)$ in the line $\\frac{x}{1} = \\frac{y - 1}{2} = \\frac{z - 2}{3}$. Also, find the equation of the line joining A and A'.",
+      "orAlternative": "Find a point P on the line $\\frac{x + 5}{1} = \\frac{y + 3}{4} = \\frac{z - 6}{-9}$ such that its distance from point $Q(2, 4, -1)$ is 7 units. Also, find the equation of line joining P and Q.",
+      "section": "D",
+      "marks": 5
+    },
+    {
+      "n": 36,
+      "q": "A bank offers loan to its customers on different types of interest namely, fixed rate, floating rate and variable rate. From the past data with the bank, it is known that a customer avails loan on fixed rate, floating rate or variable rate with probabilities 10%, 20% and 70% respectively. A customer after availing loan can pay the loan or default on loan repayment. The bank data suggests that the probability that a person defaults on loan after availing it at fixed rate, floating rate and variable rate is 5%, 3% and 1% respectively.\nBased on the above information, answer the following :",
+      "parts": [
+        {
+          "q": "What is the probability that a customer after availing the loan will default on the loan repayment ?",
+          "marks": 2
+        },
+        {
+          "q": "A customer after availing the loan, defaults on loan repayment. What is the probability that he availed the loan at a variable rate of interest ?",
+          "marks": 2
+        }
+      ],
+      "section": "E",
+      "marks": 4
+    },
+    {
+      "n": 37,
+      "q": "A technical company is designing a rectangular solar panel installation on a roof using 300 metres of boundary material. The design includes a partition running parallel to one of the sides dividing the area (roof) into two sections.\nLet the length of the side perpendicular to the partition be x metres and with parallel to the partition be y metres.\nBased on this information, answer the following questions :",
+      "parts": [
+        {
+          "q": "Write the equation for the total boundary material used in the boundary and parallel to the partition in terms of x and y.",
+          "marks": 1
+        },
+        {
+          "q": "Write the area of the solar panel as a function of x.",
+          "marks": 1
+        },
+        {
+          "q": "Find the critical points of the area function. Use second derivative test to determine critical points at the maximum area. Also, find the maximum area.",
+          "marks": 2
+        }
+      ],
+      "orAlternative": "Using first derivative test, calculate the maximum area the company can enclose with the 300 metres of boundary material, considering the parallel partition.",
+      "section": "E",
+      "marks": 4
+    },
+    {
+      "n": 38,
+      "q": "A class-room teacher is keen to assess the learning of her students the concept of \"relations\" taught to them. She writes the following five relations each defined on the set $A = \\{1, 2, 3\\}$ :\n$R_1 = \\{(2, 3), (3, 2)\\}$\n$R_2 = \\{(1, 2), (1, 3), (3, 2)\\}$\n$R_3 = \\{(1, 2), (2, 1), (1, 1)\\}$\n$R_4 = \\{(1, 1), (1, 2), (3, 3), (2, 2)\\}$\n$R_5 = \\{(1, 1), (1, 2), (3, 3), (2, 2), (2, 1), (2, 3), (3, 2)\\}$\nThe students are asked to answer the following questions about the above relations :",
+      "parts": [
+        {
+          "q": "Identify the relation which is reflexive, transitive but not symmetric.",
+          "marks": 1
+        },
+        {
+          "q": "Identify the relation which is reflexive and symmetric but not transitive.",
+          "marks": 1
+        },
+        {
+          "q": "Identify the relations which are symmetric but neither reflexive nor transitive.",
+          "marks": 2
+        }
+      ],
+      "orAlternative": "What pairs should be added to the relation $R_2$ to make it an equivalence relation ?",
+      "section": "E",
+      "marks": 4
+    }
+  ]
+}

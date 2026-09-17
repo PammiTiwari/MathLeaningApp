@@ -52,14 +52,27 @@ function looksLikeAssertionReason(q: RawQuestion) {
   return /assertion\s*\(a\)/i.test(q.q) && /reason\s*\(r\)/i.test(q.q);
 }
 
-/** A board paper is usable only if every question carries a worked answer. */
+const byNewest = (a: RawPaper, b: RawPaper) => (b.year + b.set).localeCompare(a.year + a.set);
+
+/**
+ * A paper can only be offered as a FULL mock when every one of its 38
+ * questions has a worked answer — a student sitting a timed board paper
+ * must not meet an unmarkable question.
+ */
 export const BOARD_PAPERS: RawPaper[] = RAW
   .filter((p) => p?.questions?.length === 38 && p.questions.every((q) => q.answer))
-  .sort((a, b) => (b.year + b.set).localeCompare(a.year + a.set));
+  .sort(byNewest);
+
+/**
+ * Drills and chapter tests draw from a looser pool: every solved question from
+ * every paper, including sets the pipeline has only partly finished. A paper
+ * stuck at 31/38 still contributes 31 real board questions.
+ */
+const USABLE_PAPERS: RawPaper[] = RAW.filter((p) => p?.questions?.length).sort(byNewest);
 
 /** Flattened into the app's Question shape, with globally unique ids. */
-export const BOARD_QUESTIONS: Question[] = BOARD_PAPERS.flatMap((p) =>
-  p.questions.filter((q) => !q.suspect).map((q): Question => {
+export const BOARD_QUESTIONS: Question[] = USABLE_PAPERS.flatMap((p) =>
+  p.questions.filter((q) => q.answer && !q.suspect).map((q): Question => {
     const isAR = q.section === "A" && looksLikeAssertionReason(q);
     const body = q.orAlternative
       ? `${q.q}\n\n**OR**\n\n${q.orAlternative}`

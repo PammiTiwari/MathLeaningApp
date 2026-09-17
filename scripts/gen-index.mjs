@@ -4,10 +4,14 @@ const dir = "lib/data/board-papers";
 mkdirSync(dir, { recursive: true });   // a clone with no papers yet must still build
 const files = readdirSync(dir).filter(f => f.endsWith(".json")).sort();
 
+// Index any paper that transcribed properly. board.ts decides what each one
+// is good for: only fully-solved sets become full mock papers, while a partly
+// solved set still contributes its answered questions to drills.
 const usable = files.filter(f => {
   try {
     const p = JSON.parse(readFileSync(`${dir}/${f}`, "utf8"));
-    return p.questions?.length === 38 && p.questions.every(q => q.answer);
+    return Array.isArray(p.questions) && p.questions.length >= 30
+      && p.questions.some(q => q.answer);
   } catch { return false; }
 });
 
@@ -18,4 +22,8 @@ ${lines.join("\n")}
 
 export const RAW_PAPERS: any[] = [${usable.map((_, i) => `p${i}`).join(", ")}];
 `);
-console.log(`indexed ${usable.length}/${files.length} complete papers`);
+const complete = usable.filter(f => {
+  const p = JSON.parse(readFileSync(`${dir}/${f}`, "utf8"));
+  return p.questions.length === 38 && p.questions.every(q => q.answer);
+}).length;
+console.log(`indexed ${usable.length}/${files.length} papers (${complete} complete -> full mocks)`);
