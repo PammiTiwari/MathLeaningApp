@@ -3,11 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "gen": "node scripts/gen-index.mjs",
+    "prebuild": "node scripts/gen-index.mjs",
+    "predev": "node scripts/gen-index.mjs",
     "dev": "next dev --turbopack",
     "fast": "next build && next start -p 3000",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "validate": "node scripts/validate.mjs"
   },
   "dependencies": {
     "katex": "0.16.11",

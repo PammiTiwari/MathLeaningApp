@@ -1,6 +1,7 @@
 /** Regenerates lib/data/board-papers/index.ts from whatever JSON sets exist. */
-import { readdirSync, writeFileSync, readFileSync } from "fs";
+import { readdirSync, writeFileSync, readFileSync, mkdirSync, existsSync } from "fs";
 const dir = "lib/data/board-papers";
+mkdirSync(dir, { recursive: true });   // a clone with no papers yet must still build
 const files = readdirSync(dir).filter(f => f.endsWith(".json")).sort();
 
 const usable = files.filter(f => {
