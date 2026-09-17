@@ -4,14 +4,14 @@ import Link from "next/link";
 import { use, useEffect, useMemo, useState } from "react";
 import { notFound, useRouter } from "next/navigation";
 import { getChapter, CHAPTERS } from "@/lib/data/chapters";
-import { getLesson } from "@/lib/data/lessons";
+import { getLesson, deepStartIndex } from "@/lib/data/lessons";
 import type { Beat } from "@/lib/data/lesson-types";
 import { useProgress } from "@/lib/progress";
 import { Rich, Formula } from "@/components/Tex";
 import { Bar, Pill } from "@/components/ui";
 import {
   ArrowLeft, ArrowRight, AlertTriangle, Lightbulb, Trophy,
-  CheckCircle2, XCircle, PartyPopper, Eye,
+  CheckCircle2, XCircle, PartyPopper, Eye, Microscope, Flame, Sigma,
 } from "lucide-react";
 
 export default function LearnPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -37,6 +37,7 @@ export default function LearnPage({ params }: { params: Promise<{ slug: string }
   const beat = beats[i];
   const last = i === beats.length - 1;
   const nextCh = CHAPTERS.find((c) => c.n === ch.n + 1);
+  const deepAt = deepStartIndex(slug);
 
   function go(d: 1 | -1) {
     const n = Math.min(Math.max(i + d, 0), beats.length - 1);
@@ -56,7 +57,14 @@ export default function LearnPage({ params }: { params: Promise<{ slug: string }
           </Link>
           <div className="min-w-0 flex-1">
             <div className="flex items-baseline justify-between gap-2">
-              <p className="truncate text-[13px] font-bold text-head">{ch.title}</p>
+              <p className="truncate text-[13px] font-bold text-head">
+                {ch.title}
+                {deepAt > 0 && i >= deepAt && (
+                  <span className="ml-2 rounded px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary" style={{ background: "#F1EDFF" }}>
+                    deep
+                  </span>
+                )}
+              </p>
               <span className="shrink-0 text-[11px] text-faint">{i + 1}/{beats.length}</span>
             </div>
             <div className="mt-1.5"><Bar value={i + 1} max={beats.length} color={ch.color} /></div>
@@ -64,6 +72,17 @@ export default function LearnPage({ params }: { params: Promise<{ slug: string }
         </div>
       </div>
 
+      {i === deepAt && deepAt > 0 && (
+        <div className="a-rise mb-5 flex items-center gap-3 rounded-2xl border border-primary/25 bg-primarySoft px-5 py-4">
+          <Microscope size={20} className="shrink-0 text-primary" />
+          <div>
+            <p className="text-[13px] font-bold uppercase tracking-[0.14em] text-primary">Deep dive shuru</p>
+            <p className="mt-0.5 text-[13.5px] leading-snug text-body">
+              Ab basics se aage. Yahaan se formulas ki derivation, asli theory, aur board ke tough sawaal aayenge.
+            </p>
+          </div>
+        </div>
+      )}
       <div key={i} className="a-beat">
         <BeatView beat={beat} color={ch.color} onQuiz={(right) => recordQuiz(slug, right)} />
       </div>
@@ -122,7 +141,7 @@ export default function LearnPage({ params }: { params: Promise<{ slug: string }
             onClick={() => { setI(n); setBeat(slug, n); window.scrollTo({ top: 0, behavior: "smooth" }); }}
             title={b.kind}
             className={`h-1.5 rounded-full transition-all ${n === i ? "w-6" : "w-1.5"}`}
-            style={{ background: n <= i ? ch.color : "#2C2840" }}
+            style={{ background: n <= i ? (deepAt > 0 && n >= deepAt ? "#5B3FD6" : ch.color) : "#E3E0D8" }}
           />
         ))}
       </div>
@@ -182,6 +201,31 @@ function BeatView({ beat, color, onQuiz }: { beat: Beat; color: string; onQuiz: 
         </div>
       );
 
+    case "derive":
+      return <DeriveView beat={beat} />;
+
+    case "deep":
+      return (
+        <div className="rounded-3xl border border-primary/25 bg-white p-6 shadow-soft sm:p-8">
+          <div className="mb-3 flex flex-wrap items-center gap-2">
+            <span className="flex items-center gap-1.5 rounded-full bg-primarySoft px-2.5 py-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-primary">
+              <Sigma size={11} /> Deep dive
+            </span>
+            {beat.tag && <Pill color="#6B6B7B">{beat.tag}</Pill>}
+          </div>
+          <h2 className="font-display text-[23px] font-extrabold leading-tight text-head">{beat.title}</h2>
+          <Rich text={beat.body} className="mt-3 text-[15px] leading-[1.75] text-body" />
+          {beat.formula && (
+            <div className="mt-5 rounded-2xl border border-primary/25 bg-primarySoft p-5">
+              <Formula tex={beat.formula} />
+            </div>
+          )}
+        </div>
+      );
+
+    case "hard":
+      return <HardView beat={beat} />;
+
     case "victory":
       return (
         <div className="rounded-3xl border border-mint/35 bg-gradient-to-br from-mint/[0.12] to-surface p-6 text-center sm:p-9">
@@ -199,6 +243,112 @@ function BeatView({ beat, color, onQuiz }: { beat: Beat; color: string; onQuiz: 
         </div>
       );
   }
+}
+
+function DeriveView({ beat }: { beat: Extract<Beat, { kind: "derive" }> }) {
+  const [shown, setShown] = useState(0);
+  const all = shown >= beat.steps.length;
+  return (
+    <div className="rounded-3xl border border-sky/30 bg-white p-6 shadow-soft sm:p-8">
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-skySoft px-2.5 py-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-sky">
+        Derivation — yeh formula aaya kahaan se
+      </span>
+      <h2 className="mt-3 font-display text-[23px] font-extrabold leading-tight text-head">{beat.title}</h2>
+      <div className="mt-3 rounded-2xl border border-sky/25 bg-skySoft p-4">
+        <Rich text={beat.claim} className="text-[14.5px] leading-relaxed text-body" />
+      </div>
+
+      <div className="mt-5 space-y-3">
+        {beat.steps.slice(0, shown).map((s, i) => (
+          <div key={i} className="a-slide rounded-2xl border border-line bg-sunk p-4">
+            <div className="flex items-start gap-3">
+              <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-skySoft text-[11px] font-bold text-sky">{i + 1}</span>
+              <div className="min-w-0 flex-1">
+                <Rich text={s.do} className="text-[14.5px] leading-relaxed text-head" />
+                <div className="mt-2 flex gap-2 rounded-lg bg-white px-3 py-2">
+                  <span className="shrink-0 text-xs font-bold text-saffron">kyun?</span>
+                  <Rich text={s.why} className="text-[12.5px] leading-snug text-muted" />
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {!all ? (
+        <button onClick={() => setShown((v) => v + 1)}
+          className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-line2 py-3.5 text-sm font-semibold text-muted transition hover:border-sky hover:text-sky">
+          <Eye size={15} /> {shown === 0 ? "Derivation shuru karo" : `Agla step (${shown}/${beat.steps.length})`}
+        </button>
+      ) : beat.note ? (
+        <div className="a-pop mt-4 rounded-2xl border border-saffron/30 bg-saffronSoft p-4">
+          <p className="mb-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-saffron">Isse aur kya samajh aata hai</p>
+          <Rich text={beat.note} className="text-[14px] leading-relaxed text-body" />
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
+function HardView({ beat }: { beat: Extract<Beat, { kind: "hard" }> }) {
+  const [shown, setShown] = useState(0);
+  const [tried, setTried] = useState(false);
+  const all = shown >= beat.steps.length;
+  return (
+    <div className="rounded-3xl border border-rose/30 bg-white p-6 shadow-soft sm:p-8">
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-roseSoft px-2.5 py-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-rose">
+        <Flame size={11} /> {beat.label}
+      </span>
+      <div className="mt-3 rounded-2xl border border-line bg-sunk p-4">
+        <Rich text={beat.problem} className="text-[16px] leading-relaxed text-head" />
+      </div>
+
+      {!tried && shown === 0 && (
+        <div className="mt-4 rounded-2xl border border-dashed border-line2 p-4 text-center">
+          <p className="text-[13.5px] leading-relaxed text-muted">
+            Pehle khud try karo — copy nikalo, 10 minute do. Solution dekhne se pehle koshish karne par hi
+            yeh sawaal yaad rehta hai.
+          </p>
+          <button onClick={() => setTried(true)}
+            className="mt-3 rounded-lg bg-rose px-4 py-2 text-xs font-bold text-white hover:brightness-110">
+            Try kar liya, solution dikhao
+          </button>
+        </div>
+      )}
+
+      {tried && (
+        <>
+          <div className="mt-5 space-y-3">
+            {beat.steps.slice(0, shown).map((s, i) => (
+              <div key={i} className="a-slide rounded-2xl border border-line bg-sunk p-4">
+                <div className="flex items-start gap-3">
+                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-roseSoft text-[11px] font-bold text-rose">{i + 1}</span>
+                  <div className="min-w-0 flex-1">
+                    <Rich text={s.do} className="text-[14.5px] leading-relaxed text-head" />
+                    <div className="mt-2 flex gap-2 rounded-lg bg-white px-3 py-2">
+                      <span className="shrink-0 text-xs font-bold text-saffron">kyun?</span>
+                      <Rich text={s.why} className="text-[12.5px] leading-snug text-muted" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          {!all ? (
+            <button onClick={() => setShown((v) => v + 1)}
+              className="mt-4 flex w-full items-center justify-center gap-2 rounded-xl border border-dashed border-line2 py-3.5 text-sm font-semibold text-muted transition hover:border-rose hover:text-rose">
+              <Eye size={15} /> {shown === 0 ? "Pehla step dikhao" : `Agla step (${shown}/${beat.steps.length})`}
+            </button>
+          ) : (
+            <div className="a-pop mt-4 rounded-2xl border border-rose/30 bg-roseSoft p-4 text-center">
+              <p className="mb-1.5 text-[10.5px] font-bold uppercase tracking-[0.1em] text-rose">Answer</p>
+              <Formula tex={beat.answer} />
+            </div>
+          )}
+        </>
+      )}
+    </div>
+  );
 }
 
 function ExampleView({ beat, color }: { beat: Extract<Beat, { kind: "example" }>; color: string }) {

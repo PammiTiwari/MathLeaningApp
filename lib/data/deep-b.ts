@@ -1,0 +1,171 @@
+import type { Beat } from "./lesson-types";
+
+export const DEEP_B: Record<string, Beat[]> = {
+  "application-of-derivatives": [
+    {
+      kind: "derive",
+      title: "f''(c) < 0 se maximum kyun milta hai",
+      claim: "Second derivative test koi jaadu nahi — woh sirf yeh keh raha hai ki slope ghat raha hai.",
+      steps: [
+        { do: "f′(c) = 0 diya hai — matlab point c par curve ki tangent flat hai (na chadh rahi, na utar rahi).", why: "Critical point ka yahi matlab hai." },
+        { do: "Ab f″(c) < 0 ka matlab: **f′ khud ghat raha hai** c ke aas-paas.", why: "★ f″ to f′ ka derivative hai. Negative derivative matlab woh function ghat raha hai." },
+        { do: "f′ ghat raha hai aur c par zero hai. Iska matlab c se thoda pehle f′ positive tha, aur c se thoda baad negative ho gaya.", why: "Ghatta hua function zero se guzarta hai to positive se negative mein jaata hai." },
+        { do: "f′ > 0 matlab function chadh raha tha. f′ < 0 matlab ab utar raha hai. Chadhna phir utarna = **choti** = maximum ∎", why: "Yahi first derivative test bhi kehta hai — dono ek hi baat keh rahe hain." },
+        { do: "f″(c) > 0 mein bilkul ulta: f′ badh raha hai, negative se positive — utarna phir chadhna = khaai = minimum.", why: "Symmetric dalil." },
+      ],
+      note: "f″(c) = 0 aane par test kyun fail hota hai? Kyunki tab f′ ka badhna-ghatna pata hi nahi chalta. Jaise f(x) = x⁴ at x=0 — f′=f″=0, par wahan minimum hai. Aur f(x)=x³ at x=0 mein na max na min. Isliye tab first derivative test lagana padta hai.",
+    },
+    {
+      kind: "deep",
+      title: "Local vs Absolute — antar samajh lo",
+      body: "**Local maximum** matlab apne mohalle mein sabse ooncha. Pahaad ki ek choti — aas-paas sab neeche, par door kahin usse ooncha pahaad ho sakta hai.\n\n**Absolute maximum** matlab poore interval mein sabse ooncha. Ek hi, sabse ooncha.\n\nDo cheezein yaad rakho:\n\n1. Closed interval [a,b] par absolute max/min **hamesha** milte hain (yeh ek theorem hai). Par open interval (a,b) par shayad na milein — jaise f(x) = x on (0,1) ka koi max nahi.\n\n2. Absolute max ya to kisi critical point par hoga, **ya endpoint par**. Isliye f(a) aur f(b) check karna compulsory hai — aksar answer wahi hota hai, aur students wahin marks khote hain.",
+      formula: "\\text{On } [a,b]: \;\\text{absolute extremum} \\in \\{\\text{critical points}\\} \\cup \\{a,\\, b\\}",
+      tag: "Yahan log fisalte hain",
+    },
+    {
+      kind: "hard",
+      label: "Board-level 5-marker (tough)",
+      problem: "Show that the height of a right circular cylinder of maximum volume that can be inscribed in a sphere of radius $R$ is $\\dfrac{2R}{\\sqrt3}$.",
+      steps: [
+        { do: "Diagram banao: sphere ke andar cylinder. Cylinder ki height h, base radius r. Cylinder ka diagonal sphere ka diameter banta hai.", why: "★ Diagram ke bina yeh sawaal set hi nahi hoga. Setup ke marks yahin hain." },
+        { do: "Pythagoras se constraint: r² + (h/2)² = R², matlab **r² = R² − h²/4**", why: "Centre se cylinder ke corner tak R hai. Horizontal r, vertical h/2." },
+        { do: "Volume V = πr²h. r² substitute karo: V = π(R² − h²/4)h = **πR²h − πh³/4**", why: "Ab sab kuch ek hi variable h mein hai — yahi asli kaam tha." },
+        { do: "dV/dh = πR² − (3π/4)h². Zero rakho: πR² = (3π/4)h²", why: "Maximum ke liye derivative zero." },
+        { do: "h² = 4R²/3 ⟹ **h = 2R/√3**", why: "Positive root lo — height negative nahi hoti." },
+        { do: "d²V/dh² = −(3π/2)h. h > 0 hai, isliye d²V/dh² < 0 ⟹ **maximum** ✓", why: "★ Second derivative test likhna compulsory hai — 1 mark iska." },
+        { do: "Isliye maximum volume wale cylinder ki height 2R/√3 hai. ∎", why: "Conclusion line likho — jo poocha tha wahi." },
+      ],
+      answer: "h = \\frac{2R}{\\sqrt3}\\quad\\left(\\text{and } V_{max} = \\frac{4\\pi R^3}{3\\sqrt3}\\right)",
+    },
+  ],
+
+  integrals: [
+    {
+      kind: "derive",
+      title: "Integration by parts kahaan se aaya",
+      claim: "By parts koi alag formula nahi — woh bas product rule ko ulta karke likha gaya hai.",
+      steps: [
+        { do: "Product rule se shuru karo: d/dx (u·v) = u′v + uv′", why: "Yeh to Class 11 se pata hai." },
+        { do: "Dono taraf integrate karo: ∫ d/dx(uv) dx = ∫u′v dx + ∫uv′ dx", why: "Integration aur differentiation ek doosre ko kaatte hain." },
+        { do: "Left side simple ho jaata hai: uv = ∫u′v dx + ∫uv′ dx", why: "Derivative ka integral wapas wahi function." },
+        { do: "Ab ek term ko doosri taraf le jao: **∫uv′ dx = uv − ∫u′v dx** ∎", why: "Bas. Yahi by parts hai." },
+        { do: "NCERT ke notation mein v′ ki jagah seedha v likhते hain: ∫u·v dx = u∫v dx − ∫(u′ ∫v dx) dx", why: "Dono ek hi cheez hain, bas likhne ka tareeka alag." },
+      ],
+      note: "Isse ILATE bhi samajh aata hai: hum u aisa chunte hain jiska derivative SIMPLE ho jaaye (jaise x → 1, ya ln x → 1/x), taaki dayein taraf ka naya integral aasaan ho. Inverse aur Log ke derivatives sabse zyada simplify hote hain — isliye woh I aur L pehle aate hain.",
+    },
+    {
+      kind: "derive",
+      title: "∫₀ᵃ f(x)dx = ∫₀ᵃ f(a−x)dx — proof",
+      claim: "Board ki sabse zyada use hone wali property. Do line ka proof hai.",
+      steps: [
+        { do: "I = ∫₀ᵃ f(x) dx mein substitute karo: **t = a − x**", why: "Yeh substitution hi poora khel hai." },
+        { do: "To x = a − t, aur dx = −dt", why: "Differentiate karke dx nikala." },
+        { do: "Limits badlo: x = 0 par t = a. x = a par t = 0.", why: "★ Substitution mein limits badalna compulsory hai. Dhyaan do ki woh ulti ho gayi." },
+        { do: "I = ∫ₐ⁰ f(a−t)(−dt) = ∫₀ᵃ f(a−t) dt", why: "Minus sign limits ko wapas seedha kar deta hai." },
+        { do: "t sirf ek naam hai — usse x likh do: I = ∫₀ᵃ f(a−x) dx ∎", why: "Definite integral mein variable ka naam matter nahi karta (dummy variable)." },
+      ],
+      note: "Isi se 'King's rule' aata hai: I ko dono tareeke se likho aur JODO. Aksar numerator aur denominator barabar ho jaate hain aur 2I = simple cheez mil jaati hai.",
+    },
+    {
+      kind: "deep",
+      title: "∫eˣ[f(x) + f′(x)]dx ka shortcut",
+      body: "Yeh dekhne mein special case lagta hai, par iska proof ek line ka hai — aur exam mein yeh 3 minute bacha deta hai.\n\nProduct rule se:\nd/dx [eˣ · f(x)] = eˣ f(x) + eˣ f′(x) = eˣ[f(x) + f′(x)]\n\nDono taraf integrate karo:\n∫ eˣ[f(x) + f′(x)] dx = eˣ f(x) + C\n\n**Pehchanna kaise?** Jab integral mein eˣ ke saath do terms hon aur ek doosre ka derivative ho. Jaise ∫eˣ(1/x + ln x)dx: yahan f = ln x aur f′ = 1/x. Answer seedha eˣ·ln x + C.\n\nIska ek bhai bhi hai: ∫[f(x) + x·f′(x)]dx = x·f(x) + C.",
+      formula: "\\int e^x\\big[f(x) + f'(x)\\big]dx = e^x f(x) + C",
+      tag: "Exam mein time bachao",
+    },
+    {
+      kind: "hard",
+      label: "Board-level 5-marker (classic)",
+      problem: "Evaluate: $\\displaystyle\\int_0^{\\pi} \\frac{x\\,\\tan x}{\\sec x + \\tan x}\\,dx$",
+      steps: [
+        { do: "I = ∫₀^π [x tan x/(sec x + tan x)] dx. Property lagao: x → π − x.", why: "★ Jab integrand mein akela x multiply ho raha ho, King's rule sabse pehle sochna." },
+        { do: "tan(π−x) = −tan x aur sec(π−x) = −sec x. To I = ∫₀^π [(π−x)(−tan x)] / (−sec x − tan x) dx = ∫₀^π (π−x)tan x/(sec x + tan x) dx", why: "Upar aur neeche dono mein minus — cancel ho gaya." },
+        { do: "Dono I jodo: 2I = ∫₀^π [x + (π−x)] tan x/(sec x + tan x) dx = π ∫₀^π tan x/(sec x + tan x) dx", why: "x aur (π−x) jud ke π ban gaya — yahi King's rule ka faayda." },
+        { do: "Ab integrand simplify karo. tan x/(sec x + tan x) mein upar-neeche (sec x − tan x) se multiply karo.", why: "Rationalise — kyunki sec²x − tan²x = 1." },
+        { do: "= tan x(sec x − tan x)/(sec²x − tan²x) = tan x sec x − tan²x = sec x tan x − (sec²x − 1)", why: "Denominator 1 ban gaya. Aur tan²x = sec²x − 1 identity lagayi." },
+        { do: "2I = π ∫₀^π (sec x tan x − sec²x + 1) dx = π [sec x − tan x + x]₀^π", why: "Teeno ke integrals standard hain." },
+        { do: "At x = π: sec π − tan π + π = −1 − 0 + π. At x = 0: 1 − 0 + 0 = 1.", why: "Values daalo, dhyaan se — sec π = −1." },
+        { do: "2I = π[(π − 1) − 1] = π(π − 2) ⟹ **I = π(π−2)/2**", why: "Do se divide karo. Bas." },
+      ],
+      answer: "I = \\frac{\\pi(\\pi - 2)}{2}",
+    },
+  ],
+
+  "application-of-integrals": [
+    {
+      kind: "derive",
+      title: "Area integration se kyun nikalta hai",
+      claim: "Integral asal mein infinite patli strips ka jod hai — isliye area deta hai.",
+      steps: [
+        { do: "Curve ke neeche ke area ko patli-patli vertical strips mein kaato. Har strip ki width Δx.", why: "Tedhi shakl ko seedhe tukdon mein todna — yahi calculus ka mool vichaar." },
+        { do: "x par ek strip ki height lagbhag y = f(x) hai. To uska area ≈ f(x)·Δx.", why: "Strip itni patli hai ki use rectangle maan sakte hain." },
+        { do: "Saare strips jodo: Total area ≈ Σ f(xᵢ)·Δx", why: "Approximation — abhi bhi thodi galti hai kyunki upar ka kinara tedha hai." },
+        { do: "Ab strips ko aur patla karte jao — Δx → 0. Galti bhi zero ki taraf jaati hai.", why: "★ Jitni patli strip, utni kam galti. Limit mein galti bilkul khatam." },
+        { do: "lim(Δx→0) Σ f(xᵢ)Δx = ∫ₐᵇ f(x)dx ∎ — yahi definite integral ki definition hai.", why: "Sigma (jod) integral ban jaata hai, Δx se dx." },
+      ],
+      note: "Isi se samajh aata hai ki curve x-axis ke neeche ho to integral negative kyun aata hai — kyunki wahan f(x) negative hai, to f(x)·Δx bhi negative. Area ke liye modulus isliye lagate hain.",
+    },
+    {
+      kind: "deep",
+      title: "dx strips ya dy strips — kaun chuno",
+      body: "Zyadatar sawaal dx (vertical strips) se ho jaate hain. Par kabhi-kabhi dy (horizontal strips) aadha kaam bacha deta hai.\n\n**dx chuno jab:** har vertical strip ki upar wali aur neeche wali curve poore region mein ek hi rahe.\n\n**dy chuno jab:** vertical strips beech mein curve badal dein, par horizontal strips ek hi rahein. Jaise x = y² aur x = y+2 ke beech ka area — yahan dy se ek hi integral banega, dx se do.\n\n**Kaise pehchano:** graph par ek vertical line kheencho. Agar woh region ko alag-alag jagah alag curves par kaat rahi hai, to dy try karo.",
+      formula: "A = \\int_a^b \\big(y_{top} - y_{bot}\\big)dx \\quad\\text{vs}\\quad A = \\int_c^d \\big(x_{right} - x_{left}\\big)dy",
+      tag: "Smart choice = aadha kaam",
+    },
+    {
+      kind: "hard",
+      label: "Board-level 5-marker",
+      problem: "Find the area of the region $\\{(x,y) : x^2 + y^2 \\le 4,\; x + y \\ge 2\\}$.",
+      steps: [
+        { do: "Graph banao: circle x²+y²=4 (centre origin, radius 2) aur line x+y=2 (intercepts (2,0) aur (0,2)). Chahiye circle ke ANDAR aur line ke UPAR wala hissa.", why: "★ Diagram compulsory. Yeh circular segment hai." },
+        { do: "Intersection: line aur circle (2,0) aur (0,2) par milte hain. To limits x = 0 se x = 2.", why: "Line ke intercepts circle par hi hain — isliye aasaan." },
+        { do: "Har vertical strip mein: upar circle y = √(4−x²), neeche line y = 2−x", why: "Pehle quadrant mein circle line ke upar hai." },
+        { do: "A = ∫₀² [√(4−x²) − (2−x)] dx", why: "Upar minus neeche — standard formula." },
+        { do: "Pehla hissa: ∫₀² √(4−x²)dx = [x/2·√(4−x²) + 2 sin⁻¹(x/2)]₀² = (0 + 2·π/2) − 0 = **π**", why: "Standard formula: ∫√(a²−x²)dx, yahan a=2 to a²/2 = 2." },
+        { do: "Doosra hissa: ∫₀² (2−x)dx = [2x − x²/2]₀² = 4 − 2 = **2**", why: "Simple polynomial integral. Yeh triangle ka area bhi hai — ½·2·2 = 2 ✓" },
+        { do: "A = π − 2 square units", why: "Quarter circle ka area minus triangle ka area. Answer positive hai ✓" },
+      ],
+      answer: "A = (\\pi - 2)\\text{ square units}",
+    },
+  ],
+
+  "differential-equations": [
+    {
+      kind: "derive",
+      title: "Integrating factor e^∫P dx kahaan se aaya",
+      claim: "IF koi jaadui formula nahi. Hum ek aisa multiplier dhoondh rahe hain jo left side ko product rule bana de.",
+      steps: [
+        { do: "Humare paas hai: dy/dx + Py = Q. Problem yeh hai ki left side seedha integrate nahi hota.", why: "dy/dx aur y dono hain — koi ek formula fit nahi baithta." },
+        { do: "**Vichaar:** poori equation ko kisi function μ(x) se multiply karo: μ(dy/dx) + μPy = μQ", why: "Ummeed yeh hai ki sahi μ chunne se left side pehchana-pehchana ban jaaye." },
+        { do: "Hum chahte hain ki left side exactly d/dx(μy) ban jaaye. Product rule se: d/dx(μy) = μ(dy/dx) + y(dμ/dx)", why: "★ Yahi poori derivation ka maqsad hai." },
+        { do: "Dono ko compare karo: μPy aur y(dμ/dx) barabar hone chahiye ⟹ **dμ/dx = μP**", why: "y ke coefficients match karao." },
+        { do: "Yeh to variable separable hai! dμ/μ = P dx ⟹ ln μ = ∫P dx ⟹ **μ = e^∫P dx** ∎", why: "Aur yahi IF hai — humne use dhoondha, ratt a nahi." },
+        { do: "Ab equation ban gayi d/dx(μy) = μQ. Dono taraf integrate: **μy = ∫μQ dx + C**", why: "Yahi final formula hai jo hum lagate hain." },
+      ],
+      note: "Isliye IF ko 'integrating factor' kehte hain — woh equation ko integrable bana deta hai. Formula yaad na bhi ho to yeh soch ke nikaal sakte ho.",
+    },
+    {
+      kind: "deep",
+      title: "Homogeneous mein y = vx hi kyun",
+      body: "Homogeneous DE ka matlab: dy/dx ko poora ka poora **y/x** ke terms mein likha ja sakta hai. Jaise dy/dx = (x²+y²)/(xy) = (x/y) + (y/x).\n\nAb socho — agar dayein taraf sirf y/x hai, to kyun na y/x ko hi ek naya variable maan lein? Bas **v = y/x** rakh do, yaani y = vx.\n\nPhir dy/dx = v + x(dv/dx) (product rule se).\n\nEquation ban jaati hai: v + x(dv/dx) = f(v)\n\nAb dekho — dayein taraf sirf v hai, koi x nahi! Isliye v aur x alag ho jaate hain:\nx(dv/dx) = f(v) − v ⟹ dv/(f(v)−v) = dx/x\n\n**Variable separable ban gaya.** Yahi trick ka poora maqsad tha.",
+      formula: "\\frac{dy}{dx} = f\\!\\left(\\frac{y}{x}\\right) \\xrightarrow{\;y=vx\;} \\frac{dv}{f(v)-v} = \\frac{dx}{x}",
+      tag: "Substitution ka maqsad",
+    },
+    {
+      kind: "hard",
+      label: "Board-level 5-marker",
+      problem: "Solve: $\;(x^2 + xy)\\,dy = (x^2 + y^2)\\,dx$",
+      steps: [
+        { do: "dy/dx = (x² + y²)/(x² + xy). Upar aur neeche dono degree 2 ke homogeneous hain ⟹ **homogeneous DE**.", why: "★ Type pehchano — har term ki degree same hai to homogeneous." },
+        { do: "x² se upar-neeche divide karo: dy/dx = (1 + (y/x)²) / (1 + y/x) — sab kuch y/x mein aa gaya ✓", why: "Yeh confirm karta hai ki homogeneous hai." },
+        { do: "**y = vx** rakho ⟹ dy/dx = v + x(dv/dx). Substitute: v + x(dv/dx) = (1+v²)/(1+v)", why: "Standard substitution." },
+        { do: "x(dv/dx) = (1+v²)/(1+v) − v = [(1+v²) − v(1+v)]/(1+v) = (1 + v² − v − v²)/(1+v) = **(1−v)/(1+v)**", why: "v² cancel ho gaya — yahi is sawaal ka tohfa hai." },
+        { do: "Variables alag karo: [(1+v)/(1−v)] dv = dx/x", why: "Ab dono taraf apne-apne variable." },
+        { do: "Left side ko todo: (1+v)/(1−v) = [−(1−v) + 2]/(1−v) = −1 + 2/(1−v)", why: "★ Numerator ko denominator ke terms mein likho — warna integrate nahi hoga." },
+        { do: "∫[−1 + 2/(1−v)]dv = ∫dx/x ⟹ −v − 2 ln|1−v| = ln|x| + C", why: "∫2/(1−v)dv = −2ln|1−v| — chain rule ka minus." },
+        { do: "v = y/x wapas daalo: **−y/x − 2 ln|1 − y/x| = ln|x| + C**, yaani −y/x = ln|x| + 2ln|(x−y)/x| + C", why: "Substitution wapas karna mat bhoolna." },
+      ],
+      answer: "-\\frac{y}{x} - 2\\ln\\left|\\frac{x-y}{x}\\right| = \\ln|x| + C",
+    },
+  ],
+};
