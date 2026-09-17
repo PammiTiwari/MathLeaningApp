@@ -33,10 +33,10 @@ export default function NotesHome() {
                 <p className="mt-2.5 text-[10px] font-bold uppercase tracking-wider" style={{ color: c.color }}>
                   Chapter {c.n}
                 </p>
-                <p className="mt-0.5 font-display text-[15px] font-bold leading-snug text-white">{c.title}</p>
-                <p className="mt-2 flex items-center gap-1.5 text-[11px] text-white/40">
+                <p className="mt-0.5 font-display text-[15px] font-bold leading-snug text-head">{c.title}</p>
+                <p className="mt-2 flex items-center gap-1.5 text-[11px] text-faint">
                   <NotebookPen size={11} /> {n?.pages.length ?? 1} page{(n?.pages.length ?? 1) > 1 ? "s" : ""}
-                  <span className="text-white/25">·</span>
+                  <span className="text-faint">·</span>
                   {n?.pages.reduce((a, pg) => a + pg.filter((b) => b.t === "h").length, 0)} sections
                 </p>
               </Card>
@@ -48,8 +48,8 @@ export default function NotesHome() {
       <Card className="mt-7 p-5">
         <div className="flex items-center gap-3">
           <Printer size={18} className="text-saffron" />
-          <p className="text-[13.5px] text-white/65">
-            Har note page print-friendly hai. Kisi bhi chapter ka note kholo aur <kbd className="rounded bg-white/10 px-1.5 py-0.5 text-xs">Ctrl+P</kbd> dabao —
+          <p className="text-[13.5px] text-muted">
+            Har note page print-friendly hai. Kisi bhi chapter ka note kholo aur <kbd className="rounded bg-line/60 px-1.5 py-0.5 text-xs">Ctrl+P</kbd> dabao —
             saaf-suthra ek page nikal aayega, ekdum revision ke liye.
           </p>
         </div>

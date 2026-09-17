@@ -24,9 +24,9 @@ export default function ChaptersPage() {
         return (
           <section key={unit.name} className="mb-9">
             <div className="mb-3 flex flex-wrap items-center gap-3">
-              <h2 className="font-display text-lg font-bold text-white">{unit.name}</h2>
+              <h2 className="font-display text-lg font-bold text-head">{unit.name}</h2>
               <Pill color={unit.color}>{unit.marks} marks</Pill>
-              <span className="text-xs text-white/35">{doneCount}/{chs.length} done</span>
+              <span className="text-xs text-faint">{doneCount}/{chs.length} done</span>
               <div className="ml-auto w-28"><Bar value={doneCount} max={chs.length} color={unit.color} /></div>
             </div>
 
@@ -53,13 +53,13 @@ export default function ChaptersPage() {
                             </span>
                             {finished && <CheckCircle2 size={13} className="text-mint" />}
                           </div>
-                          <h3 className="mt-0.5 font-display text-[16px] font-bold leading-snug text-white">
+                          <h3 className="mt-0.5 font-display text-[16px] font-bold leading-snug text-head">
                             {c.title}
                           </h3>
                           <p className="font-hand text-[17px] leading-none text-saffron/70">{c.hinglish}</p>
-                          <p className="mt-2 text-[12.5px] leading-relaxed text-white/50 line-clamp-2">{c.blurb}</p>
+                          <p className="mt-2 text-[12.5px] leading-relaxed text-muted line-clamp-2">{c.blurb}</p>
 
-                          <div className="mt-3 flex items-center gap-3 text-[11px] text-white/35">
+                          <div className="mt-3 flex items-center gap-3 text-[11px] text-faint">
                             <span className="flex items-center gap-1"><Clock size={11} /> ~{Math.round(c.estMins / 60)}h</span>
                             <span>{"🔥".repeat(c.difficulty)}</span>
                             <span>{c.topics.length} topics</span>
@@ -68,7 +68,7 @@ export default function ChaptersPage() {
                           {beats > 0 && !finished && (
                             <div className="mt-2.5">
                               <Bar value={beats} max={total} color={c.color} />
-                              <p className="mt-1 text-[10px] text-white/30">{beats}/{total} steps</p>
+                              <p className="mt-1 text-[10px] text-faint">{beats}/{total} steps</p>
                             </div>
                           )}
                         </div>

@@ -34,7 +34,7 @@ export default function FormulasPage() {
         sub="Poore syllabus ke saare zaroori formulas, chapter ke hisaab se. Exam se pehle wali raat ke liye yahi page kaafi hai — print kar lo aur deewar par chipka do."
         right={
           <button onClick={() => window.print()}
-            className="no-print flex items-center gap-1.5 rounded-lg border border-line px-3.5 py-2 text-xs font-semibold text-white/60 hover:bg-white/5">
+            className="no-print flex items-center gap-1.5 rounded-lg border border-line px-3.5 py-2 text-xs font-semibold text-muted hover:bg-sunk">
             <Printer size={13} /> Print
           </button>
         }
@@ -42,15 +42,15 @@ export default function FormulasPage() {
 
       <div className="no-print sticky top-[60px] z-20 mb-6">
         <div className="relative">
-          <Search size={15} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-white/30" />
+          <Search size={15} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-faint" />
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="Formula dhoondho… (jaise 'bayes', 'integral', 'adjoint')"
-            className="w-full rounded-xl border border-line bg-surface py-3 pl-11 pr-10 text-sm text-white placeholder:text-white/25 focus:border-primary focus:outline-none"
+            className="w-full rounded-xl border border-line bg-card py-3 pl-11 pr-10 text-sm text-head placeholder:text-faint focus:border-primary focus:outline-none"
           />
           {q && (
-            <button onClick={() => setQ("")} className="absolute right-4 top-1/2 -translate-y-1/2 text-white/30 hover:text-white">
+            <button onClick={() => setQ("")} className="absolute right-4 top-1/2 -translate-y-1/2 text-faint hover:text-head">
               <X size={15} />
             </button>
           )}
@@ -58,7 +58,7 @@ export default function FormulasPage() {
       </div>
 
       {groups.length === 0 && (
-        <Card className="p-10 text-center text-sm text-white/45">
+        <Card className="p-10 text-center text-sm text-faint">
           &ldquo;{q}&rdquo; ke liye kuch nahi mila. Doosre shabd se try karo.
         </Card>
       )}
@@ -70,7 +70,7 @@ export default function FormulasPage() {
             <section key={g.slug} id={g.slug} className="scroll-mt-24">
               <div className="mb-3 flex flex-wrap items-center gap-2.5">
                 <span className="text-xl">{ch?.emoji}</span>
-                <h2 className="font-display text-lg font-bold text-white">{g.chapter}</h2>
+                <h2 className="font-display text-lg font-bold text-head">{g.chapter}</h2>
                 {ch && <Pill color={ch.color}>Ch {ch.n}</Pill>}
                 <Link href={`/chapters/${g.slug}`} className="no-print ml-auto text-xs font-semibold text-primary hover:underline">
                   chapter kholo →
@@ -80,14 +80,14 @@ export default function FormulasPage() {
                 {g.items.map((f, i) => (
                   <Card key={i} className="p-4">
                     <div className="mb-1.5 flex items-start justify-between gap-2">
-                      <p className="text-[11.5px] font-bold uppercase tracking-wide text-white/50">{f.name}</p>
+                      <p className="text-[11.5px] font-bold uppercase tracking-wide text-muted">{f.name}</p>
                       {f.note && (
-                        <span className="shrink-0 rounded-full bg-saffron/15 px-2 py-0.5 text-[10px] font-semibold text-saffron">
+                        <span className="shrink-0 rounded-full bg-saffronSoft px-2 py-0.5 text-[10px] font-semibold text-saffron">
                           {f.note}
                         </span>
                       )}
                     </div>
-                    <Formula tex={f.tex} className="text-white" />
+                    <Formula tex={f.tex} className="text-head" />
                   </Card>
                 ))}
               </div>

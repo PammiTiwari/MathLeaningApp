@@ -63,8 +63,6 @@ export type OfficialPaper = {
   kind: "sample" | "syllabus";
   sqp?: string;     // question paper PDF
   ms?: string;      // marking scheme PDF
-  sqpHi?: string;   // Hindi version
-  msHi?: string;
   note: string;
 };
 
@@ -79,8 +77,6 @@ export const OFFICIAL_PAPERS: OfficialPaper[] = [
     kind: "sample",
     sqp: `${CB}/SQP/ClassXII_2025_26/Maths-SQP.pdf`,
     ms: `${CB}/SQP/ClassXII_2025_26/Maths-MS.pdf`,
-    sqpHi: `${CB}/SQP/ClassXII_2025_26/Maths-SQP_hi.pdf`,
-    msHi: `${CB}/SQP/ClassXII_2025_26/Maths-MS_hi.pdf`,
     note: "Sabse zaroori paper. Yeh CBSE ka apna official pattern hai — isse pehle solve karo, baaki baad mein.",
   },
   {

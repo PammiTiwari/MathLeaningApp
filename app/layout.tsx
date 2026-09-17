@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0B0A12",
+  themeColor: "#FAF9F6",
   width: "device-width",
   initialScale: 1,
 };
@@ -26,12 +26,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="font-sans min-h-screen">
         <ProgressProvider>
           <Nav />
-          <main className="mx-auto w-full max-w-6xl px-4 pb-24 pt-4 sm:px-6">{children}</main>
-          <footer className="no-print border-t border-line/60 py-8 text-center text-xs text-white/35">
-            <p className="font-hand text-lg text-saffron/70">&ldquo;Himmat rakh, ho jayega.&rdquo;</p>
-            <p className="mt-2">
-              Built for CBSE Class 12 Mathematics (041) · 2025–26 syllabus · Not affiliated with CBSE or Khan Academy
-            </p>
+          <main className="mx-auto w-full max-w-6xl px-4 pb-20 pt-1 sm:px-6">{children}</main>
+          <footer className="no-print mt-8 border-t border-line bg-white/60">
+            <div className="mx-auto max-w-6xl px-4 py-9 text-center sm:px-6">
+              <p className="font-hand text-2xl text-saffron">&ldquo;Himmat rakh, ho jayega.&rdquo;</p>
+              <p className="mx-auto mt-3 max-w-lg text-[12px] leading-relaxed text-faint">
+                CBSE Class 12 Mathematics (041) · 2025–26 syllabus · An independent study tool,
+                not affiliated with CBSE or Khan Academy
+              </p>
+            </div>
           </footer>
         </ProgressProvider>
       </body>

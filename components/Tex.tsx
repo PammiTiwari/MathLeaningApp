@@ -43,7 +43,7 @@ export function Rich({ text, className = "" }: { text: string; className?: strin
       `<div class="katex-scroll overflow-x-auto py-1">${renderTex(decode(m), true)}</div>`
     );
     out = out.replace(/\$([^$\n]+?)\$/g, (_, m) => renderTex(decode(m), false));
-    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong class="text-white">$1</strong>');
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong class="text-head">$1</strong>');
     out = out
       .split("\n")
       .map((line) => (line.trim() ? `<p class="mb-2 last:mb-0">${line}</p>` : ""))

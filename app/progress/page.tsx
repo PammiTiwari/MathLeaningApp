@@ -42,7 +42,7 @@ export default function ProgressPage() {
         right={
           <button
             onClick={() => { if (confirm("Saari progress mit jayegi. Pakka?")) reset(); }}
-            className="flex items-center gap-1.5 rounded-lg border border-line px-3 py-2 text-xs font-semibold text-white/40 hover:text-rose"
+            className="flex items-center gap-1.5 rounded-lg border border-line px-3 py-2 text-xs font-semibold text-faint hover:text-rose"
           >
             <RotateCcw size={12} /> Reset
           </button>
@@ -60,8 +60,8 @@ export default function ProgressPage() {
       {/* level bar */}
       <Card className="mt-4 p-5">
         <div className="mb-2 flex items-baseline justify-between">
-          <p className="font-display text-base font-bold text-white">Level {lvl.level} · <span className="text-primary">{lvl.name}</span></p>
-          <p className="text-xs text-white/40">{lvl.into}/{lvl.need} XP</p>
+          <p className="font-display text-base font-bold text-head">Level {lvl.level} · <span className="text-primary">{lvl.name}</span></p>
+          <p className="text-xs text-faint">{lvl.into}/{lvl.need} XP</p>
         </div>
         <Bar value={lvl.into} max={lvl.need} />
       </Card>
@@ -71,12 +71,12 @@ export default function ProgressPage() {
         <div className="flex flex-wrap items-center gap-4">
           <CalendarDays size={20} className="text-rose" />
           <div className="min-w-[180px] flex-1">
-            <p className="font-display text-base font-bold text-white">
+            <p className="font-display text-base font-bold text-head">
               {daysLeft !== null
                 ? daysLeft > 0 ? `Board exam mein ${daysLeft} din baaki` : "Exam aa gaya — himmat rakh!"
                 : "Board exam ki date set karo"}
             </p>
-            <p className="text-xs text-white/45">
+            <p className="text-xs text-faint">
               {daysLeft !== null && daysLeft > 0
                 ? `Roz ${Math.max(1, Math.ceil((13 - p.lessonDone.length) / Math.max(1, Math.floor(daysLeft / 3))))} chapter ka target rakho.`
                 : "Countdown dekh ke padhai ka josh alag hi hota hai."}
@@ -86,13 +86,13 @@ export default function ProgressPage() {
             type="date"
             defaultValue={p.examDate ?? ""}
             onChange={(e) => setExamDate(e.target.value || null)}
-            className="rounded-lg border border-line bg-ink px-3 py-2 text-sm text-white"
+            className="rounded-lg border border-line bg-page px-3 py-2 text-sm text-head"
           />
         </div>
       </Card>
 
       {/* unit progress */}
-      <h2 className="mb-3 mt-9 font-display text-xl font-bold text-white">Unit ke hisaab se</h2>
+      <h2 className="font-display text-[20px] font-bold tracking-[-0.01em] text-head">Unit ke hisaab se</h2>
       <Card className="p-5">
         <div className="space-y-4">
           {UNITS.map((u) => {
@@ -101,8 +101,8 @@ export default function ProgressPage() {
             return (
               <div key={u.name}>
                 <div className="mb-1.5 flex items-baseline justify-between gap-3">
-                  <span className="text-[13px] font-semibold text-white/85">{u.name}</span>
-                  <span className="shrink-0 text-xs text-white/40">
+                  <span className="text-[13px] font-semibold text-body">{u.name}</span>
+                  <span className="shrink-0 text-xs text-faint">
                     {done}/{chs.length} · <span style={{ color: u.color }}>{u.marks}m</span>
                   </span>
                 </div>
@@ -114,7 +114,7 @@ export default function ProgressPage() {
       </Card>
 
       {/* chapter detail */}
-      <h2 className="mb-3 mt-9 font-display text-xl font-bold text-white">Chapter-by-chapter</h2>
+      <h2 className="font-display text-[20px] font-bold tracking-[-0.01em] text-head">Chapter-by-chapter</h2>
       <div className="grid gap-2.5 md:grid-cols-2">
         {CHAPTERS.map((c) => {
           const lesson = getLesson(c.slug);
@@ -133,11 +133,11 @@ export default function ProgressPage() {
               <Card className="card-hover p-4">
                 <div className="flex items-center gap-3">
                   <span className="text-xl">{c.emoji}</span>
-                  <p className="min-w-0 flex-1 truncate text-[13.5px] font-bold text-white">{c.title}</p>
+                  <p className="min-w-0 flex-1 truncate text-[13.5px] font-bold text-head">{c.title}</p>
                   {done && <Pill color="#22D3A5">done</Pill>}
                 </div>
                 <div className="mt-2.5"><Bar value={done ? total : beats} max={total} color={c.color} /></div>
-                <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-white/40">
+                <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[11px] text-faint">
                   <span>lesson {done ? total : beats}/{total}</span>
                   {acc !== null && <span className={acc >= 70 ? "text-mint" : "text-saffron"}>quiz {acc}%</span>}
                   {cards > 0 && <span>cards {mastered}/{cards}</span>}
@@ -152,18 +152,18 @@ export default function ProgressPage() {
       {/* weak areas */}
       {weak.length > 0 && (
         <>
-          <h2 className="mb-1 mt-9 flex items-center gap-2 font-display text-xl font-bold text-white">
+          <h2 className="mb-2 mt-10 flex items-center gap-2 font-display text-xl font-bold text-head">
             <AlertTriangle size={17} className="text-saffron" /> Yahan dhyaan do
           </h2>
-          <p className="mb-3 text-[13px] text-white/50">Yeh chapters ya to abhi bache hain, ya inke quiz mein 70% se kam aaya.</p>
+          <p className="mb-3 text-[13px] text-muted">Yeh chapters ya to abhi bache hain, ya inke quiz mein 70% se kam aaya.</p>
           <div className="grid gap-2.5 sm:grid-cols-2">
             {weak.map(({ c, acc, learned }) => (
               <Link key={c.slug} href={`/learn/${c.slug}`}>
-                <Card className="card-hover flex items-center gap-3 border-saffron/25 p-4">
+                <Card className="card-hover flex items-center gap-3 border-saffron/30 p-4">
                   <span className="text-xl">{c.emoji}</span>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-[13.5px] font-bold text-white">{c.title}</p>
-                    <p className="text-[11.5px] text-white/45">
+                    <p className="truncate text-[13.5px] font-bold text-head">{c.title}</p>
+                    <p className="text-[11.5px] text-faint">
                       {!learned ? "Abhi shuru nahi kiya" : `Quiz accuracy ${acc}% — dobara padho`}
                     </p>
                   </div>
@@ -176,7 +176,7 @@ export default function ProgressPage() {
       )}
 
       {/* attempts */}
-      <h2 className="mb-3 mt-9 font-display text-xl font-bold text-white">Mock exam history</h2>
+      <h2 className="font-display text-[20px] font-bold tracking-[-0.01em] text-head">Mock exam history</h2>
       {p.attempts.length === 0 ? (
         <Empty
           title="Abhi tak koi mock nahi diya"
@@ -191,15 +191,15 @@ export default function ProgressPage() {
               <Card key={a.id} className="p-4">
                 <div className="flex items-center gap-4">
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-[14px] font-semibold text-white">{a.paperTitle}</p>
-                    <p className="text-[11px] text-white/40">{new Date(a.date).toLocaleString("en-IN")}</p>
+                    <p className="truncate text-[14px] font-semibold text-head">{a.paperTitle}</p>
+                    <p className="text-[11px] text-faint">{new Date(a.date).toLocaleString("en-IN")}</p>
                   </div>
                   <div className="w-24"><Bar value={a.scored} max={a.total} color={pct >= 60 ? "#22D3A5" : pct >= 33 ? "#FFB020" : "#FF5470"} /></div>
                   <p className={`w-16 shrink-0 text-right font-display text-lg font-extrabold ${pct >= 60 ? "text-mint" : pct >= 33 ? "text-saffron" : "text-rose"}`}>
-                    {a.scored}<span className="text-xs text-white/30">/{a.total}</span>
+                    {a.scored}<span className="text-xs text-faint">/{a.total}</span>
                   </p>
                 </div>
-                {a.overall && <p className="mt-2 border-t border-line/50 pt-2 text-[12.5px] leading-relaxed text-white/55">{a.overall}</p>}
+                {a.overall && <p className="mt-2 border-t border-line/50 pt-2 text-[12.5px] leading-relaxed text-muted">{a.overall}</p>}
               </Card>
             );
           })}
@@ -213,8 +213,8 @@ function Big({ icon: Icon, value, label, note, color }: any) {
   return (
     <Card className="p-4">
       <Icon size={17} style={{ color }} />
-      <p className="mt-2 font-display text-[28px] font-extrabold leading-none text-white">{value}</p>
-      <p className="mt-1.5 text-[11.5px] text-white/45">{label}</p>
+      <p className="mt-2 font-display text-[28px] font-extrabold leading-none text-head">{value}</p>
+      <p className="mt-1.5 text-[11.5px] text-faint">{label}</p>
       <p className="text-[11px] font-semibold" style={{ color }}>{note}</p>
     </Card>
   );

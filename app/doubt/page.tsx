@@ -71,14 +71,14 @@ export default function DoubtPage() {
           onKeyDown={(e) => { if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) ask(); }}
           rows={4}
           placeholder="Apna doubt yahan likho… (Ctrl+Enter se bhejo)"
-          className="w-full resize-y rounded-xl border border-line bg-ink/60 p-4 text-[14.5px] leading-relaxed text-white placeholder:text-white/25 focus:border-primary focus:outline-none"
+          className="w-full resize-y rounded-xl border border-line bg-sunk p-4 text-[14.5px] leading-relaxed text-head placeholder:text-faint focus:border-primary focus:outline-none"
         />
 
         <div className="mt-3 flex flex-wrap items-center gap-2">
           <select
             value={chapter}
             onChange={(e) => setChapter(e.target.value)}
-            className="rounded-lg border border-line bg-ink px-3 py-2 text-xs text-white/70 focus:border-primary focus:outline-none"
+            className="rounded-lg border border-line bg-page px-3 py-2 text-xs text-body focus:border-primary focus:outline-none"
           >
             <option value="">Chapter (optional)</option>
             {CHAPTERS.map((c) => (
@@ -89,11 +89,11 @@ export default function DoubtPage() {
           <input ref={fileRef} type="file" accept="image/*" capture="environment" className="hidden"
             onChange={(e) => e.target.files?.[0] && pickFile(e.target.files[0])} />
           <button onClick={() => fileRef.current?.click()}
-            className="flex items-center gap-1.5 rounded-lg border border-line px-3 py-2 text-xs font-semibold text-white/60 hover:bg-white/5">
+            className="flex items-center gap-1.5 rounded-lg border border-line px-3 py-2 text-xs font-semibold text-muted hover:bg-sunk">
             <Camera size={13} /> Photo lagao
           </button>
           {img && (
-            <span className="flex items-center gap-1.5 rounded-lg bg-mint/15 px-2.5 py-1.5 text-[11px] font-semibold text-mint">
+            <span className="flex items-center gap-1.5 rounded-lg bg-mintSoft px-2.5 py-1.5 text-[11px] font-semibold text-mint">
               {img.name}
               <button onClick={() => setImg(null)}><X size={11} /></button>
             </span>
@@ -112,11 +112,11 @@ export default function DoubtPage() {
 
       {!answer && !loading && (
         <div className="mt-5">
-          <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-white/35">Yeh bhi puch sakte ho</p>
+          <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-faint">Yeh bhi puch sakte ho</p>
           <div className="grid gap-2 sm:grid-cols-2">
             {SAMPLES.map((s) => (
               <button key={s} onClick={() => setQ(s)}
-                className="rounded-xl border border-line bg-surface p-3.5 text-left text-[13px] leading-snug text-white/65 transition hover:border-primary/40 hover:text-white">
+                className="rounded-xl border border-line bg-card p-3.5 text-left text-[13px] leading-snug text-muted transition hover:border-primary/40 hover:text-head">
                 {s}
               </button>
             ))}
@@ -125,7 +125,7 @@ export default function DoubtPage() {
       )}
 
       {err && (
-        <Card className="mt-5 border-rose/40 bg-rose/10 p-4">
+        <Card className="mt-5 border-rose/30 bg-roseSoft p-4">
           <div className="flex items-start gap-2.5">
             <AlertTriangle size={16} className="mt-0.5 shrink-0 text-rose" />
             <p className="text-[13.5px] leading-relaxed text-rose">{err}</p>
@@ -136,7 +136,7 @@ export default function DoubtPage() {
       {loading && (
         <Card className="mt-5 p-8 text-center">
           <Loader2 size={28} className="mx-auto animate-spin text-primary" />
-          <p className="mt-3 text-sm text-white/50">Tumhara doubt solve kar raha hoon…</p>
+          <p className="mt-3 text-sm text-muted">Tumhara doubt solve kar raha hoon…</p>
         </Card>
       )}
 
@@ -146,10 +146,10 @@ export default function DoubtPage() {
             <Sparkles size={16} className="text-primary" />
             <Pill>Himmat tutor</Pill>
           </div>
-          <Rich text={answer} className="text-[14.5px] leading-[1.8] text-white/85" />
+          <Rich text={answer} className="text-[14.5px] leading-[1.8] text-body" />
           <button
             onClick={() => { setAnswer(""); setQ(""); setImg(null); }}
-            className="mt-5 rounded-lg border border-line px-4 py-2 text-xs font-semibold text-white/60 hover:bg-white/5"
+            className="mt-5 rounded-lg border border-line px-4 py-2 text-xs font-semibold text-muted hover:bg-sunk"
           >
             Naya doubt pucho
           </button>

@@ -38,22 +38,22 @@ export default function ChapterPage({ params }: { params: Promise<{ slug: string
       {/* header */}
       <div
         className="relative mt-4 overflow-hidden rounded-3xl border border-line p-6 sm:p-8"
-        style={{ background: `linear-gradient(150deg, ${ch.color}22, #15131F 62%)` }}
+        style={{ background: `linear-gradient(150deg, ${ch.color}14, #ffffff 58%)` }}
       >
-        <div className="pointer-events-none absolute -right-10 -top-10 text-[140px] opacity-[0.08]">{ch.emoji}</div>
-        <Link href="/chapters" className="text-xs font-semibold text-white/45 hover:text-white">← saare chapters</Link>
+        <div className="pointer-events-none absolute -right-8 -top-8 select-none text-[150px] opacity-[0.07]">{ch.emoji}</div>
+        <Link href="/chapters" className="text-xs font-semibold text-faint hover:text-head">← saare chapters</Link>
         <div className="mt-3 flex items-center gap-2">
           <Pill color={ch.color}>Chapter {ch.n}</Pill>
-          <Pill color="#ffffff">{ch.unit} · {ch.unitMarks} marks</Pill>
+          <Pill color="#6B6B7B">{ch.unit} · {ch.unitMarks} marks</Pill>
           {finished && <Pill color="#22D3A5">✓ Done</Pill>}
         </div>
-        <h1 className="mt-3 font-display text-[32px] font-extrabold leading-tight tracking-tight text-white sm:text-[42px]">
+        <h1 className="mt-3 font-display text-[32px] font-extrabold leading-tight tracking-tight text-head sm:text-[42px]">
           {ch.title}
         </h1>
         <p className="font-hand text-2xl text-saffron">{ch.hinglish}</p>
-        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-white/65">{ch.blurb}</p>
+        <p className="mt-3 max-w-2xl text-[15px] leading-relaxed text-muted">{ch.blurb}</p>
 
-        <div className="mt-5 flex flex-wrap items-center gap-3 text-xs text-white/45">
+        <div className="mt-5 flex flex-wrap items-center gap-3 text-xs text-faint">
           <span className="flex items-center gap-1"><Clock size={12} /> ~{Math.round(ch.estMins / 60)} ghante</span>
           <span>Difficulty {"🔥".repeat(ch.difficulty)}</span>
           <span>{ch.topics.length} topics</span>
@@ -62,13 +62,13 @@ export default function ChapterPage({ params }: { params: Promise<{ slug: string
         {beats > 0 && (
           <div className="mt-4 max-w-sm">
             <Bar value={finished ? total : beats} max={total} color={ch.color} />
-            <p className="mt-1 text-[11px] text-white/35">{finished ? "Poora ho gaya!" : `${beats}/${total} steps`}</p>
+            <p className="mt-1 text-[11px] text-faint">{finished ? "Poora ho gaya!" : `${beats}/${total} steps`}</p>
           </div>
         )}
 
         <Link
           href={`/learn/${slug}`}
-          className="mt-5 inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-bold text-white transition"
+          className="mt-5 inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-bold text-head transition"
           style={{ background: ch.color }}
         >
           {beats > 0 ? (finished ? "Dobara padho" : "Continue lesson") : "Lesson shuru karo"}
@@ -77,12 +77,12 @@ export default function ChapterPage({ params }: { params: Promise<{ slug: string
       </div>
 
       {/* board scoring tip */}
-      <Card className="mt-4 border-saffron/25 bg-saffron/[0.06] p-5">
+      <Card className="mt-4 border-saffron/30 bg-saffronSoft p-5">
         <div className="flex gap-3">
           <Lightbulb size={18} className="mt-0.5 shrink-0 text-saffron" />
           <div>
             <p className="text-xs font-bold uppercase tracking-wider text-saffron">Board mein isse kya aata hai</p>
-            <p className="mt-1.5 text-[14px] leading-relaxed text-white/80">{ch.scoring}</p>
+            <p className="mt-1.5 text-[14px] leading-relaxed text-body">{ch.scoring}</p>
           </div>
         </div>
       </Card>
@@ -98,8 +98,8 @@ export default function ChapterPage({ params }: { params: Promise<{ slug: string
       {/* topics */}
       <div className="mt-8 grid gap-4 lg:grid-cols-5">
         <Card className="p-5 lg:col-span-3">
-          <h2 className="font-display text-lg font-bold text-white">Is chapter mein kya-kya hai</h2>
-          <p className="mb-4 mt-1 text-xs text-white/45">NCERT ke hisaab se official topics — har topic ki apni video link hai.</p>
+          <h2 className="font-display text-lg font-bold text-head">Is chapter mein kya-kya hai</h2>
+          <p className="mb-4 mt-1 text-xs text-faint">NCERT ke hisaab se official topics — har topic ki apni video link hai.</p>
           <ol className="space-y-2.5">
             {ch.topics.map((t, i) => (
               <li key={i} className="flex items-start gap-3">
@@ -109,12 +109,12 @@ export default function ChapterPage({ params }: { params: Promise<{ slug: string
                 >
                   {i + 1}
                 </span>
-                <span className="flex-1 text-[13.5px] leading-snug text-white/75">{t}</span>
+                <span className="flex-1 text-[13.5px] leading-snug text-body">{t}</span>
                 <a
                   href={topicLinks[i]?.youtube}
                   target="_blank"
                   rel="noreferrer"
-                  className="mt-0.5 shrink-0 text-white/25 transition hover:text-rose"
+                  className="mt-0.5 shrink-0 text-faint transition hover:text-rose"
                   title="Is topic ki video dekho"
                 >
                   <PlayCircle size={15} />
@@ -135,12 +135,12 @@ export default function ChapterPage({ params }: { params: Promise<{ slug: string
         <div className="space-y-4 lg:col-span-2">
           {formulas && (
             <Card className="p-5">
-              <h3 className="mb-3 font-display text-base font-bold text-white">Top formulas</h3>
+              <h3 className="mb-3 font-display text-base font-bold text-head">Top formulas</h3>
               <div className="space-y-3">
                 {formulas.items.slice(0, 4).map((f, i) => (
                   <div key={i}>
-                    <p className="mb-0.5 text-[11px] font-semibold uppercase tracking-wide text-white/40">{f.name}</p>
-                    <Formula tex={f.tex} className="text-white/90" />
+                    <p className="mb-0.5 text-[11px] font-semibold uppercase tracking-wide text-faint">{f.name}</p>
+                    <Formula tex={f.tex} className="text-head" />
                   </div>
                 ))}
               </div>
@@ -151,8 +151,8 @@ export default function ChapterPage({ params }: { params: Promise<{ slug: string
           )}
 
           <Card className="p-5">
-            <h3 className="mb-1 font-display text-base font-bold text-white">Practice</h3>
-            <p className="mb-3 text-xs text-white/45">Is chapter ke board-pattern sawaal.</p>
+            <h3 className="mb-1 font-display text-base font-bold text-head">Practice</h3>
+            <p className="mb-3 text-xs text-faint">Is chapter ke board-pattern sawaal.</p>
             <div className="space-y-2">
               <RowLink href="/exam" label={`${qs.length} questions is chapter se`} icon={Target} />
               <RowLink href="/flashcards" label={`${cards.length} flashcards`} icon={Sparkles} />
@@ -165,12 +165,12 @@ export default function ChapterPage({ params }: { params: Promise<{ slug: string
       {/* lesson preview */}
       {lesson && (
         <Card className="mt-6 p-5">
-          <h2 className="font-display text-lg font-bold text-white">Lesson ki jhalak</h2>
-          <p className="mb-4 mt-1 text-xs text-white/45">Yeh lesson ka pehla step hai — poora padhne ke liye niche click karo.</p>
+          <h2 className="font-display text-lg font-bold text-head">Lesson ki jhalak</h2>
+          <p className="mb-4 mt-1 text-xs text-faint">Yeh lesson ka pehla step hai — poora padhne ke liye niche click karo.</p>
           {lesson.beats[0].kind === "story" && (
-            <div className="rounded-xl border border-line bg-ink/60 p-4">
+            <div className="rounded-xl border border-line bg-sunk p-4">
               <span className="text-2xl">{(lesson.beats[0] as any).emoji}</span>
-              <Rich text={(lesson.beats[0] as any).text} className="mt-2 text-[14px] leading-relaxed text-white/70" />
+              <Rich text={(lesson.beats[0] as any).text} className="mt-2 text-[14px] leading-relaxed text-body" />
             </div>
           )}
           <Link
@@ -192,8 +192,8 @@ function Tile({ href, icon: Icon, label, sub, color }: any) {
         <span className="mb-2.5 grid h-9 w-9 place-items-center rounded-xl" style={{ background: `${color}1f`, color }}>
           <Icon size={17} />
         </span>
-        <p className="text-[13.5px] font-bold text-white">{label}</p>
-        <p className="text-[11px] text-white/40">{sub}</p>
+        <p className="text-[13.5px] font-bold text-head">{label}</p>
+        <p className="text-[11px] text-faint">{sub}</p>
       </Card>
     </Link>
   );
@@ -201,10 +201,10 @@ function Tile({ href, icon: Icon, label, sub, color }: any) {
 
 function RowLink({ href, label, icon: Icon }: any) {
   return (
-    <Link href={href} className="flex items-center gap-2.5 rounded-lg border border-line bg-ink/40 px-3 py-2.5 text-[13px] text-white/70 transition hover:border-primary/40 hover:text-white">
+    <Link href={href} className="flex items-center gap-2.5 rounded-lg border border-line bg-sunk px-3 py-2.5 text-[13px] text-body transition hover:border-primary/40 hover:text-head">
       <Icon size={14} className="text-primary" />
       <span className="flex-1">{label}</span>
-      <ArrowRight size={13} className="text-white/25" />
+      <ArrowRight size={13} className="text-faint" />
     </Link>
   );
 }
