@@ -12,15 +12,15 @@ export default function VideosHome() {
       <PageHead
         eyebrow="Video lessons"
         title="Dekhke samjho"
-        sub="Har chapter ke liye Khan Academy ke free videos aur topic-wise links. Khan Academy India ka poora NCERT Class 12 course free hai — videos ke saath practice exercises bhi."
+        sub="Har chapter ke liye Khan Academy ke free videos aur topic-wise links. Khan Academy India ka poora NCERT Class 12 course free hai - videos ke saath practice exercises bhi."
       />
 
       <Card className="mb-7 border-primary/25 bg-primarySoft p-5">
         <div className="flex flex-wrap items-center gap-4">
           <div className="min-w-[240px] flex-1">
-            <p className="font-display text-base font-bold text-head">Khan Academy — poora course, bilkul free</p>
+            <p className="font-display text-base font-bold text-head">Khan Academy - poora course, bilkul free</p>
             <p className="mt-1 text-[13px] leading-relaxed text-muted">
-              Khan Sir (Patna wale) Class 12 Maths nahi padhate — woh competitive exams ke liye GS padhate hain.
+              Khan Sir (Patna wale) Class 12 Maths nahi padhate - woh competitive exams ke liye GS padhate hain.
               Class 12 Maths ke liye <strong className="text-head">Khan Academy India</strong> hai, jo NCERT ke exact
               chapters par chalta hai, Hindi aur English dono mein.
             </p>

@@ -13,7 +13,7 @@ export default function ChaptersPage() {
       <PageHead
         eyebrow="Poora syllabus"
         title="13 Chapters, 80 Marks"
-        sub="Har chapter Hinglish mein samjhaya gaya hai — kahani se shuru, formula ke saath, aur board tips ke saath khatam. Unit ke hisaab se grouped hai taaki pata rahe kis par kitna time dena hai."
+        sub="Har chapter Hinglish mein samjhaya gaya hai - kahani se shuru, formula ke saath, aur board tips ke saath khatam. Unit ke hisaab se grouped hai taaki pata rahe kis par kitna time dena hai."
       />
 
       {UNITS.map((unit) => {

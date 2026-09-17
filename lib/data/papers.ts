@@ -4,7 +4,7 @@
  * Yeh woh papers hain jo actual board exam mein aaye the.
  * Har ZIP mein us saal ke saare sets hain (65-1-1, 65-2-1, 65-4-1 ...)
  * plus visually-impaired candidates ka version.
- * Source: cbse.gov.in — official, live-verified.
+ * Source: cbse.gov.in - official, live-verified.
  * ------------------------------------------------------------- */
 
 export type BoardPaper = {
@@ -23,12 +23,12 @@ export const BOARD_PAPERS: BoardPaper[] = [
   {
     id: "board-2026", year: "2026", url: `${QP}/2026/XII/Mathematics.zip`, sizeMB: 12,
     sets: "Saare sets",
-    note: "Sabse latest board paper. Yahi se shuru karo — pattern aur difficulty dono abhi wali hai.",
+    note: "Sabse latest board paper. Yahi se shuru karo - pattern aur difficulty dono abhi wali hai.",
   },
   {
     id: "board-2025", year: "2025", url: `${QP}/2025/XII/MATHEMATICS.zip`, sizeMB: 70,
-    sets: "20 papers — 65-1-1 se 65-5-3 tak + VI candidates",
-    note: "8 March 2025 ko hua tha. Ismein 19 alag sets hain — matlab 19 poore papers practice ke liye.",
+    sets: "20 papers - 65-1-1 se 65-5-3 tak + VI candidates",
+    note: "8 March 2025 ko hua tha. Ismein 19 alag sets hain - matlab 19 poore papers practice ke liye.",
   },
   {
     id: "board-2024", year: "2024", url: `${QP}/2024/XII/MATHEMATICS.zip`, sizeMB: 43,
@@ -48,7 +48,7 @@ export const BOARD_PAPERS: BoardPaper[] = [
 ];
 
 export const COMPARTMENT_PAPERS: BoardPaper[] = [
-  { id: "comptt-2026", year: "2026", url: `${QP}/2026-COMPTT/XII/MATHEMATICS.zip`, sizeMB: 2, sets: "Compartment", compartment: true, note: "Compartment exam ka paper — extra practice." },
+  { id: "comptt-2026", year: "2026", url: `${QP}/2026-COMPTT/XII/MATHEMATICS.zip`, sizeMB: 2, sets: "Compartment", compartment: true, note: "Compartment exam ka paper - extra practice." },
   { id: "comptt-2025", year: "2025", url: `${QP}/2025-COMPTT/XII/Mathematics.zip`, sizeMB: 1, sets: "Compartment", compartment: true, note: "Same syllabus, alag questions." },
   { id: "comptt-2024", year: "2024", url: `${QP}/2024-COMPTT/XII/Mathematics.zip`, sizeMB: 1, sets: "Compartment", compartment: true, note: "Same syllabus, alag questions." },
   { id: "comptt-2023", year: "2023", url: `${QP}/2023-COMPTT/XII/Mathematics.zip`, sizeMB: 1, sets: "Compartment", compartment: true, note: "Same syllabus, alag questions." },
@@ -72,17 +72,17 @@ const CB = "https://cbseacademic.nic.in/web_material";
 export const OFFICIAL_PAPERS: OfficialPaper[] = [
   {
     id: "sqp-2025-26",
-    year: "2025–26",
-    title: "CBSE Sample Question Paper — Mathematics (041)",
+    year: "2025-26",
+    title: "CBSE Sample Question Paper - Mathematics (041)",
     kind: "sample",
     sqp: `${CB}/SQP/ClassXII_2025_26/Maths-SQP.pdf`,
     ms: `${CB}/SQP/ClassXII_2025_26/Maths-MS.pdf`,
-    note: "Sabse zaroori paper. Yeh CBSE ka apna official pattern hai — isse pehle solve karo, baaki baad mein.",
+    note: "Sabse zaroori paper. Yeh CBSE ka apna official pattern hai - isse pehle solve karo, baaki baad mein.",
   },
   {
     id: "sqp-2024-25",
-    year: "2024–25",
-    title: "CBSE Sample Question Paper — Mathematics (041)",
+    year: "2024-25",
+    title: "CBSE Sample Question Paper - Mathematics (041)",
     kind: "sample",
     sqp: `${CB}/SQP/ClassXII_2024_25/Maths-SQP.pdf`,
     ms: `${CB}/SQP/ClassXII_2024_25/Maths-MS.pdf`,
@@ -90,8 +90,8 @@ export const OFFICIAL_PAPERS: OfficialPaper[] = [
   },
   {
     id: "sqp-2023-24",
-    year: "2023–24",
-    title: "CBSE Sample Question Paper — Mathematics (041)",
+    year: "2023-24",
+    title: "CBSE Sample Question Paper - Mathematics (041)",
     kind: "sample",
     sqp: `${CB}/SQP/ClassXII_2023_24/Maths-SQP.pdf`,
     ms: `${CB}/SQP/ClassXII_2023_24/Maths-MS.pdf`,
@@ -103,7 +103,7 @@ export const SYLLABUS_PDF = `${CB}/CurriculumMain26/SrSec/Maths_SrSec_2025-26.pd
 export const CBSE_PYQ_PAGE = "https://www.cbse.gov.in/cbsenew/question-paper.html";
 export const CBSE_SQP_ARCHIVE = "https://cbseacademic.nic.in/sqp_archive.html";
 
-/** In-app timed mock papers — attempt these inside the app and get AI-marked. */
+/** In-app timed mock papers - attempt these inside the app and get AI-marked. */
 export type MockPaper = {
   id: string;
   title: string;
@@ -117,7 +117,7 @@ export type MockPaper = {
 export const MOCK_PAPERS: MockPaper[] = [
   {
     id: "mock-1",
-    title: "Full Board Mock — Paper 1",
+    title: "Full Board Mock - Paper 1",
     subtitle: "Poora 38-question paper, exact CBSE pattern. 3 ghante, 80 marks.",
     minutes: 180,
     marks: 80,
@@ -136,7 +136,7 @@ export const MOCK_PAPERS: MockPaper[] = [
   {
     id: "long-answers",
     title: "5-Marker Boss Battle",
-    subtitle: "Sirf Section D — chaar 5-markers. Yahi marks banate ya bigaadte hain.",
+    subtitle: "Sirf Section D - chaar 5-markers. Yahi marks banate ya bigaadte hain.",
     minutes: 60,
     marks: 20,
     badge: "HARD",
@@ -154,9 +154,9 @@ export const MOCK_PAPERS: MockPaper[] = [
 ];
 
 export const PAPER_PATTERN = [
-  { section: "A", qs: "1–20", desc: "18 MCQ + 2 Assertion-Reason", each: 1, total: 20 },
-  { section: "B", qs: "21–25", desc: "Very Short Answer (VSA)", each: 2, total: 10 },
-  { section: "C", qs: "26–31", desc: "Short Answer (SA)", each: 3, total: 18 },
-  { section: "D", qs: "32–35", desc: "Long Answer (LA)", each: 5, total: 20 },
-  { section: "E", qs: "36–38", desc: "Case-based / Source-based", each: 4, total: 12 },
+  { section: "A", qs: "1-20", desc: "18 MCQ + 2 Assertion-Reason", each: 1, total: 20 },
+  { section: "B", qs: "21-25", desc: "Very Short Answer (VSA)", each: 2, total: 10 },
+  { section: "C", qs: "26-31", desc: "Short Answer (SA)", each: 3, total: 18 },
+  { section: "D", qs: "32-35", desc: "Long Answer (LA)", each: 5, total: 20 },
+  { section: "E", qs: "36-38", desc: "Case-based / Source-based", each: 4, total: 12 },
 ];

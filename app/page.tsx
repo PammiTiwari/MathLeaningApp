@@ -5,7 +5,7 @@ import { PAPER_PATTERN, BOARD_PAPERS } from "@/lib/data/papers";
 import { Card, Bar, Pill } from "@/components/ui";
 import { Formula } from "@/components/Tex";
 import {
-  PlayCircle, NotebookPen, FileText, Sparkles, Target,
+  PlayCircle, NotebookPen, FileText, Sparkles,
   MessageCircleQuestion, Layers, ArrowRight, Clock, Printer, Check,
 } from "lucide-react";
 
@@ -13,9 +13,8 @@ const TILES = [
   { href: "/chapters", icon: Layers, label: "Chapters", sub: "13 chapters, basics se deep tak", color: "#5B3FD6" },
   { href: "/videos", icon: PlayCircle, label: "Video lessons", sub: "Khan Academy, topic-wise", color: "#C8304F" },
   { href: "/notes", icon: NotebookPen, label: "Handwritten notes", sub: "Poora chapter, ek sheet par", color: "#0B8A64", star: true },
-  { href: "/papers", icon: FileText, label: "Board papers", sub: "Asli CBSE papers, 2022–2026", color: "#0A72AB" },
+  { href: "/papers", icon: FileText, label: "Board papers", sub: "Asli CBSE papers, 2022-2026", color: "#0A72AB" },
   { href: "/formulas", icon: Sparkles, label: "Formula sheet", sub: "94 formulas, searchable", color: "#9333EA" },
-  { href: "/flashcards", icon: Target, label: "Flashcards", sub: "5-minute revision", color: "#EA580C" },
   { href: "/doubt", icon: MessageCircleQuestion, label: "Doubt pucho", sub: "AI tutor, 24×7", color: "#0D9488" },
 ];
 
@@ -44,13 +43,13 @@ export default function Home() {
         <div className="relative max-w-2xl">
           <Pill>CBSE Class 12 · Mathematics (041)</Pill>
           <h1 className="mt-3 font-display text-[34px] font-extrabold leading-[1.1] tracking-[-0.025em] text-head sm:text-[46px]">
-            Himmat rakh —{" "}
+            Himmat rakh -{" "}
             <span className="bg-gradient-to-r from-primary via-[#7C5CFF] to-saffron bg-clip-text text-transparent">
               Maths ho jayega.
             </span>
           </h1>
           <p className="mt-4 text-[15.5px] leading-[1.7] text-muted">
-            Poora syllabus — 13 chapters, 80 marks. Har chapter basics se shuru hota hai aur derivations
+            Poora syllabus - 13 chapters, 80 marks. Har chapter basics se shuru hota hai aur derivations
             aur board-level tough questions tak jaata hai. Saath mein asli CBSE board papers, handwritten
             notes, formula sheet aur ek AI doubt solver.
           </p>
@@ -101,11 +100,11 @@ export default function Home() {
           <div className="p-6 sm:p-9">
             <Pill color="#0B8A64">Sabse zyada kaam ki cheez</Pill>
             <h2 className="mt-3 font-display text-[28px] font-extrabold leading-[1.15] tracking-[-0.02em] text-head sm:text-[32px]">
-              Handwritten notes —<br />poora chapter, ek sheet par
+              Handwritten notes -<br />poora chapter, ek sheet par
             </h2>
             <p className="mt-3 text-[15px] leading-[1.7] text-muted">
               Jaise topper ki copy se photocopy karayi ho. Har chapter ki saari definitions, saare formulas,
-              aur har method ke step-by-step tareeke — chhota rakha hai par kuch chhoda nahi.
+              aur har method ke step-by-step tareeke - chhota rakha hai par kuch chhoda nahi.
               <strong className="text-head"> Exam se ek raat pehle sirf yahi kaafi hai.</strong>
             </p>
 
@@ -183,7 +182,7 @@ export default function Home() {
             <Pill>80 marks</Pill>
           </div>
           <p className="mb-5 text-[12.5px] text-muted">
-            CBSE sirf unit-wise marks deta hai, chapter-wise nahi. Calculus sabse bada — aadhe se zyada paper wahin se.
+            CBSE sirf unit-wise marks deta hai, chapter-wise nahi. Calculus sabse bada - aadhe se zyada paper wahin se.
           </p>
           <div className="space-y-3.5">
             {UNITS.map((u) => (
@@ -231,7 +230,7 @@ export default function Home() {
                 <Pill color="#B26A00">{b.year}</Pill>
                 <span className="text-xs text-faint">{b.sizeMB} MB · {b.sets}</span>
               </div>
-              <p className="font-display text-[17px] font-bold text-head">CBSE {b.year} — Mathematics</p>
+              <p className="font-display text-[17px] font-bold text-head">CBSE {b.year} - Mathematics</p>
               <p className="mt-1.5 text-[13px] leading-snug text-muted">{b.note}</p>
             </Card>
           </a>

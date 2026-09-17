@@ -44,8 +44,8 @@ export const NOTES_B: Note[] = [
         { t: "h", text: "3. MAXIMA & MINIMA" },
         { t: "def", term: "Critical point", text: "Woh point jahan f′(c) = 0 ho (ya f′ exist na kare). Max/min yahin milta hai." },
         { t: "fl", items: [
-          { tex: "f'(c)=0,\; f''(c) < 0 \\Rightarrow \\text{LOCAL MAXIMUM}", label: "ulta katora ∩ — choti" },
-          { tex: "f'(c)=0,\; f''(c) > 0 \\Rightarrow \\text{LOCAL MINIMUM}", label: "seedha katora ∪ — khaai" },
+          { tex: "f'(c)=0,\; f''(c) < 0 \\Rightarrow \\text{LOCAL MAXIMUM}", label: "ulta katora ∩ - choti" },
+          { tex: "f'(c)=0,\; f''(c) > 0 \\Rightarrow \\text{LOCAL MINIMUM}", label: "seedha katora ∪ - khaai" },
           { tex: "f'(c)=0,\; f''(c) = 0 \\Rightarrow \\text{test fail}", label: "first derivative test lagao" },
         ]},
         { t: "p", text: "First derivative test: critical point ke aas-paas f′ ka sign dekho. + se − ⟹ maximum. − se + ⟹ minimum. Sign na badle ⟹ point of inflection." },
@@ -55,15 +55,15 @@ export const NOTES_B: Note[] = [
           "f′(x) = 0 se saare critical points nikalo jo [a,b] ke andar hain",
           "In critical points par f ka value nikalo",
           "**Endpoints** f(a) aur f(b) ka value bhi nikalo",
-          "Sab values compare karo — sabse bada = absolute max, sabse chhota = absolute min",
+          "Sab values compare karo - sabse bada = absolute max, sabse chhota = absolute min",
         ]},
         { t: "warn", text: "Closed interval mein endpoints check karna BHOOLNA nahi. Aksar absolute maximum wahin milta hai, critical point par nahi." },
 
-        { t: "h", text: "5. ★ WORD PROBLEM — 5-marker blueprint" },
+        { t: "h", text: "5. ★ WORD PROBLEM - 5-marker blueprint" },
         { t: "steps", title: "5 steps, har baar wahi", items: [
           "**Diagram banao** aur variables define karo (let length = x, breadth = y …)",
           "Jo maximise/minimise karna hai uska equation likho (Area, Volume, Cost …)",
-          "Di hui **constraint** use karke ek variable hatao — ab sab kuch ek hi variable mein",
+          "Di hui **constraint** use karke ek variable hatao - ab sab kuch ek hi variable mein",
           "Derivative = 0 karke **critical point** nikalo",
           "**Second derivative test** se confirm karo (max hai ya min), phir asli answer + **units** likho",
         ]},
@@ -75,7 +75,7 @@ export const NOTES_B: Note[] = [
           "y = 10. Matlab SQUARE. Max area = 100 cm²",
         ]},
         { t: "star", text: "Yaad rakho: fixed perimeter mein square ka area sabse zyada. Fixed area mein square ka perimeter sabse kam." },
-        { t: "warn", text: "Second derivative test likhna bhool gaye = 1 mark gaya. Aur sawaal dobara padho — 'dimensions' maanga tha ya 'maximum area'? Wahi likhna." },
+        { t: "warn", text: "Second derivative test likhna bhool gaye = 1 mark gaya. Aur sawaal dobara padho - 'dimensions' maanga tha ya 'maximum area'? Wahi likhna." },
       ],
     ],
   },
@@ -103,7 +103,7 @@ export const NOTES_B: Note[] = [
           { tex: "\\int \\sec x\\,dx = \\ln|\\sec x + \\tan x| + C" },
         ]},
 
-        { t: "h", text: "2. ★ STANDARD INTEGRALS — ratt lo" },
+        { t: "h", text: "2. ★ STANDARD INTEGRALS - ratt lo" },
         { t: "fl", items: [
           { tex: "\\int \\frac{dx}{x^2+a^2} = \\frac{1}{a}\\tan^{-1}\\frac{x}{a} + C" },
           { tex: "\\int \\frac{dx}{x^2-a^2} = \\frac{1}{2a}\\ln\\left|\\frac{x-a}{x+a}\\right| + C" },
@@ -114,23 +114,23 @@ export const NOTES_B: Note[] = [
         { t: "fl", items: [
           { tex: "\\int \\sqrt{a^2-x^2}\\,dx = \\frac{x}{2}\\sqrt{a^2-x^2} + \\frac{a^2}{2}\\sin^{-1}\\frac{x}{a} + C", label: "area wale sawaalon mein" },
         ]},
-        { t: "star", text: "Denominator mein quadratic ho (ax²+bx+c) to pehle COMPLETE THE SQUARE karo — phir upar wala koi ek formula fit ho jaayega." },
+        { t: "star", text: "Denominator mein quadratic ho (ax²+bx+c) to pehle COMPLETE THE SQUARE karo - phir upar wala koi ek formula fit ho jaayega." },
       ],
       [
-        { t: "h", text: "3. METHOD 1 — SUBSTITUTION" },
+        { t: "h", text: "3. METHOD 1 - SUBSTITUTION" },
         { t: "p", text: "Kab lagao: jab integral mein koi function aur uska derivative dono dikhein." },
         { t: "steps", title: "Steps", items: [
           "Andar wale function ko t maan lo: t = g(x)",
           "dt nikalo: dt = g′(x) dx",
-          "Poora integral t ke terms mein badal do — koi x nahi bachna chahiye",
+          "Poora integral t ke terms mein badal do - koi x nahi bachna chahiye",
           "Integrate karo",
           "**t wapas x mein badlo** (definite integral ho to limits bhi t wali karo)",
         ]},
         { t: "f", tex: "\\int \\frac{f'(x)}{f(x)}dx = \\ln|f(x)| + C", label: "upar neeche ka derivative = log" },
 
-        { t: "h", text: "4. METHOD 2 — BY PARTS (ILATE)" },
+        { t: "h", text: "4. METHOD 2 - BY PARTS (ILATE)" },
         { t: "f", tex: "\\int u\\,v\\,dx = u\\!\\int\\! v\\,dx - \\int\\!\\left(\\frac{du}{dx}\\!\\int\\! v\\,dx\\right)dx" },
-        { t: "p", text: "Pehla function (u) kaun? ILATE order se — jo pehle aaye wahi u:" },
+        { t: "p", text: "Pehla function (u) kaun? ILATE order se - jo pehle aaye wahi u:" },
         { t: "table", head: ["I", "L", "A", "T", "E"], rows: [
           ["Inverse", "Log", "Algebraic", "Trig", "Exponential"],
         ]},
@@ -142,7 +142,7 @@ export const NOTES_B: Note[] = [
           "= −x cos x + sin x + C",
         ]},
 
-        { t: "h", text: "5. METHOD 3 — PARTIAL FRACTIONS" },
+        { t: "h", text: "5. METHOD 3 - PARTIAL FRACTIONS" },
         { t: "table", head: ["Denominator", "Todo aise"], rows: [
           ["(x−a)(x−b)", "A/(x−a) + B/(x−b)"],
           ["(x−a)²", "A/(x−a) + B/(x−a)²"],
@@ -154,9 +154,9 @@ export const NOTES_B: Note[] = [
       [
         { t: "h", text: "6. DEFINITE INTEGRAL" },
         { t: "f", tex: "\\int_a^b f(x)\\,dx = F(b) - F(a)", label: "upper minus lower" },
-        { t: "p", text: "Definite integral mein + C nahi lagta — woh cancel ho jaata hai." },
+        { t: "p", text: "Definite integral mein + C nahi lagta - woh cancel ho jaata hai." },
 
-        { t: "h", text: "7. ★ PROPERTIES — paper ki jaan" },
+        { t: "h", text: "7. ★ PROPERTIES - paper ki jaan" },
         { t: "fl", items: [
           { tex: "\\int_a^b f(x)dx = -\\int_b^a f(x)dx" },
           { tex: "\\int_a^b f(x)dx = \\int_a^c f(x)dx + \\int_c^b f(x)dx" },
@@ -169,8 +169,8 @@ export const NOTES_B: Note[] = [
         ]},
         { t: "steps", title: "Property wale sawaal ka tareeka (King's rule)", items: [
           "Integral ko I naam do",
-          "x ki jagah (a − x) ya (a + b − x) daal do — naya I likho",
-          "Dono I ko JODO — aksar numerator + denominator barabar ho jaate hain",
+          "x ki jagah (a − x) ya (a + b − x) daal do - naya I likho",
+          "Dono I ko JODO - aksar numerator + denominator barabar ho jaate hain",
           "2I = kuch simple mil jaata hai ⟹ I nikaal lo",
         ]},
         { t: "ex", q: "I = ∫₀^(π/2) sin x/(sin x + cos x) dx", sol: [
@@ -178,7 +178,7 @@ export const NOTES_B: Note[] = [
           "Dono jodo: 2I = ∫₀^(π/2) (sin x + cos x)/(sin x + cos x) dx = ∫₀^(π/2) 1 dx",
           "2I = π/2 ⟹ I = π/4",
         ]},
-        { t: "warn", text: "★ Indefinite integral mein + C lagana MAT bhoolna — har baar 1 mark ka nuksaan. Definite mein + C mat lagana. Aur substitution ke baad limits badalna yaad rakho." },
+        { t: "warn", text: "★ Indefinite integral mein + C lagana MAT bhoolna - har baar 1 mark ka nuksaan. Definite mein + C mat lagana. Aur substitution ke baad limits badalna yaad rakho." },
       ],
     ],
   },
@@ -196,9 +196,9 @@ export const NOTES_B: Note[] = [
           { tex: "A = \\int_a^b \\big(y_{\\text{upper}} - y_{\\text{lower}}\\big)dx", label: "do curves ke beech" },
         ]},
 
-        { t: "steps", title: "★ 3 STEPS — har sawaal mein yahi", items: [
+        { t: "steps", title: "★ 3 STEPS - har sawaal mein yahi", items: [
           "**Graph banao** aur jo region chahiye use shade karo (yeh compulsory hai, iska apna mark hai)",
-          "**Limits nikalo** — do curves ho to unhe equal karke intersection points nikalo",
+          "**Limits nikalo** - do curves ho to unhe equal karke intersection points nikalo",
           "**Integrate karo** aur answer ke saath 'square units' likho",
         ]},
 
@@ -215,7 +215,7 @@ export const NOTES_B: Note[] = [
         ]},
 
         { t: "h", text: "3. SYMMETRY ka faayda" },
-        { t: "p", text: "Circle aur ellipse chaaron quadrants mein symmetric hain. Pehle quadrant ka area nikaal ke 4 se multiply kar do — aadha kaam bach jaata hai aur galti bhi kam hoti hai." },
+        { t: "p", text: "Circle aur ellipse chaaron quadrants mein symmetric hain. Pehle quadrant ka area nikaal ke 4 se multiply kar do - aadha kaam bach jaata hai aur galti bhi kam hoti hai." },
 
         { t: "ex", q: "y = x², x-axis, x = 1 se x = 3 tak ka area", sol: [
           "Graph: parabola, 1 se 3 tak ka hissa shade",
@@ -223,7 +223,7 @@ export const NOTES_B: Note[] = [
           "A = ∫₁³ x² dx = [x³/3]₁³",
           "= 27/3 − 1/3 = 26/3 square units",
         ]},
-        { t: "warn", text: "Curve ka kuch hissa x-axis ke NEECHE ho to wahan integral negative aayega. Aise mein region ko tukdon mein baanto aur har tukde ka **modulus** lo. Area kabhi negative nahi hota — negative answer aaya to kuch galat hai." },
+        { t: "warn", text: "Curve ka kuch hissa x-axis ke NEECHE ho to wahan integral negative aayega. Aise mein region ko tukdon mein baanto aur har tukde ka **modulus** lo. Area kabhi negative nahi hota - negative answer aaya to kuch galat hai." },
         { t: "star", text: "Rough graph bhi chalega, par shaded region saaf dikhna chahiye. Bina diagram ke full marks nahi milte." },
       ],
     ],
@@ -237,13 +237,13 @@ export const NOTES_B: Note[] = [
       [
         { t: "h", text: "1. ORDER aur DEGREE" },
         { t: "def", term: "Order", text: "Equation mein sabse bade derivative ka number. d²y/dx² hai to order = 2." },
-        { t: "def", term: "Degree", text: "Us sabse bade derivative ki power — par tabhi jab equation derivatives mein polynomial ho." },
+        { t: "def", term: "Degree", text: "Us sabse bade derivative ki power - par tabhi jab equation derivatives mein polynomial ho." },
         { t: "f", tex: "\\left(\\frac{d^2y}{dx^2}\\right)^{3} + \\left(\\frac{dy}{dx}\\right)^{5} + y = 0 \;\\Rightarrow\; \\text{order } 2,\; \\text{degree } 3" },
         { t: "warn", text: "Derivative kisi √, sin, cos, log ke ANDAR ho to degree **NOT DEFINED**. Jaise sin(dy/dx) + y = 0. Agar sirf square root hai to pehle square karke hatao, phir degree nikalo." },
         { t: "p", text: "Solution do tarah ke: General solution (arbitrary constants ke saath) aur Particular solution (di hui condition daal ke constants nikale hue)." },
 
-        { t: "h", text: "2. METHOD 1 — VARIABLE SEPARABLE" },
-        { t: "p", text: "Pehchaan: dy/dx = f(x)·g(y) — x aur y alag ho sakte hain." },
+        { t: "h", text: "2. METHOD 1 - VARIABLE SEPARABLE" },
+        { t: "p", text: "Pehchaan: dy/dx = f(x)·g(y) - x aur y alag ho sakte hain." },
         { t: "steps", title: "Steps", items: [
           "Saare y wale terms dy ke saath ek taraf, saare x wale dx ke saath doosri taraf",
           "Dono taraf integration sign lagao",
@@ -252,19 +252,19 @@ export const NOTES_B: Note[] = [
         ]},
         { t: "f", tex: "\\int \\frac{dy}{g(y)} = \\int f(x)\\,dx + C" },
 
-        { t: "h", text: "3. METHOD 2 — HOMOGENEOUS" },
-        { t: "p", text: "Pehchaan: dy/dx = f(y/x) — poora expression y/x ke terms mein likha ja sakta hai." },
+        { t: "h", text: "3. METHOD 2 - HOMOGENEOUS" },
+        { t: "p", text: "Pehchaan: dy/dx = f(y/x) - poora expression y/x ke terms mein likha ja sakta hai." },
         { t: "steps", title: "Steps", items: [
           "**y = vx** substitute karo",
-          "dy/dx = v + x(dv/dx) — yeh product rule se aata hai",
-          "Equation mein daal do — ab yeh variable separable ban jaayegi",
+          "dy/dx = v + x(dv/dx) - yeh product rule se aata hai",
+          "Equation mein daal do - ab yeh variable separable ban jaayegi",
           "v aur x ko alag karke integrate karo",
           "**v = y/x wapas substitute karo**",
         ]},
         { t: "f", tex: "y = vx \;\\Rightarrow\; \\frac{dy}{dx} = v + x\\frac{dv}{dx}" },
       ],
       [
-        { t: "h", text: "4. ★ METHOD 3 — LINEAR (5-marker)" },
+        { t: "h", text: "4. ★ METHOD 3 - LINEAR (5-marker)" },
         { t: "p", text: "Pehchaan: dy/dx + Py = Q, jahan P aur Q sirf x ke functions hain (ya constants)." },
         { t: "steps", title: "Steps", items: [
           "Equation ko standard form dy/dx + Py = Q mein laao",
@@ -295,7 +295,7 @@ export const NOTES_B: Note[] = [
           { tex: "e^{-\\int \\frac{1}{x}dx} = \\frac{1}{x}" },
         ]},
 
-        { t: "h", text: "6. Type kaise pehchanein — 30 second" },
+        { t: "h", text: "6. Type kaise pehchanein - 30 second" },
         { t: "table", head: ["Dikhe to", "Method"], rows: [
           ["x aur y alag ho sakte hain", "Variable separable"],
           ["Sab kuch y/x ke terms mein", "Homogeneous (y = vx)"],

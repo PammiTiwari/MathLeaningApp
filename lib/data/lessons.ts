@@ -26,7 +26,7 @@ export function getLesson(slug: string): Lesson | undefined {
   return LESSONS.find((l) => l.slug === slug);
 }
 
-/** Index of the first depth beat — used to show the "Deep dive" marker. */
+/** Index of the first depth beat - used to show the "Deep dive" marker. */
 export function deepStartIndex(slug: string): number {
   const l = getLesson(slug);
   if (!l) return -1;

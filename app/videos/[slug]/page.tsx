@@ -36,7 +36,7 @@ export default function ChapterVideos({ params }: { params: Promise<{ slug: stri
         <div className="flex flex-wrap items-center gap-3">
           <GraduationCap size={20} className="text-primary" />
           <div className="min-w-[200px] flex-1">
-            <p className="text-[14px] font-bold text-head">Khan Academy — is chapter ka poora course</p>
+            <p className="text-[14px] font-bold text-head">Khan Academy - is chapter ka poora course</p>
             <p className="text-[12.5px] text-muted">Har topic ki alag video + free practice exercises + unit test.</p>
           </div>
           <a href={khanAcademyUrl(slug)} target="_blank" rel="noreferrer"
@@ -62,7 +62,7 @@ export default function ChapterVideos({ params }: { params: Promise<{ slug: stri
       {ch.videos.length > 0 && (
         <>
           <h2 className="mb-2 mt-9 font-display text-lg font-bold text-head">Full chapter one-shots</h2>
-          <p className="mb-3 text-xs text-faint">Revision ke liye — ek hi video mein poora chapter.</p>
+          <p className="mb-3 text-xs text-faint">Revision ke liye - ek hi video mein poora chapter.</p>
           <div className="grid gap-4 md:grid-cols-2">
             {ch.videos.map((v) => (
               <VideoCard key={v.id + v.title} v={v} />
@@ -74,7 +74,7 @@ export default function ChapterVideos({ params }: { params: Promise<{ slug: stri
       {/* Topic-wise links */}
       <h2 className="mb-2 mt-9 font-display text-lg font-bold text-head">Topic-wise videos</h2>
       <p className="mb-3 text-xs text-faint">
-        Is chapter ka har topic — har ek ke liye alag video. Kisi ek topic mein atke ho to seedha wahi kholo.
+        Is chapter ka har topic - har ek ke liye alag video. Kisi ek topic mein atke ho to seedha wahi kholo.
       </p>
       <div className="grid gap-2 sm:grid-cols-2">
         {topics.map((t, i) => (

@@ -144,8 +144,8 @@ export const FORMULAS: FormulaGroup[] = [
     items: [
       { name: "Direction cosines", tex: "l^2+m^2+n^2 = 1" },
       { name: "DCs from DRs", tex: "l = \\frac{a}{\\sqrt{a^2+b^2+c^2}},\; m = \\frac{b}{\\sqrt{\\cdot}},\; n = \\frac{c}{\\sqrt{\\cdot}}" },
-      { name: "Line — vector form", tex: "\\vec{r} = \\vec{a} + \\lambda\\vec{b}" },
-      { name: "Line — cartesian form", tex: "\\frac{x-x_1}{a} = \\frac{y-y_1}{b} = \\frac{z-z_1}{c}" },
+      { name: "Line - vector form", tex: "\\vec{r} = \\vec{a} + \\lambda\\vec{b}" },
+      { name: "Line - cartesian form", tex: "\\frac{x-x_1}{a} = \\frac{y-y_1}{b} = \\frac{z-z_1}{c}" },
       { name: "Line through 2 points", tex: "\\frac{x-x_1}{x_2-x_1} = \\frac{y-y_1}{y_2-y_1} = \\frac{z-z_1}{z_2-z_1}" },
       { name: "Angle between lines", tex: "\\cos\\theta = \\left|\\frac{\\vec{b_1}\\cdot\\vec{b_2}}{|\\vec{b_1}||\\vec{b_2}|}\\right|" },
       { name: "Shortest distance (skew)", tex: "d = \\left|\\frac{(\\vec{a_2}-\\vec{a_1})\\cdot(\\vec{b_1}\\times\\vec{b_2})}{|\\vec{b_1}\\times\\vec{b_2}|}\\right|" },

@@ -6,7 +6,7 @@ const config: Config = {
     extend: {
       colors: {
         // surfaces
-        page: "#FAF9F6",       // page background — warm paper white
+        page: "#FAF9F6",       // page background - warm paper white
         card: "#FFFFFF",       // card background
         sunk: "#F3F1EC",       // recessed / input background
         line: "#E3E0D8",       // borders

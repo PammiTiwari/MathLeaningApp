@@ -61,7 +61,7 @@ export default function DoubtPage() {
       <PageHead
         eyebrow="AI tutor"
         title="Doubt pucho, bina jhijhak"
-        sub="Koi bhi sawaal — chapter ka concept ho, ya book ka koi question jo samajh nahi aa raha. Photo bhi kheench ke bhej sakte ho. Jawab step-by-step milega, Hinglish mein."
+        sub="Koi bhi sawaal - chapter ka concept ho, ya book ka koi question jo samajh nahi aa raha. Photo bhi kheench ke bhej sakte ho. Jawab step-by-step milega, Hinglish mein."
       />
 
       <Card className="p-5">
@@ -82,7 +82,7 @@ export default function DoubtPage() {
           >
             <option value="">Chapter (optional)</option>
             {CHAPTERS.map((c) => (
-              <option key={c.slug} value={c.title}>Ch {c.n} — {c.title}</option>
+              <option key={c.slug} value={c.title}>Ch {c.n} - {c.title}</option>
             ))}
           </select>
 

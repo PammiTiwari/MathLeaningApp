@@ -45,7 +45,7 @@ const MARK_CLOSE = "@@";
  * Order matters here. KaTeX emits SVG for \sqrt, \overline and stretchy
  * delimiters, and that SVG carries literal newlines inside its <path d="...">
  * data. So the SOURCE text must be split into lines BEFORE any maths is
- * rendered — splitting the rendered HTML tears those path attributes apart and
+ * rendered - splitting the rendered HTML tears those path attributes apart and
  * the raw coordinates get printed onto the page as text.
  */
 export function Rich({ text, className = "" }: { text: string; className?: string }) {

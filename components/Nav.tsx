@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import {
   Menu, X, ChevronDown, BookOpen, PlayCircle, NotebookPen,
-  FileText, Sparkles, Target, MessageCircleQuestion,
+  FileText, Sparkles, MessageCircleQuestion, LogOut,
 } from "lucide-react";
 
 type Item = { href: string; label: string; desc: string; icon: any };
@@ -22,20 +22,14 @@ const GROUPS: Group[] = [
   {
     label: "Practice",
     items: [
-      { href: "/papers", label: "Board papers", desc: "Asli CBSE papers, 2022–2026", icon: FileText },
-      { href: "/flashcards", label: "Flashcards", desc: "5-minute revision", icon: Target },
-    ],
-  },
-  {
-    label: "Revise",
-    items: [
-      { href: "/notes", label: "Handwritten notes", desc: "Poora chapter, ek sheet par", icon: NotebookPen },
+      { href: "/papers", label: "Board papers", desc: "Asli CBSE papers, 2022-2026", icon: FileText },
       { href: "/formulas", label: "Formula sheet", desc: "94 formulas, searchable", icon: Sparkles },
     ],
   },
 ];
 
 const SOLO: Item[] = [
+  { href: "/notes", label: "Notes", desc: "Poora chapter, ek sheet par", icon: NotebookPen },
   { href: "/doubt", label: "Doubt pucho", desc: "AI tutor, 24×7", icon: MessageCircleQuestion },
 ];
 
@@ -58,6 +52,11 @@ export default function Nav() {
     document.addEventListener("keydown", onKey);
     return () => { document.removeEventListener("mousedown", onDoc); document.removeEventListener("keydown", onKey); };
   }, []);
+
+  async function logout() {
+    await fetch("/api/logout", { method: "POST" });
+    window.location.href = "/login";
+  }
 
   const isActive = (href: string) => path === href || path.startsWith(href + "/");
   const groupActive = (g: Group) => g.items.some((i) => isActive(i.href));
@@ -141,6 +140,13 @@ export default function Nav() {
         {/* ---- right: one compact stat chip ---- */}
         <div className="ml-auto flex items-center gap-2">
           <button
+            onClick={logout}
+            title="Logout"
+            className="hidden h-9 items-center gap-1.5 rounded-lg border border-line bg-card px-3 text-[12.5px] font-semibold text-muted transition hover:border-line2 hover:text-head sm:flex"
+          >
+            <LogOut size={13} /> Logout
+          </button>
+          <button
             onClick={() => setMobile((v) => !v)}
             className="grid h-9 w-9 place-items-center rounded-lg border border-line bg-card text-body transition hover:bg-sunk md:hidden"
             aria-label="Menu"
@@ -154,6 +160,13 @@ export default function Nav() {
       {mobile && (
         <div className="a-rise border-t border-line bg-card md:hidden">
           <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6">
+
+            <button
+              onClick={logout}
+              className="mb-4 flex w-full items-center justify-center gap-2 rounded-xl border border-line bg-sunk px-4 py-3 text-[13.5px] font-semibold text-muted"
+            >
+              <LogOut size={14} /> Logout
+            </button>
 
             {[...GROUPS, { label: "Aur", items: SOLO }].map((g) => (
               <div key={g.label} className="mb-4 last:mb-0">

@@ -12,7 +12,7 @@ export default function NotesHome() {
       <PageHead
         eyebrow="Handwritten notes"
         title="Ek page, poora chapter"
-        sub="Har chapter POORA cover kiya hai — definitions, saare formulas, aur har method ke step-by-step tareeke. Short rakha hai par kuch chhoda nahi. Exam se ek raat pehle sirf yahi kaafi hai. Print bhi kar sakte ho."
+        sub="Har chapter POORA cover kiya hai - definitions, saare formulas, aur har method ke step-by-step tareeke. Short rakha hai par kuch chhoda nahi. Exam se ek raat pehle sirf yahi kaafi hai. Print bhi kar sakte ho."
       />
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -43,7 +43,7 @@ export default function NotesHome() {
         <div className="flex items-center gap-3">
           <Printer size={18} className="text-saffron" />
           <p className="text-[13.5px] text-muted">
-            Har note page print-friendly hai. Kisi bhi chapter ka note kholo aur <kbd className="rounded bg-line/60 px-1.5 py-0.5 text-xs">Ctrl+P</kbd> dabao —
+            Har note page print-friendly hai. Kisi bhi chapter ka note kholo aur <kbd className="rounded bg-line/60 px-1.5 py-0.5 text-xs">Ctrl+P</kbd> dabao -
             saaf-suthra ek page nikal aayega, ekdum revision ke liye.
           </p>
         </div>

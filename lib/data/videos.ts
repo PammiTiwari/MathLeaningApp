@@ -10,7 +10,7 @@ export type KAVideo = {
 /**
  * Khan Academy course pages (topic-wise videos + free practice exercises).
  * Path pattern confirmed from Khan Academy's own listings for the
- * "Class 12 math (India) — NCERT" course.
+ * "Class 12 math (India) - NCERT" course.
  */
 const KA_BASE = "https://www.khanacademy.org/math/in-in-grade-12-ncert/xd340c21e718214c5:";
 
@@ -42,7 +42,7 @@ export function khanAcademySearch(q: string) {
 /** Khan Academy India videos confirmed to exist on YouTube. These embed directly. */
 export const KHAN_VIDEOS: Record<string, KAVideo[]> = {
   "relations-and-functions": [
-    { id: "2S5D94fCztI", title: "Relations and Functions — Full Chapter | Board Exam", by: "Khan Academy India", covers: "Poora chapter" },
+    { id: "2S5D94fCztI", title: "Relations and Functions - Full Chapter | Board Exam", by: "Khan Academy India", covers: "Poora chapter" },
     { id: "YqT-DAmvi3I", title: "One-to-one and Onto Functions | Class XII", by: "Khan Academy", covers: "Injective & surjective" },
   ],
   matrices: [
@@ -52,22 +52,22 @@ export const KHAN_VIDEOS: Record<string, KAVideo[]> = {
     { id: "CekHJ--bR0A", title: "Matrices and Determinants | Board Exam", by: "Khan Academy India", covers: "Ch 3 + Ch 4" },
   ],
   "vector-algebra": [
-    { id: "faHlx3mzAuA", title: "Vector Algebra — Full Chapter | Board Exam", by: "Khan Academy India", covers: "Poora chapter" },
+    { id: "faHlx3mzAuA", title: "Vector Algebra - Full Chapter | Board Exam", by: "Khan Academy India", covers: "Poora chapter" },
   ],
   "three-dimensional-geometry": [
-    { id: "faHlx3mzAuA", title: "Vector Algebra — Full Chapter | Board Exam", by: "Khan Academy India", covers: "Vectors ka base (3D se pehle dekho)" },
+    { id: "faHlx3mzAuA", title: "Vector Algebra - Full Chapter | Board Exam", by: "Khan Academy India", covers: "Vectors ka base (3D se pehle dekho)" },
   ],
 };
 
 export const KHAN_PLAYLISTS: Record<string, { id: string; title: string }[]> = {
   "relations-and-functions": [
-    { id: "PL7eKoJuwryW4m_y6qaedBpGNDEy2gABZx", title: "Relations and Functions, Class XII — Khan Academy (full playlist)" },
+    { id: "PL7eKoJuwryW4m_y6qaedBpGNDEy2gABZx", title: "Relations and Functions, Class XII - Khan Academy (full playlist)" },
   ],
 };
 
 /**
  * Every single topic of every chapter gets its own Khan Academy video link.
- * This is the "har topic ki video" layer — nothing dead-ends.
+ * This is the "har topic ki video" layer - nothing dead-ends.
  */
 export function topicVideoLink(chapterTitle: string, topic: string) {
   const clean = topic.split("(")[0].split(":").slice(-1)[0].trim();
@@ -86,8 +86,8 @@ export function topicVideosFor(chapterSlug: string) {
 }
 
 export const KHAN_CHANNELS = [
-  { name: "Khan Academy India — Hindi", url: "https://www.youtube.com/channel/UCU0kWLAbhVGxXarmE3b8rHg" },
-  { name: "Khan Academy India — English", url: "https://www.youtube.com/c/KhanAcademyIndiaEnglish" },
+  { name: "Khan Academy India - Hindi", url: "https://www.youtube.com/channel/UCU0kWLAbhVGxXarmE3b8rHg" },
+  { name: "Khan Academy India - English", url: "https://www.youtube.com/c/KhanAcademyIndiaEnglish" },
 ];
 
 export const KHAN_COURSE_HUB = "https://www.khanacademy.org/math/in-in-grade-12-ncert";

@@ -8,7 +8,7 @@
  * across the account. So the fallback chain doubles as a quota pool: when one
  * model's day is spent it returns 429 and we simply move to the next.
  *
- * Ordered strongest-first — the lite models are the last resort because they
+ * Ordered strongest-first - the lite models are the last resort because they
  * are weaker at multi-step marking. Ids verified against the live model list;
  * "gemini-2.0-flash" and "gemini-2.5-flash-lite" do NOT exist there.
  */
@@ -66,7 +66,7 @@ export async function askAI(parts: AIPart[], opts?: { json?: boolean; temperatur
   const pick = (d: any) =>
     d?.candidates?.[0]?.content?.parts?.map((x: any) => x.text).join("") ?? "";
 
-  // 429 = rate limited, 503 = model busy. Both are temporary — back off and retry
+  // 429 = rate limited, 503 = model busy. Both are temporary - back off and retry
   // across the whole model list before giving up.
   const RETRYABLE = new Set([429, 500, 503]);
 
@@ -89,7 +89,7 @@ export async function askAI(parts: AIPart[], opts?: { json?: boolean; temperatur
         lastErr = `${model}: ${e?.message ?? e}`;
       }
     }
-    // every model was busy — wait, then go round again
+    // every model was busy - wait, then go round again
     if (round < 2) await new Promise((r) => setTimeout(r, 2000 * (round + 1)));
   }
 

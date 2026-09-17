@@ -6,12 +6,11 @@ import { notFound } from "next/navigation";
 import { getChapter } from "@/lib/data/chapters";
 import { getLesson } from "@/lib/data/lessons";
 import { formulasFor } from "@/lib/data/formulas";
-import { cardsFor } from "@/lib/data/flashcards";
 import { khanAcademyUrl, KHAN_VIDEOS, topicVideosFor } from "@/lib/data/videos";
 import { Card, Pill } from "@/components/ui";
 import { Rich, Formula } from "@/components/Tex";
 import {
-  BookOpen, PlayCircle, NotebookPen, Sparkles, Target, ArrowRight,
+  BookOpen, PlayCircle, NotebookPen, Sparkles, ArrowRight, FileText,
   Lightbulb, ExternalLink, Clock
 } from "lucide-react";
 
@@ -22,7 +21,6 @@ export default function ChapterPage({ params }: { params: Promise<{ slug: string
 
   const lesson = getLesson(slug);
   const formulas = formulasFor(slug);
-  const cards = cardsFor(slug);
   const khan = KHAN_VIDEOS[slug] ?? [];
   const topicLinks = topicVideosFor(slug);
   const total = lesson?.beats.length ?? 0;
@@ -86,7 +84,7 @@ export default function ChapterPage({ params }: { params: Promise<{ slug: string
       <div className="mt-8 grid gap-4 lg:grid-cols-5">
         <Card className="p-5 lg:col-span-3">
           <h2 className="font-display text-lg font-bold text-head">Is chapter mein kya-kya hai</h2>
-          <p className="mb-4 mt-1 text-xs text-faint">NCERT ke hisaab se official topics — har topic ki apni video link hai.</p>
+          <p className="mb-4 mt-1 text-xs text-faint">NCERT ke hisaab se official topics - har topic ki apni video link hai.</p>
           <ol className="space-y-2.5">
             {ch.topics.map((t, i) => (
               <li key={i} className="flex items-start gap-3">
@@ -138,10 +136,12 @@ export default function ChapterPage({ params }: { params: Promise<{ slug: string
           )}
 
           <Card className="p-5">
-            <h3 className="mb-1 font-display text-base font-bold text-head">Practice</h3>
-            <p className="mb-3 text-xs text-faint">Is chapter ke board-pattern sawaal.</p>
+            <h3 className="mb-1 font-display text-base font-bold text-head">Aage kya</h3>
+            <p className="mb-3 text-xs text-faint">Lesson ke baad yeh karo.</p>
             <div className="space-y-2">
-              <RowLink href="/flashcards" label={`${cards.length} flashcards`} icon={Sparkles} />
+              <RowLink href={`/notes/${slug}`} label="Revision notes padho" icon={NotebookPen} />
+              <RowLink href={`/videos/${slug}`} label="Video se dohrao" icon={PlayCircle} />
+              <RowLink href="/papers" label="Board paper solve karo" icon={FileText} />
               <RowLink href="/doubt" label="Doubt pucho (AI tutor)" icon={Lightbulb} />
             </div>
           </Card>
@@ -152,7 +152,7 @@ export default function ChapterPage({ params }: { params: Promise<{ slug: string
       {lesson && (
         <Card className="mt-6 p-5">
           <h2 className="font-display text-lg font-bold text-head">Lesson ki jhalak</h2>
-          <p className="mb-4 mt-1 text-xs text-faint">Yeh lesson ka pehla step hai — poora padhne ke liye niche click karo.</p>
+          <p className="mb-4 mt-1 text-xs text-faint">Yeh lesson ka pehla step hai - poora padhne ke liye niche click karo.</p>
           {lesson.beats[0].kind === "story" && (
             <div className="rounded-xl border border-line bg-sunk p-4">
               <span className="text-2xl">{(lesson.beats[0] as any).emoji}</span>

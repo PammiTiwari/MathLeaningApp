@@ -11,7 +11,7 @@ export default function PapersPage() {
       <PageHead
         eyebrow="Question papers"
         title="Previous year & sample papers"
-        sub="Saare links CBSE ki official website se hain — koi third-party copy nahi. Question paper ke saath marking scheme bhi hai, taaki pata chale ki examiner marks kaise deta hai."
+        sub="Saare links CBSE ki official website se hain - koi third-party copy nahi. Question paper ke saath marking scheme bhi hai, taaki pata chale ki examiner marks kaise deta hai."
       />
 
       {/* ---------- ASLI BOARD PAPERS ---------- */}
@@ -21,8 +21,8 @@ export default function PapersPage() {
         <Pill color="#FFB020">PYQ · Real exam</Pill>
       </div>
       <p className="mb-4 text-[13.5px] leading-relaxed text-muted">
-        Yeh sample papers nahi hain — yeh <strong className="text-head">wahi papers hain jo asli board exam mein aaye the</strong>.
-        Har ZIP mein us saal ke saare sets hain (65-1-1, 65-2-1, 65-4-1 …), matlab ek download mein 15–20 poore papers.
+        Yeh sample papers nahi hain - yeh <strong className="text-head">wahi papers hain jo asli board exam mein aaye the</strong>.
+        Har ZIP mein us saal ke saare sets hain (65-1-1, 65-2-1, 65-4-1 …), matlab ek download mein 15-20 poore papers.
         Seedha CBSE ki apni website se.
       </p>
 
@@ -70,7 +70,7 @@ export default function PapersPage() {
       {/* ---------- SAMPLE PAPERS ---------- */}
       <h2 className="font-display text-[20px] font-bold tracking-[-0.01em] text-head">Sample papers + marking scheme</h2>
       <p className="mb-3 text-[13.5px] leading-relaxed text-muted">
-        Board papers ke saath marking scheme nahi aati. Par sample paper ki marking scheme milti hai — aur
+        Board papers ke saath marking scheme nahi aati. Par sample paper ki marking scheme milti hai - aur
         examiner dono ko <strong className="text-head">bilkul ek hi tareeke se</strong> check karta hai. Isliye yeh zaroor padho:
         isse pata chalta hai kis step ke kitne marks hain.
       </p>
@@ -111,7 +111,7 @@ export default function PapersPage() {
       <div className="mt-3 grid gap-3 sm:grid-cols-3">
         <ExtLink href={ALL_PAPERS_PAGE} label="Saare subjects ke board papers" sub="cbse.gov.in ka official archive" />
         <ExtLink href={CBSE_SQP_ARCHIVE} label="Purane sample papers" sub="Aur bhi saal, aur bhi practice" />
-        <ExtLink href={SYLLABUS_PDF} label="Official syllabus PDF" sub="2025–26 Mathematics (041)" />
+        <ExtLink href={SYLLABUS_PDF} label="Official syllabus PDF" sub="2025-26 Mathematics (041)" />
       </div>
 
 
@@ -119,11 +119,11 @@ export default function PapersPage() {
         <h2 className="font-display text-lg font-bold text-head">Papers ko sahi tareeke se kaise use karein</h2>
         <ol className="mt-3 space-y-2.5">
           {[
-            "Pehle 2025-26 ka sample paper solve karo — poore 3 ghante, ek baithak mein, ghadi laga ke. Isse pattern samajh aata hai.",
-            "Khud se check mat karo. Pehle marking scheme padho, phir apni copy check karo — dekho examiner kis step ka mark deta hai.",
+            "Pehle 2025-26 ka sample paper solve karo - poore 3 ghante, ek baithak mein, ghadi laga ke. Isse pattern samajh aata hai.",
+            "Khud se check mat karo. Pehle marking scheme padho, phir apni copy check karo - dekho examiner kis step ka mark deta hai.",
             "Jo sawaal galat hue, unke chapter ka lesson dobara padho. Sirf answer dekhna kaafi nahi.",
-            "Ab ASLI board papers pakdo — 2026 aur 2025 wale. ZIP mein 15-20 sets hain, roz ek set solve karo. Yahi asli difficulty hai.",
-            "Aakhri hafte mein sirf notes aur formula sheet — naya kuch mat padho.",
+            "Ab ASLI board papers pakdo - 2026 aur 2025 wale. ZIP mein 15-20 sets hain, roz ek set solve karo. Yahi asli difficulty hai.",
+            "Aakhri hafte mein sirf notes aur formula sheet - naya kuch mat padho.",
           ].map((t, i) => (
             <li key={i} className="flex gap-3">
               <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-primary/20 text-[11px] font-bold text-primary">{i + 1}</span>

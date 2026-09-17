@@ -31,7 +31,7 @@ export default function FormulasPage() {
       <PageHead
         eyebrow="Formula sheet"
         title={`${ALL_FORMULA_COUNT} formulas, ek jagah`}
-        sub="Poore syllabus ke saare zaroori formulas, chapter ke hisaab se. Exam se pehle wali raat ke liye yahi page kaafi hai — print kar lo aur deewar par chipka do."
+        sub="Poore syllabus ke saare zaroori formulas, chapter ke hisaab se. Exam se pehle wali raat ke liye yahi page kaafi hai - print kar lo aur deewar par chipka do."
         right={
           <button onClick={() => window.print()}
             className="no-print flex items-center gap-1.5 rounded-lg border border-line px-3.5 py-2 text-xs font-semibold text-muted hover:bg-sunk">

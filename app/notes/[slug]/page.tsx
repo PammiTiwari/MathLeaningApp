@@ -61,7 +61,7 @@ export default function NotePage({ params }: { params: Promise<{ slug: string }>
             </div>
 
             <p className="mt-9 text-right font-hand text-[17px] text-[#8FA0AF]">
-              — himmat rakh ✍️
+              - himmat rakh ✍️
             </p>
           </div>
         </div>
@@ -105,7 +105,7 @@ function Block({ b }: { b: NoteBlock }) {
           <span className="font-bold text-[#0F4C81] underline decoration-[#9FC0D8] decoration-2 underline-offset-2">
             {b.term}
           </span>{" "}
-          — {b.text}
+          - {b.text}
         </p>
       );
 

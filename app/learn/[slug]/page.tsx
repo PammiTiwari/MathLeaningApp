@@ -250,7 +250,7 @@ function DeriveView({ beat }: { beat: Extract<Beat, { kind: "derive" }> }) {
   return (
     <div className="rounded-3xl border border-sky/30 bg-white p-6 shadow-soft sm:p-8">
       <span className="inline-flex items-center gap-1.5 rounded-full bg-skySoft px-2.5 py-1 text-[10.5px] font-bold uppercase tracking-[0.1em] text-sky">
-        Derivation — yeh formula aaya kahaan se
+        Derivation - yeh formula aaya kahaan se
       </span>
       <h2 className="mt-3 font-display text-[23px] font-extrabold leading-tight text-head">{beat.title}</h2>
       <div className="mt-3 rounded-2xl border border-sky/25 bg-skySoft p-4">
@@ -305,7 +305,7 @@ function HardView({ beat }: { beat: Extract<Beat, { kind: "hard" }> }) {
       {!tried && shown === 0 && (
         <div className="mt-4 rounded-2xl border border-dashed border-line2 p-4 text-center">
           <p className="text-[13.5px] leading-relaxed text-muted">
-            Pehle khud try karo — copy nikalo, 10 minute do. Solution dekhne se pehle koshish karne par hi
+            Pehle khud try karo - copy nikalo, 10 minute do. Solution dekhne se pehle koshish karne par hi
             yeh sawaal yaad rehta hai.
           </p>
           <button onClick={() => setTried(true)}

@@ -15,25 +15,25 @@ export const NOTES_A: Note[] = [
         ]},
         { t: "p", text: "Khaas relations: Empty (R = φ, koi juda nahi) · Universal (R = A×A, sab jude) · Identity (R = {(a,a)}, sirf khud se)" },
 
-        { t: "h", text: "2. TEEN PROPERTIES — R · S · T" },
+        { t: "h", text: "2. TEEN PROPERTIES - R · S · T" },
         { t: "fl", items: [
-          { tex: "(a,a) \\in R \;\; \\forall a \\in A", label: "Reflexive — har cheez khud se judi" },
-          { tex: "(a,b) \\in R \\Rightarrow (b,a) \\in R", label: "Symmetric — rishta dono taraf" },
-          { tex: "(a,b),(b,c) \\in R \\Rightarrow (a,c) \\in R", label: "Transitive — dost ka dost dost" },
+          { tex: "(a,a) \\in R \;\; \\forall a \\in A", label: "Reflexive - har cheez khud se judi" },
+          { tex: "(a,b) \\in R \\Rightarrow (b,a) \\in R", label: "Symmetric - rishta dono taraf" },
+          { tex: "(a,b),(b,c) \\in R \\Rightarrow (a,c) \\in R", label: "Transitive - dost ka dost dost" },
         ]},
-        { t: "warn", text: "Symmetric + Transitive se Reflexive NAHI aata. Empty relation dono hai par reflexive nahi — yahi counter-example likhna." },
+        { t: "warn", text: "Symmetric + Transitive se Reflexive NAHI aata. Empty relation dono hai par reflexive nahi - yahi counter-example likhna." },
 
         { t: "h", text: "3. EQUIVALENCE RELATION" },
         { t: "p", text: "Teeno properties ek saath = equivalence relation. Yeh set ko alag-alag dibbon mein baant deta hai." },
         { t: "f", tex: "[a] = \\{x \\in A : x\\,R\\,a\\}", label: "equivalence class of a" },
-        { t: "p", text: "Do classes ya to bilkul same hoti hain ya bilkul alag — beech ka kuch nahi. Sabko milao to poora set ban jaata hai." },
+        { t: "p", text: "Do classes ya to bilkul same hoti hain ya bilkul alag - beech ka kuch nahi. Sabko milao to poora set ban jaata hai." },
 
         { t: "steps", title: "★ 5-MARKER: 'Show R is an equivalence relation'", items: [
           "**Reflexive:** 'Let a ∈ A' likho. Dikhao ki (a,a) condition satisfy karta hai.",
           "**Symmetric:** 'Let (a,b) ∈ R' se shuru. Condition likho, use ulta karke (b,a) ∈ R dikhao.",
-          "**Transitive:** 'Let (a,b) ∈ R and (b,c) ∈ R.' Dono conditions likho, jodo ya subtract karo — beech ka term cancel hoga, (a,c) ∈ R aa jayega.",
+          "**Transitive:** 'Let (a,b) ∈ R and (b,c) ∈ R.' Dono conditions likho, jodo ya subtract karo - beech ka term cancel hoga, (a,c) ∈ R aa jayega.",
           "**Conclusion:** 'Hence R is reflexive, symmetric and transitive, so R is an equivalence relation.'",
-          "Agar poocha ho to equivalence classes bhi likh do — bonus impression.",
+          "Agar poocha ho to equivalence classes bhi likh do - bonus impression.",
         ]},
         { t: "ex", q: "Z par a R b ⟺ (a−b) 2 se divisible. Prove equivalence relation.", sol: [
           "Reflexive: a − a = 0 = 2(0) ✓ divisible",
@@ -54,14 +54,14 @@ export const NOTES_A: Note[] = [
           "Simplify karke x₁ = x₂ pe pahuncho.",
           "'Hence f is one-one' likho.",
         ]},
-        { t: "p", text: "Galat sabit karna ho to bas ek counter-example do — jaise f(x) = x² mein f(2) = f(−2) = 4." },
+        { t: "p", text: "Galat sabit karna ho to bas ek counter-example do - jaise f(x) = x² mein f(2) = f(−2) = 4." },
 
         { t: "h", text: "6. ONTO (Surjective)" },
         { t: "f", tex: "\\forall\\, y \\in B,\; \\exists\\, x \\in A \\text{ such that } f(x) = y", label: "definition" },
         { t: "steps", title: "Onto prove karne ka tareeka", items: [
           "'Let y ∈ B (codomain) be arbitrary' likho.",
           "f(x) = y rakho aur x ko y ke terms mein solve karo.",
-          "**Check karo ki woh x domain mein aata hai** — yeh line ka apna mark hai.",
+          "**Check karo ki woh x domain mein aata hai** - yeh line ka apna mark hai.",
           "'Hence for every y there exists x, so f is onto' likho.",
         ]},
         { t: "p", text: "Onto ka matlab: Range = Codomain. Agar range chhoti reh gayi to onto nahi." },
@@ -94,9 +94,9 @@ export const NOTES_A: Note[] = [
     pages: [
       [
         { t: "h", text: "1. Inverse chahiye hi kyun" },
-        { t: "p", text: "sin θ = ½ ke infinite answers hain (30°, 150°, 390°…). Ek hi answer fix karne ke liye har inverse ka ek chhota ilaaka tay kiya gaya — usi ko principal value branch kehte hain." },
+        { t: "p", text: "sin θ = ½ ke infinite answers hain (30°, 150°, 390°…). Ek hi answer fix karne ke liye har inverse ka ek chhota ilaaka tay kiya gaya - usi ko principal value branch kehte hain." },
 
-        { t: "h", text: "2. ★ RANGE TABLE — sabse zaroori cheez" },
+        { t: "h", text: "2. ★ RANGE TABLE - sabse zaroori cheez" },
         { t: "table", head: ["Function", "Domain", "Range (Principal)"], rows: [
           ["sin⁻¹x", "[−1, 1]", "[−π/2, π/2]"],
           ["cos⁻¹x", "[−1, 1]", "[0, π]"],
@@ -116,11 +116,11 @@ export const NOTES_A: Note[] = [
           { tex: "\\cot^{-1}(-x) = \\pi - \\cot^{-1}x" },
           { tex: "\\sec^{-1}(-x) = \\pi - \\sec^{-1}x", label: "ye teen: π mein se ghatao" },
         ]},
-        { t: "warn", text: "cos⁻¹(−½) = 2π/3 hai, −π/3 NAHI. cos⁻¹ ka answer kabhi negative nahi ho sakta — range [0, π] hai." },
+        { t: "warn", text: "cos⁻¹(−½) = 2π/3 hai, −π/3 NAHI. cos⁻¹ ka answer kabhi negative nahi ho sakta - range [0, π] hai." },
 
         { t: "steps", title: "Principal value nikalne ke 4 steps", items: [
           "Maan lo sin⁻¹(x) = θ ⟹ sin θ = x",
-          "**Range likho** — 'θ ∈ [−π/2, π/2]' (iska apna mark hai)",
+          "**Range likho** - 'θ ∈ [−π/2, π/2]' (iska apna mark hai)",
           "Standard table se θ ka value dhoondho",
           "Check karo ki θ range ke andar hai, phir answer likho",
         ]},
@@ -143,7 +143,7 @@ export const NOTES_A: Note[] = [
           { tex: "\\tan^{-1}x + \\tan^{-1}y = \\tan^{-1}\\!\\left(\\frac{x+y}{1-xy}\\right)", label: "jab xy < 1" },
           { tex: "\\tan^{-1}x - \\tan^{-1}y = \\tan^{-1}\\!\\left(\\frac{x-y}{1+xy}\\right)", label: "jab xy > −1" },
         ]},
-        { t: "p", text: "Agar xy > 1 aur x, y > 0 ho to answer mein + π lagta hai. Condition likhna mat bhoolna — uska alag mark hota hai." },
+        { t: "p", text: "Agar xy > 1 aur x, y > 0 ho to answer mein + π lagta hai. Condition likhna mat bhoolna - uska alag mark hota hai." },
 
         { t: "h", text: "6. DOUBLE ANGLE (2 tan⁻¹x)" },
         { t: "fl", items: [
@@ -151,7 +151,7 @@ export const NOTES_A: Note[] = [
           { tex: "2\\tan^{-1}x = \\cos^{-1}\\frac{1-x^2}{1+x^2}", label: "x ≥ 0" },
           { tex: "2\\tan^{-1}x = \\tan^{-1}\\frac{2x}{1-x^2}", label: "|x| < 1" },
         ]},
-        { t: "star", text: "Simplification mein x = tan θ substitute karna sabse bada hathiyaar hai — poora expression ek line mein simple ho jaata hai." },
+        { t: "star", text: "Simplification mein x = tan θ substitute karna sabse bada hathiyaar hai - poora expression ek line mein simple ho jaata hai." },
 
         { t: "ex", q: "tan⁻¹(½) + tan⁻¹(⅓) = ?", sol: [
           "Check: xy = (½)(⅓) = 1/6 < 1 ✓ formula lag sakta hai",
@@ -191,7 +191,7 @@ export const NOTES_A: Note[] = [
         { t: "p", text: "Addition/subtraction: sirf same order wali matrices mein, element-by-element." },
         { t: "f", tex: "A_{m\\times n} \\cdot B_{n \\times p} = C_{m \\times p}", label: "★ beech wale match, bahar wale answer" },
         { t: "p", text: "Multiplication ka tareeka: C ka (i,j) element = A ki i-th ROW × B ke j-th COLUMN (multiply karke jodo)." },
-        { t: "warn", text: "AB ≠ BA generally! Aur AB = 0 ka matlab A = 0 ya B = 0 NAHI hota — numbers wala rule yahan nahi chalta." },
+        { t: "warn", text: "AB ≠ BA generally! Aur AB = 0 ka matlab A = 0 ya B = 0 NAHI hota - numbers wala rule yahan nahi chalta." },
         { t: "fl", items: [
           { tex: "A(BC) = (AB)C", label: "associative ✓" },
           { tex: "A(B+C) = AB + AC", label: "distributive ✓" },
@@ -211,15 +211,15 @@ export const NOTES_A: Note[] = [
         { t: "h", text: "5. SYMMETRIC & SKEW-SYMMETRIC" },
         { t: "fl", items: [
           { tex: "A' = A", label: "Symmetric" },
-          { tex: "A' = -A,\;\; a_{ii} = 0", label: "Skew-symmetric — diagonal sab ZERO" },
+          { tex: "A' = -A,\;\; a_{ii} = 0", label: "Skew-symmetric - diagonal sab ZERO" },
         ]},
         { t: "p", text: "Skew mein diagonal zero kyun? Kyunki aᵢᵢ = −aᵢᵢ ⟹ 2aᵢᵢ = 0 ⟹ aᵢᵢ = 0." },
 
         { t: "steps", title: "★ 3-MARKER: A ko symmetric + skew mein todo", items: [
           "Formula likho: A = ½(A + A′) + ½(A − A′)",
           "A′ nikalo (rows ↔ columns)",
-          "P = ½(A + A′) — yeh symmetric hoga. Check: P′ = P",
-          "Q = ½(A − A′) — yeh skew hoga. Check: diagonal zero hai",
+          "P = ½(A + A′) - yeh symmetric hoga. Check: P′ = P",
+          "Q = ½(A − A′) - yeh skew hoga. Check: diagonal zero hai",
           "Answer mein dono matrices likho: A = P + Q",
         ]},
         { t: "ex", q: "A = [[1, 5], [−1, 2]] ko todo", sol: [
@@ -233,7 +233,7 @@ export const NOTES_A: Note[] = [
         { t: "p", text: "Agar AB = BA = I ho to B ko A ka inverse kehte hain, likhte hain A⁻¹. Inverse hamesha unique hota hai." },
         { t: "f", tex: "(AB)^{-1} = B^{-1}A^{-1}", label: "order ulta (transpose jaisa)" },
         { t: "star", text: "Inverse tabhi exist karta hai jab |A| ≠ 0. Poora hisaab Chapter 4 mein hai." },
-        { t: "warn", text: "Matrices mein galtiyaan concept ki nahi, calculation ki hoti hain. Multiply karte waqt ungli se row aur column trace karo — jaldbaazi hi dushman hai." },
+        { t: "warn", text: "Matrices mein galtiyaan concept ki nahi, calculation ki hoti hain. Multiply karte waqt ungli se row aur column trace karo - jaldbaazi hi dushman hai." },
       ],
     ],
   },
@@ -247,14 +247,14 @@ export const NOTES_A: Note[] = [
         { t: "h", text: "1. DETERMINANT nikalna" },
         { t: "f", tex: "\\begin{vmatrix} a & b \\\\ c & d \\end{vmatrix} = ad - bc", label: "2 × 2" },
         { t: "f", tex: "\\begin{vmatrix} a_1 & b_1 & c_1 \\\\ a_2 & b_2 & c_2 \\\\ a_3 & b_3 & c_3 \\end{vmatrix} = a_1(b_2c_3 - b_3c_2) - b_1(a_2c_3 - a_3c_2) + c_1(a_2b_3 - a_3b_2)", label: "3 × 3, signs + − +" },
-        { t: "p", text: "Sirf SQUARE matrix ka determinant hota hai. Expansion kisi bhi row ya column se ho sakta hai — jahan zyada zero ho wahi chuno, kaam aasaan." },
+        { t: "p", text: "Sirf SQUARE matrix ka determinant hota hai. Expansion kisi bhi row ya column se ho sakta hai - jahan zyada zero ho wahi chuno, kaam aasaan." },
 
         { t: "h", text: "2. PROPERTIES (calculation bachate hain)" },
-        { t: "p", text: "• Rows aur columns aapas mein badal do — determinant nahi badalta" },
-        { t: "p", text: "• Do rows/columns swap karo — sign badal jaata hai" },
+        { t: "p", text: "• Rows aur columns aapas mein badal do - determinant nahi badalta" },
+        { t: "p", text: "• Do rows/columns swap karo - sign badal jaata hai" },
         { t: "p", text: "• Do rows/columns bilkul same ⟹ determinant = 0" },
         { t: "p", text: "• Ek row ko k se multiply ⟹ determinant k guna" },
-        { t: "p", text: "• Ek row mein doosri row ka multiple jodo — determinant nahi badalta (yeh sabse kaam ka hai)" },
+        { t: "p", text: "• Ek row mein doosri row ka multiple jodo - determinant nahi badalta (yeh sabse kaam ka hai)" },
         { t: "fl", items: [
           { tex: "|AB| = |A|\\,|B|" },
           { tex: "|kA| = k^n |A|", label: "n = order" },
@@ -279,26 +279,26 @@ export const NOTES_A: Note[] = [
 
         { t: "h", text: "5. AREA OF TRIANGLE" },
         { t: "f", tex: "\\Delta = \\frac{1}{2}\\left|\\begin{vmatrix} x_1 & y_1 & 1 \\\\ x_2 & y_2 & 1 \\\\ x_3 & y_3 & 1 \\end{vmatrix}\\right|" },
-        { t: "star", text: "Modulus zaroori hai — area negative nahi hota. Agar determinant 0 aaya to teeno points COLLINEAR hain." },
+        { t: "star", text: "Modulus zaroori hai - area negative nahi hota. Agar determinant 0 aaya to teeno points COLLINEAR hain." },
 
-        { t: "h", text: "6. ★ SYSTEM OF EQUATIONS — 5-marker" },
+        { t: "h", text: "6. ★ SYSTEM OF EQUATIONS - 5-marker" },
         { t: "steps", title: "Matrix method ke 6 steps", items: [
           "Equations ko **AX = B** form mein likho (A = coefficients, X = variables, B = constants)",
           "**|A| nikalo.** Agar ≠ 0 to likho 'unique solution exists'",
           "Saare 9 **cofactors** nikalo (3×3 ke liye)",
           "**adj A** = cofactor matrix ka transpose",
           "**A⁻¹ = adj(A) / |A|**",
-          "**X = A⁻¹B** — multiply karke x, y, z nikaalo. Ek equation mein daal ke verify karo.",
+          "**X = A⁻¹B** - multiply karke x, y, z nikaalo. Ek equation mein daal ke verify karo.",
         ]},
-        { t: "p", text: "Har step alag line mein likho. Calculation galat bhi ho gayi to 3–4 step marks bach jaate hain." },
+        { t: "p", text: "Har step alag line mein likho. Calculation galat bhi ho gayi to 3-4 step marks bach jaate hain." },
 
-        { t: "h", text: "7. CONSISTENCY — kaunsa case" },
+        { t: "h", text: "7. CONSISTENCY - kaunsa case" },
         { t: "table", head: ["Condition", "Matlab"], rows: [
           ["|A| ≠ 0", "Unique solution (consistent)"],
           ["|A| = 0, (adj A)B ≠ 0", "No solution (inconsistent)"],
           ["|A| = 0, (adj A)B = 0", "Infinitely many ya no solution"],
         ]},
-        { t: "warn", text: "Determinant nikalna step 2 hai, skip mat karna — uska apna 1 mark hai, chahe answer aage galat ho jaye." },
+        { t: "warn", text: "Determinant nikalna step 2 hai, skip mat karna - uska apna 1 mark hai, chahe answer aage galat ho jaye." },
       ],
     ],
   },
@@ -317,9 +317,9 @@ export const NOTES_A: Note[] = [
           { tex: "\\text{RHL} = \\lim_{h \\to 0} f(a + h)", label: "x = a + h rakho" },
         ]},
         { t: "steps", title: "Piecewise function mein continuity check", items: [
-          "LHL nikalo — x ≤ a wala branch use karo, x = a − h rakh ke h → 0",
-          "RHL nikalo — x > a wala branch use karo, x = a + h rakh ke h → 0",
-          "f(a) nikalo — dekho ki '≤' kis branch mein hai, wahi use karo",
+          "LHL nikalo - x ≤ a wala branch use karo, x = a − h rakh ke h → 0",
+          "RHL nikalo - x > a wala branch use karo, x = a + h rakh ke h → 0",
+          "f(a) nikalo - dekho ki '≤' kis branch mein hai, wahi use karo",
           "Teeno barabar karo. k nikalna ho to equation solve kar lo",
         ]},
         { t: "ex", q: "f(x) = kx+1 (x ≤ 5), 3x−5 (x > 5) continuous at x = 5. k = ?", sol: [
@@ -338,7 +338,7 @@ export const NOTES_A: Note[] = [
         { t: "warn", text: "★ Differentiable ⟹ Continuous. Par ULTA NAHI! |x| at x = 0 continuous hai (bina pen uthaye bana) par differentiable nahi (nukkeela corner, LHD = −1, RHD = +1). Har saal 1-marker mein aata hai." },
       ],
       [
-        { t: "h", text: "3. DERIVATIVES — poori list" },
+        { t: "h", text: "3. DERIVATIVES - poori list" },
         { t: "fl", items: [
           { tex: "\\tfrac{d}{dx}(x^n) = nx^{n-1}" },
           { tex: "\\tfrac{d}{dx}(\\sin x) = \\cos x" },
@@ -366,7 +366,7 @@ export const NOTES_A: Note[] = [
         { t: "fl", items: [
           { tex: "(uv)' = u'v + uv'", label: "Product" },
           { tex: "\\left(\\tfrac{u}{v}\\right)' = \\tfrac{u'v - uv'}{v^2}", label: "Quotient" },
-          { tex: "\\tfrac{d}{dx}f(g(x)) = f'(g(x))\\cdot g'(x)", label: "Chain — bahar × andar" },
+          { tex: "\\tfrac{d}{dx}f(g(x)) = f'(g(x))\\cdot g'(x)", label: "Chain - bahar × andar" },
         ]},
 
         { t: "h", text: "5. SPECIAL METHODS" },
@@ -379,11 +379,11 @@ export const NOTES_A: Note[] = [
         { t: "steps", title: "Logarithmic (power mein x ho, jaise xˣ)", items: [
           "Dono taraf ln lagao: ln y = g(x)·ln f(x)",
           "Log property se power neeche le aao",
-          "Differentiate karo — left side (1/y)(dy/dx) banega",
+          "Differentiate karo - left side (1/y)(dy/dx) banega",
           "Dono taraf y se multiply karo aur y wapas substitute karo",
         ]},
         { t: "f", tex: "y = x^x \\Rightarrow \\frac{dy}{dx} = x^x(1 + \\ln x)", label: "yaad rakhne layak result" },
-        { t: "f", tex: "\\frac{dy}{dx} = \\frac{dy/dt}{dx/dt}", label: "Parametric — dono t ke terms mein" },
+        { t: "f", tex: "\\frac{dy}{dx} = \\frac{dy/dt}{dx/dt}", label: "Parametric - dono t ke terms mein" },
 
         { t: "h", text: "6. SECOND ORDER" },
         { t: "f", tex: "\\frac{d^2y}{dx^2} = \\frac{d}{dx}\\left(\\frac{dy}{dx}\\right)", label: "pehla derivative dobara differentiate" },

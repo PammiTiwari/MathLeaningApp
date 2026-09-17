@@ -12,7 +12,7 @@ export const NOTES_C: Note[] = [
         { t: "fl", items: [
           { tex: "\\vec{a} = a_1\\hat i + a_2\\hat j + a_3\\hat k" },
           { tex: "|\\vec a| = \\sqrt{a_1^2 + a_2^2 + a_3^2}", label: "magnitude" },
-          { tex: "\\hat a = \\frac{\\vec a}{|\\vec a|}", label: "unit vector — lambai exactly 1" },
+          { tex: "\\hat a = \\frac{\\vec a}{|\\vec a|}", label: "unit vector - lambai exactly 1" },
         ]},
         { t: "table", head: ["Type", "Matlab"], rows: [
           ["Zero vector", "Magnitude 0, direction koi bhi"],
@@ -39,7 +39,7 @@ export const NOTES_C: Note[] = [
         ]},
       ],
       [
-        { t: "h", text: "4. DOT PRODUCT — answer ek NUMBER" },
+        { t: "h", text: "4. DOT PRODUCT - answer ek NUMBER" },
         { t: "fl", items: [
           { tex: "\\vec a \\cdot \\vec b = a_1b_1 + a_2b_2 + a_3b_3", label: "components se" },
           { tex: "\\vec a \\cdot \\vec b = |\\vec a||\\vec b|\\cos\\theta", label: "angle nikalne ke liye" },
@@ -49,7 +49,7 @@ export const NOTES_C: Note[] = [
         { t: "f", tex: "\\text{Projection of }\\vec a\\text{ on }\\vec b = \\frac{\\vec a \\cdot \\vec b}{|\\vec b|}", label: "★ yaad rakho: neeche JIS PAR project kar rahe ho" },
         { t: "p", text: "Dot product commutative hai: a·b = b·a. Aur î·î = ĵ·ĵ = k̂·k̂ = 1, î·ĵ = ĵ·k̂ = k̂·î = 0." },
 
-        { t: "h", text: "5. CROSS PRODUCT — answer ek VECTOR" },
+        { t: "h", text: "5. CROSS PRODUCT - answer ek VECTOR" },
         { t: "f", tex: "\\vec a \\times \\vec b = \\begin{vmatrix} \\hat i & \\hat j & \\hat k \\\\ a_1 & a_2 & a_3 \\\\ b_1 & b_2 & b_3 \\end{vmatrix}" },
         { t: "fl", items: [
           { tex: "|\\vec a \\times \\vec b| = |\\vec a||\\vec b|\\sin\\theta" },
@@ -70,7 +70,7 @@ export const NOTES_C: Note[] = [
           "|AB × AC| = √(64+16+16) = √96 = 4√6",
           "Area = ½ × 4√6 = 2√6 square units",
         ]},
-        { t: "warn", text: "Dot ka answer NUMBER hai — usmein î ĵ k̂ likh diya to mark cut. Cross ka answer VECTOR hai — usmein î ĵ k̂ zaroori hai. Aur triangle mein ½ lagana mat bhoolna." },
+        { t: "warn", text: "Dot ka answer NUMBER hai - usmein î ĵ k̂ likh diya to mark cut. Cross ka answer VECTOR hai - usmein î ĵ k̂ zaroori hai. Aur triangle mein ½ lagana mat bhoolna." },
       ],
     ],
   },
@@ -86,7 +86,7 @@ export const NOTES_C: Note[] = [
           { tex: "l^2 + m^2 + n^2 = 1", label: "★ DCs ka square sum hamesha 1" },
           { tex: "(l, m, n) = \\left(\\frac{a}{\\sqrt{\\Sigma}}, \\frac{b}{\\sqrt{\\Sigma}}, \\frac{c}{\\sqrt{\\Sigma}}\\right)", label: "Σ = a²+b²+c²" },
         ]},
-        { t: "p", text: "DRs unique nahi hote — (1,2,3) aur (2,4,6) same direction batate hain. DCs unique hote hain (sign chhod ke)." },
+        { t: "p", text: "DRs unique nahi hote - (1,2,3) aur (2,4,6) same direction batate hain. DCs unique hote hain (sign chhod ke)." },
         { t: "p", text: "Do points ke beech ki line ke DRs: (x₂−x₁, y₂−y₁, z₂−z₁)." },
 
         { t: "h", text: "2. LINE ka equation" },
@@ -107,17 +107,17 @@ export const NOTES_C: Note[] = [
         { t: "p", text: "Modulus isliye lagate hain kyunki angle hamesha acute maanga jaata hai." },
       ],
       [
-        { t: "h", text: "4. ★ SHORTEST DISTANCE — 5-marker" },
-        { t: "def", term: "Skew lines", text: "Woh lines jo na milti hain na parallel hain — alag-alag planes mein hain." },
+        { t: "h", text: "4. ★ SHORTEST DISTANCE - 5-marker" },
+        { t: "def", term: "Skew lines", text: "Woh lines jo na milti hain na parallel hain - alag-alag planes mein hain." },
         { t: "f", tex: "d = \\left|\\frac{(\\vec a_2 - \\vec a_1)\\cdot(\\vec b_1 \\times \\vec b_2)}{|\\vec b_1 \\times \\vec b_2|}\\right|", label: "SKEW lines" },
         { t: "f", tex: "d = \\left|\\frac{\\vec b \\times (\\vec a_2 - \\vec a_1)}{|\\vec b|}\\right|", label: "PARALLEL lines" },
 
         { t: "steps", title: "Steps (skew lines)", items: [
           "Dono lines se a₁, b₁, a₂, b₂ **alag-alag likh lo** (confusion nahi hogi)",
           "a₂ − a₁ nikalo (simple subtraction)",
-          "b₁ × b₂ nikalo (determinant — ĵ ka minus sign dhyaan se)",
-          "|b₁ × b₂| nikalo — yeh denominator hai",
-          "(a₂ − a₁) · (b₁ × b₂) nikalo — yeh numerator hai",
+          "b₁ × b₂ nikalo (determinant - ĵ ka minus sign dhyaan se)",
+          "|b₁ × b₂| nikalo - yeh denominator hai",
+          "(a₂ − a₁) · (b₁ × b₂) nikalo - yeh numerator hai",
           "Divide karo aur **modulus** lagao. 'units' likhna mat bhoolna",
         ]},
         { t: "ex", q: "r = (î+2ĵ+k̂) + λ(î−ĵ+k̂) aur r = (2î−ĵ−k̂) + μ(2î+ĵ+2k̂)", sol: [
@@ -128,8 +128,8 @@ export const NOTES_C: Note[] = [
           "(a₂−a₁)·(b₁×b₂) = −3 + 0 − 6 = −9",
           "d = |−9| / 3√2 = 3/√2 units",
         ]},
-        { t: "warn", text: "d = 0 aa gaya? Matlab lines skew nahi hain — woh INTERSECT kar rahi hain. Aur b₁ × b₂ = 0 aa gaya? Matlab lines PARALLEL hain, yeh formula lagega hi nahi — parallel wala formula use karo." },
-        { t: "star", text: "Is chapter mein poora khel formula yaad hone ka hai. Ek A4 page par saare formulas likho aur roz subah 2 minute dekho — exam tak yaad ho jayenge." },
+        { t: "warn", text: "d = 0 aa gaya? Matlab lines skew nahi hain - woh INTERSECT kar rahi hain. Aur b₁ × b₂ = 0 aa gaya? Matlab lines PARALLEL hain, yeh formula lagega hi nahi - parallel wala formula use karo." },
+        { t: "star", text: "Is chapter mein poora khel formula yaad hone ka hai. Ek A4 page par saare formulas likho aur roz subah 2 minute dekho - exam tak yaad ho jayenge." },
       ],
     ],
   },
@@ -141,40 +141,40 @@ export const NOTES_C: Note[] = [
     pages: [
       [
         { t: "h", text: "1. TERMINOLOGY" },
-        { t: "def", term: "Objective function", text: "Jo maximise ya minimise karna hai — Z = ax + by (profit, cost waghera)." },
-        { t: "def", term: "Constraints", text: "Jo limits di hui hain — inequalities ki shakl mein (raw material, time, paisa)." },
-        { t: "def", term: "Non-negativity constraints", text: "x ≥ 0, y ≥ 0. Yeh hamesha hote hain — likhna MAT bhoolna." },
+        { t: "def", term: "Objective function", text: "Jo maximise ya minimise karna hai - Z = ax + by (profit, cost waghera)." },
+        { t: "def", term: "Constraints", text: "Jo limits di hui hain - inequalities ki shakl mein (raw material, time, paisa)." },
+        { t: "def", term: "Non-negativity constraints", text: "x ≥ 0, y ≥ 0. Yeh hamesha hote hain - likhna MAT bhoolna." },
         { t: "def", term: "Feasible region", text: "Graph ka woh hissa jahan saare constraints ek saath satisfy hote hain." },
         { t: "def", term: "Feasible solution", text: "Feasible region ka koi bhi point. Optimal feasible solution = jahan Z best ho." },
 
         { t: "h", text: "2. ★ CORNER POINT THEOREM" },
-        { t: "p", text: "Agar optimal value exist karti hai, to woh feasible region ke kisi CORNER POINT (vertex) par hi milegi — beech mein kabhi nahi." },
+        { t: "p", text: "Agar optimal value exist karti hai, to woh feasible region ke kisi CORNER POINT (vertex) par hi milegi - beech mein kabhi nahi." },
         { t: "star", text: "Isliye poora chapter itna aasaan hai: bas saare corners nikalo, har ek par Z calculate karo, sabse bada/chhota chun lo. Bas." },
 
         { t: "steps", title: "★ 5-marker ke 5 steps", items: [
           "Har inequality ko equation maan ke **line banao**. Intercepts se: x=0 daal ke y-intercept, y=0 daal ke x-intercept",
           "**Origin test** se shade karo: (0,0) inequality mein daalo. Sach hai to origin wali side, jhooth hai to doosri side",
           "**Feasible region** ke saare **corner points** nikalo (lines ke intersection solve karke)",
-          "**TABLE banao** — har corner par Z ka value",
+          "**TABLE banao** - har corner par Z ka value",
           "Sabse bada (maximise) ya sabse chhota (minimise) Z chuno, **point ke saath** answer likho",
         ]},
 
         { t: "h", text: "3. BOUNDED vs UNBOUNDED" },
         { t: "table", head: ["Region", "Matlab"], rows: [
-          ["Bounded", "Circle ke andar aa jaaye — max aur min dono milenge"],
-          ["Unbounded", "Khula hua — ho sakta hai max ya min na mile"],
+          ["Bounded", "Circle ke andar aa jaaye - max aur min dono milenge"],
+          ["Unbounded", "Khula hua - ho sakta hai max ya min na mile"],
         ]},
         { t: "p", text: "Unbounded region mein: maximum M claim karne se pehle check karo ki ax + by > M ka koi common point to nahi. Minimum m ke liye ax + by < m check karo. Common point mila to woh optimal value exist nahi karti." },
 
         { t: "ex", q: "Max Z = 5x + 3y, s.t. 3x+5y ≤ 15, 5x+2y ≤ 10, x,y ≥ 0", sol: [
           "Line 1: 3x+5y=15 → (5,0) aur (0,3).  Line 2: 5x+2y=10 → (2,0) aur (0,5)",
-          "Origin test: 0 ≤ 15 ✓ aur 0 ≤ 10 ✓ — dono mein origin wali side shade",
+          "Origin test: 0 ≤ 15 ✓ aur 0 ≤ 10 ✓ - dono mein origin wali side shade",
           "Corners: O(0,0), A(2,0), B(20/19, 45/19), C(0,3)",
           "TABLE → Z(O)=0, Z(A)=10, Z(B)=235/19≈12.37, Z(C)=9",
           "Z max = 235/19 at B(20/19, 45/19)",
         ]},
         { t: "warn", text: "Do galtiyaan jo marks khaati hain: (1) x ≥ 0, y ≥ 0 likhna bhool jaana, (2) corner points ka TABLE na banana. Sirf answer likhne se poore marks nahi milte, chahe answer sahi ho." },
-        { t: "star", text: "Yeh poore syllabus ka sabse aasaan 5 marks hai. Graph scale se saaf banao, region shade karo, corners label karo (A, B, C), table banao — 5/5 pakka. Yeh chapter kabhi mat chhodna." },
+        { t: "star", text: "Yeh poore syllabus ka sabse aasaan 5 marks hai. Graph scale se saaf banao, region shade karo, corners label karo (A, B, C), table banao - 5/5 pakka. Yeh chapter kabhi mat chhodna." },
       ],
     ],
   },
@@ -199,23 +199,23 @@ export const NOTES_C: Note[] = [
 
         { t: "h", text: "3. INDEPENDENT EVENTS" },
         { t: "f", tex: "P(A \\cap B) = P(A) \\cdot P(B)", label: "★ yahi test hai" },
-        { t: "p", text: "Independent ho to P(A|B) = P(A) — matlab B hone se A ka chance badalta hi nahi." },
+        { t: "p", text: "Independent ho to P(A|B) = P(A) - matlab B hone se A ka chance badalta hi nahi." },
         { t: "warn", text: "★ Independent aur Mutually Exclusive BILKUL ALAG hain. Mutually exclusive: P(A∩B) = 0 (dono saath ho hi nahi sakte). Independent: ek doosre ko affect nahi karte. Do non-zero probability wale mutually exclusive events kabhi independent nahi ho sakte." },
         { t: "f", tex: "P(A \\cup B) = P(A) + P(B) - P(A \\cap B)", label: "addition theorem" },
 
         { t: "h", text: "4. TOTAL PROBABILITY" },
         { t: "f", tex: "P(A) = \\sum_i P(E_i)\\,P(A|E_i)", label: "har raaste ka chance jodo" },
-        { t: "p", text: "Use tab karo jab poora sample space alag-alag hisson (E₁, E₂, E₃…) mein bata ho — jaise teen machines, do bags." },
+        { t: "p", text: "Use tab karo jab poora sample space alag-alag hisson (E₁, E₂, E₃…) mein bata ho - jaise teen machines, do bags." },
       ],
       [
-        { t: "h", text: "5. ★ BAYES' THEOREM — 5-marker" },
-        { t: "p", text: "Normal sawaal: 'Factory A se bulb aaya, kharaab hone ka chance?' Bayes ka ULTA sawaal: 'Bulb kharaab nikla — woh Factory A se aaya hoga, kitna chance?' Effect se cause tak wapas." },
+        { t: "h", text: "5. ★ BAYES' THEOREM - 5-marker" },
+        { t: "p", text: "Normal sawaal: 'Factory A se bulb aaya, kharaab hone ka chance?' Bayes ka ULTA sawaal: 'Bulb kharaab nikla - woh Factory A se aaya hoga, kitna chance?' Effect se cause tak wapas." },
         { t: "f", tex: "P(E_i|A) = \\frac{P(E_i)\\,P(A|E_i)}{\\sum_j P(E_j)\\,P(A|E_j)}" },
         { t: "steps", title: "Steps", items: [
           "**Events ko naam do**: E₁, E₂, E₃ = causes, A = jo observe hua. (Iska apna mark hai)",
           "Prior probabilities likho: P(E₁), P(E₂), P(E₃)",
           "Conditional probabilities likho: P(A|E₁), P(A|E₂), P(A|E₃)",
-          "**Tree diagram bana lo** — poora sawaal saamne aa jaata hai",
+          "**Tree diagram bana lo** - poora sawaal saamne aa jaata hai",
           "Bayes formula **poora likho**, phir values daalo",
           "Fractions ka LCM le kar solve karo (decimal mein mat karo)",
         ]},
@@ -241,7 +241,7 @@ export const NOTES_C: Note[] = [
           "Check karo ki Σpᵢ = 1 (verification ka mark milta hai)",
           "Mean chahiye to har xᵢ ko pᵢ se multiply karke jodo",
         ]},
-        { t: "star", text: "Bayes ke sawaal mein tree diagram sabse bada hathiyaar hai — do branches, phir har branch se do aur. Galti ka chance aadha ho jaata hai." },
+        { t: "star", text: "Bayes ke sawaal mein tree diagram sabse bada hathiyaar hai - do branches, phir har branch se do aur. Galti ka chance aadha ho jaata hai." },
       ],
     ],
   },
