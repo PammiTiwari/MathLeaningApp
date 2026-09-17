@@ -275,7 +275,7 @@ export default function ExamRunner({ params }: { params: Promise<{ paperId: stri
   return (
     <div className="mx-auto max-w-5xl">
       {/* timer bar */}
-      <div className="sticky top-[57px] z-30 -mx-4 mb-5 border-b border-line/60 bg-sunk px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6">
+      <div className="sticky top-14 z-30 -mx-4 mb-5 border-b border-line/60 bg-sunk px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6">
         <div className="flex items-center gap-3">
           <span className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 font-display text-lg font-extrabold tabular-nums ${lowTime ? "bg-roseSoft text-rose" : "bg-sunk text-head"}`}>
             <Timer size={16} /> {mm}:{ss}
@@ -374,7 +374,7 @@ export default function ExamRunner({ params }: { params: Promise<{ paperId: stri
 
         {/* navigator */}
         <div>
-          <Card className="sticky top-[130px] p-4">
+          <Card className="sticky top-[124px] p-4">
             <p className="mb-3 text-[11px] font-bold uppercase tracking-wider text-faint">Question map</p>
             <div className="grid grid-cols-5 gap-1.5">
               {questions.map((qq, n) => {

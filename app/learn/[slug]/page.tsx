@@ -50,7 +50,7 @@ export default function LearnPage({ params }: { params: Promise<{ slug: string }
   return (
     <div className="mx-auto max-w-3xl">
       {/* top bar */}
-      <div className="sticky top-[57px] z-30 -mx-4 mb-6 border-b border-line/60 bg-sunk px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6">
+      <div className="sticky top-14 z-30 -mx-4 mb-6 border-b border-line/60 bg-sunk px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6">
         <div className="flex items-center gap-3">
           <Link href={`/chapters/${slug}`} className="shrink-0 text-faint transition hover:text-head">
             <ArrowLeft size={18} />
