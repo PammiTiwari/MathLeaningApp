@@ -89,6 +89,40 @@ For EACH question return:
 - "chapter": one of relations-and-functions, inverse-trigonometric-functions, matrices, determinants, continuity-and-differentiability, application-of-derivatives, integrals, application-of-integrals, differential-equations, vector-algebra, three-dimensional-geometry, linear-programming, probability
 Return ONLY a JSON array.`;
 
+/**
+ * Parse a JSON array, recovering what we can if the model ran out of output
+ * tokens mid-way. Walks the string tracking brace depth (and string/escape
+ * state so braces inside LaTeX don't confuse it) and keeps every element that
+ * closed cleanly.
+ */
+function salvageArray(raw) {
+  const text = raw.trim().replace(/^```(?:json)?/i, "").replace(/```$/, "").trim();
+  try { return JSON.parse(text); } catch {}
+
+  const start = text.indexOf("[");
+  if (start === -1) throw new Error("no array in response");
+
+  const out = [];
+  let depth = 0, objStart = -1, inStr = false, esc = false;
+  for (let i = start + 1; i < text.length; i++) {
+    const c = text[i];
+    if (esc) { esc = false; continue; }
+    if (c === "\\") { esc = true; continue; }
+    if (c === '"') { inStr = !inStr; continue; }
+    if (inStr) continue;
+    if (c === "{") { if (depth === 0) objStart = i; depth++; }
+    else if (c === "}") {
+      depth--;
+      if (depth === 0 && objStart !== -1) {
+        try { out.push(JSON.parse(text.slice(objStart, i + 1))); } catch {}
+        objStart = -1;
+      }
+    }
+  }
+  if (!out.length) throw new Error("nothing salvageable");
+  return out;
+}
+
 // CBSE 2023+ blueprint — section and marks follow the question number
 const blueprint = (n) =>
   n <= 20 ? { section: "A", marks: 1 }
@@ -114,19 +148,32 @@ async function processPaper(pdfPath, id, year) {
   }
 
   console.error(`\n>> ${id}`);
-  process.stderr.write("   transcribing ");
   const data = readFileSync(pdfPath).toString("base64");
-  const raw = await call([{ text: TRANSCRIBE }, { inline_data: { mime_type: "application/pdf", data } }]);
-  let qs = JSON.parse(raw).map((q) => ({ ...q, ...blueprint(q.n) }));
-  qs = qs.filter((q) => q.n >= 1 && q.n <= 38);
-  console.error(`-> ${qs.length} questions`);
+
+  // A truncated response is common on the lighter models, so ask again until
+  // enough of the paper comes back rather than throwing the whole paper away.
+  let qs = [];
+  for (let attempt = 1; attempt <= 3 && qs.length < 30; attempt++) {
+    process.stderr.write(`   transcribing${attempt > 1 ? ` (retry ${attempt - 1})` : ""} `);
+    try {
+      const raw = await call([{ text: TRANSCRIBE }, { inline_data: { mime_type: "application/pdf", data } }]);
+      const got = salvageArray(raw)
+        .filter((q) => q?.n >= 1 && q.n <= 38 && q.q)
+        .map((q) => ({ ...q, ...blueprint(q.n) }));
+      if (got.length > qs.length) qs = got;
+      console.error(`-> ${got.length} questions`);
+    } catch (e) {
+      console.error(`-> ${e.message}`);
+    }
+  }
+  if (qs.length < 30) throw new Error(`only ${qs.length} questions transcribed`);
 
   const solutions = [];
   for (const [k, half] of [qs.filter((q) => q.n <= 20), qs.filter((q) => q.n > 20)].entries()) {
     if (!half.length) continue;
     process.stderr.write(`   solving half ${k + 1} `);
     try {
-      const sols = JSON.parse(await call([{ text: `${SOLVE_HEAD}\n\n${half.map(fmt).join("\n\n")}` }]));
+      const sols = salvageArray(await call([{ text: `${SOLVE_HEAD}\n\n${half.map(fmt).join("\n\n")}` }]));
       solutions.push(...sols.filter((x) => x && x.n && x.answer));
       console.error(`-> ${sols.length}`);
     } catch (e) { console.error(`-> FAILED (${e.message})`); }
