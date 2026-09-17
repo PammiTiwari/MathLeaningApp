@@ -10,11 +10,11 @@
   color-scheme: light;
 
   /* height of the sticky bar, so anything that has to clear it stays in sync */
-  --nav-h: 62px;
+  --nav-h: 54px;
 }
 
 @media (min-width: 1024px) {
-  :root { --nav-h: 70px; }
+  :root { --nav-h: 58px; }
 }
 
 html { scroll-behavior: smooth; }
