@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import {
   Menu, X, ChevronDown, BookOpen, PlayCircle, NotebookPen,
-  FileText, Timer, Sparkles, Target, MessageCircleQuestion,
+  FileText, Sparkles, Target, MessageCircleQuestion,
 } from "lucide-react";
 
 type Item = { href: string; label: string; desc: string; icon: any };
@@ -22,8 +22,8 @@ const GROUPS: Group[] = [
   {
     label: "Practice",
     items: [
-      { href: "/exam", label: "Mock exam", desc: "Timed paper, AI checks your copy", icon: Timer },
       { href: "/papers", label: "Board papers", desc: "Asli CBSE papers, 2022–2026", icon: FileText },
+      { href: "/flashcards", label: "Flashcards", desc: "5-minute revision", icon: Target },
     ],
   },
   {
@@ -31,7 +31,6 @@ const GROUPS: Group[] = [
     items: [
       { href: "/notes", label: "Handwritten notes", desc: "Poora chapter, ek sheet par", icon: NotebookPen },
       { href: "/formulas", label: "Formula sheet", desc: "94 formulas, searchable", icon: Sparkles },
-      { href: "/flashcards", label: "Flashcards", desc: "5-minute revision", icon: Target },
     ],
   },
 ];

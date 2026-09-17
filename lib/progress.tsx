@@ -3,36 +3,21 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
 
 /**
- * Minimal local state. No XP, no levels, no streaks — just the two things
- * the app genuinely needs: where you left off in a lesson, and your past
- * mock-exam attempts.
+ * The only thing worth remembering: how far through a lesson you got, so a
+ * chapter reopens where you left it. Nothing else is stored.
  */
-
-export type ExamAttempt = {
-  id: string;
-  paperId: string;
-  paperTitle: string;
-  date: string;
-  scored: number;
-  total: number;
-  perQuestion: { qid: string; awarded: number; max: number; feedback: string }[];
-  overall?: string;
-};
 
 export type Progress = {
   lessonBeats: Record<string, number>; // chapter slug -> furthest step reached
-  attempts: ExamAttempt[];
 };
 
-const EMPTY: Progress = { lessonBeats: {}, attempts: [] };
-const KEY = "himmat-rakh-v2";
+const EMPTY: Progress = { lessonBeats: {} };
+const KEY = "himmat-rakh-v3";
 
 type Ctx = {
   p: Progress;
   ready: boolean;
   setBeat: (slug: string, index: number) => void;
-  addAttempt: (a: ExamAttempt) => void;
-  clearAttempts: () => void;
 };
 
 const ProgressCtx = createContext<Ctx | null>(null);
@@ -45,29 +30,25 @@ export function ProgressProvider({ children }: { children: React.ReactNode }) {
     try {
       const raw = localStorage.getItem(KEY);
       if (raw) setP({ ...EMPTY, ...JSON.parse(raw) });
-      localStorage.removeItem("himmat-rakh-progress-v1"); // drop the old XP/streak store
+      // clear the stores this replaced
+      localStorage.removeItem("himmat-rakh-progress-v1");
+      localStorage.removeItem("himmat-rakh-v2");
     } catch {}
     setReady(true);
   }, []);
 
-  const save = useCallback((fn: (prev: Progress) => Progress) => {
+  const setBeat = useCallback((slug: string, index: number) => {
     setP((prev) => {
-      const next = fn(prev);
+      const next = {
+        ...prev,
+        lessonBeats: { ...prev.lessonBeats, [slug]: Math.max(prev.lessonBeats[slug] ?? 0, index) },
+      };
       try { localStorage.setItem(KEY, JSON.stringify(next)); } catch {}
       return next;
     });
   }, []);
 
-  const value: Ctx = {
-    p,
-    ready,
-    setBeat: (slug, index) =>
-      save((s) => ({ ...s, lessonBeats: { ...s.lessonBeats, [slug]: Math.max(s.lessonBeats[slug] ?? 0, index) } })),
-    addAttempt: (a) => save((s) => ({ ...s, attempts: [a, ...s.attempts].slice(0, 30) })),
-    clearAttempts: () => save((s) => ({ ...s, attempts: [] })),
-  };
-
-  return <ProgressCtx.Provider value={value}>{children}</ProgressCtx.Provider>;
+  return <ProgressCtx.Provider value={{ p, ready, setBeat }}>{children}</ProgressCtx.Provider>;
 }
 
 export function useProgress() {

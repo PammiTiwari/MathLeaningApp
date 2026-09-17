@@ -7,7 +7,6 @@ import { getChapter } from "@/lib/data/chapters";
 import { getLesson } from "@/lib/data/lessons";
 import { formulasFor } from "@/lib/data/formulas";
 import { cardsFor } from "@/lib/data/flashcards";
-import { questionsFor } from "@/lib/data/questions";
 import { khanAcademyUrl, KHAN_VIDEOS, topicVideosFor } from "@/lib/data/videos";
 import { Card, Pill } from "@/components/ui";
 import { Rich, Formula } from "@/components/Tex";
@@ -24,7 +23,6 @@ export default function ChapterPage({ params }: { params: Promise<{ slug: string
   const lesson = getLesson(slug);
   const formulas = formulasFor(slug);
   const cards = cardsFor(slug);
-  const qs = questionsFor(slug);
   const khan = KHAN_VIDEOS[slug] ?? [];
   const topicLinks = topicVideosFor(slug);
   const total = lesson?.beats.length ?? 0;
@@ -143,7 +141,6 @@ export default function ChapterPage({ params }: { params: Promise<{ slug: string
             <h3 className="mb-1 font-display text-base font-bold text-head">Practice</h3>
             <p className="mb-3 text-xs text-faint">Is chapter ke board-pattern sawaal.</p>
             <div className="space-y-2">
-              <RowLink href="/exam" label={`${qs.length} questions is chapter se`} icon={Target} />
               <RowLink href="/flashcards" label={`${cards.length} flashcards`} icon={Sparkles} />
               <RowLink href="/doubt" label="Doubt pucho (AI tutor)" icon={Lightbulb} />
             </div>

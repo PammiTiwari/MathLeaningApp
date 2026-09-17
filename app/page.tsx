@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { CHAPTERS, UNITS, getChapter } from "@/lib/data/chapters";
 import { NOTES } from "@/lib/data/notes";
-import { PAPER_PATTERN } from "@/lib/data/papers";
-import { MOCKS, MOCK_STATS } from "@/lib/data/mocks";
+import { PAPER_PATTERN, BOARD_PAPERS } from "@/lib/data/papers";
 import { Card, Bar, Pill } from "@/components/ui";
 import { Formula } from "@/components/Tex";
 import {
-  Timer, PlayCircle, NotebookPen, FileText, Sparkles, Target,
+  PlayCircle, NotebookPen, FileText, Sparkles, Target,
   MessageCircleQuestion, Layers, ArrowRight, Clock, Printer, Check,
 } from "lucide-react";
 
@@ -14,7 +13,6 @@ const TILES = [
   { href: "/chapters", icon: Layers, label: "Chapters", sub: "13 chapters, basics se deep tak", color: "#5B3FD6" },
   { href: "/videos", icon: PlayCircle, label: "Video lessons", sub: "Khan Academy, topic-wise", color: "#C8304F" },
   { href: "/notes", icon: NotebookPen, label: "Handwritten notes", sub: "Poora chapter, ek sheet par", color: "#0B8A64", star: true },
-  { href: "/exam", icon: Timer, label: "Mock exam", sub: "AI tumhari copy check karega", color: "#B26A00" },
   { href: "/papers", icon: FileText, label: "Board papers", sub: "Asli CBSE papers, 2022–2026", color: "#0A72AB" },
   { href: "/formulas", icon: Sparkles, label: "Formula sheet", sub: "94 formulas, searchable", color: "#9333EA" },
   { href: "/flashcards", icon: Target, label: "Flashcards", sub: "5-minute revision", color: "#EA580C" },
@@ -54,7 +52,7 @@ export default function Home() {
           <p className="mt-4 text-[15.5px] leading-[1.7] text-muted">
             Poora syllabus — 13 chapters, 80 marks. Har chapter basics se shuru hota hai aur derivations
             aur board-level tough questions tak jaata hai. Saath mein asli CBSE board papers, handwritten
-            notes, aur timed mock exam jise AI step marks ke saath check karta hai.
+            notes, formula sheet aur ek AI doubt solver.
           </p>
 
           <div className="mt-7 flex flex-wrap gap-3">
@@ -65,10 +63,10 @@ export default function Home() {
               Padhna shuru karo <ArrowRight size={16} />
             </Link>
             <Link
-              href="/exam"
+              href="/papers"
               className="inline-flex items-center gap-2 rounded-xl border border-line bg-card px-5 py-3 text-sm font-bold text-body transition hover:border-line2 hover:bg-sunk"
             >
-              <Timer size={16} /> Mock exam do
+              <FileText size={16} /> Board papers
             </Link>
           </div>
         </div>
@@ -220,25 +218,23 @@ export default function Home() {
         </Card>
       </div>
 
-      {/* ---------- MOCK PAPERS ---------- */}
+      {/* ---------- BOARD PAPERS ---------- */}
       <div className="mb-4 mt-10 flex items-end justify-between">
-        <h2 className="font-display text-[20px] font-bold tracking-[-0.01em] text-head">Exam ki practice</h2>
-        <Link href="/exam" className="text-xs font-semibold text-primary hover:underline">saare papers →</Link>
+        <h2 className="font-display text-[20px] font-bold tracking-[-0.01em] text-head">Asli board papers</h2>
+        <Link href="/papers" className="text-xs font-semibold text-primary hover:underline">saare papers →</Link>
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
-        {MOCKS.slice(0, 2).map((m) => (
-          <Link key={m.id} href={`/exam/${m.id}`}>
+        {BOARD_PAPERS.slice(0, 2).map((b) => (
+          <a key={b.id} href={b.url} target="_blank" rel="noreferrer">
             <Card className="card-hover h-full p-5">
               <div className="mb-2 flex items-center gap-2">
-                <Pill color="#B26A00">{m.badge}</Pill>
-                <span className="flex items-center gap-1 text-xs text-faint">
-                  <Clock size={11} /> {m.minutes} min · {m.marks} marks
-                </span>
+                <Pill color="#B26A00">{b.year}</Pill>
+                <span className="text-xs text-faint">{b.sizeMB} MB · {b.sets}</span>
               </div>
-              <p className="font-display text-[17px] font-bold text-head">{m.title}</p>
-              <p className="mt-1.5 text-[13px] leading-snug text-muted">{m.subtitle}</p>
+              <p className="font-display text-[17px] font-bold text-head">CBSE {b.year} — Mathematics</p>
+              <p className="mt-1.5 text-[13px] leading-snug text-muted">{b.note}</p>
             </Card>
-          </Link>
+          </a>
         ))}
       </div>
 

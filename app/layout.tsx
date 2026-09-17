@@ -11,7 +11,7 @@ const hand = Caveat({ subsets: ["latin"], variable: "--font-hand", weight: ["600
 export const metadata: Metadata = {
   title: "Himmat Rakh — Class 12 Maths, Boards Ready",
   description:
-    "CBSE Class 12 Maths ki poori taiyari — fun Hinglish lessons, Khan Academy videos, handwritten notes, previous year papers aur AI-checked timed mock exams.",
+    "CBSE Class 12 Maths ki poori taiyari — fun Hinglish lessons jo deep derivations tak jaate hain, Khan Academy videos, handwritten notes, asli board papers aur ek AI doubt solver.",
 };
 
 export const viewport: Viewport = {

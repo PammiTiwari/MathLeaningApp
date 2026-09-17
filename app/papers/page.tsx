@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import { OFFICIAL_PAPERS, BOARD_PAPERS, COMPARTMENT_PAPERS, SYLLABUS_PDF, CBSE_PYQ_PAGE, CBSE_SQP_ARCHIVE, ALL_PAPERS_PAGE } from "@/lib/data/papers";
-import { MOCKS } from "@/lib/data/mocks";
 import { PageHead, Card, Pill } from "@/components/ui";
-import { FileText, Download, ExternalLink, Timer, BookMarked, FolderArchive, Trophy } from "lucide-react";
+import { FileText, Download, ExternalLink, BookMarked, FolderArchive, Trophy } from "lucide-react";
 
 export default function PapersPage() {
   return (
@@ -115,23 +114,6 @@ export default function PapersPage() {
         <ExtLink href={SYLLABUS_PDF} label="Official syllabus PDF" sub="2025–26 Mathematics (041)" />
       </div>
 
-      <h2 className="font-display text-[20px] font-bold tracking-[-0.01em] text-head">App ke andar likh ke do</h2>
-      <p className="mb-3 text-[13px] text-muted">
-        PDF download karne ki zaroorat nahi — yeh papers app mein hi attempt karo, timer ke saath. Submit karte hi AI check kar dega.
-      </p>
-      <div className="grid gap-3 sm:grid-cols-2">
-        {MOCKS.slice(0, 6).map((m) => (
-          <Link key={m.id} href={`/exam/${m.id}`}>
-            <Card className="card-hover flex h-full items-start gap-3 p-4">
-              <Timer size={17} className="mt-0.5 shrink-0 text-saffron" />
-              <div className="min-w-0 flex-1">
-                <p className="text-[14px] font-bold text-head">{m.title}</p>
-                <p className="text-[12px] text-faint">{m.minutes} min · {m.marks} marks</p>
-              </div>
-            </Card>
-          </Link>
-        ))}
-      </div>
 
       <Card className="mt-9 p-5">
         <h2 className="font-display text-lg font-bold text-head">Papers ko sahi tareeke se kaise use karein</h2>
@@ -140,7 +122,7 @@ export default function PapersPage() {
             "Pehle 2025-26 ka sample paper solve karo — poore 3 ghante, ek baithak mein, ghadi laga ke. Isse pattern samajh aata hai.",
             "Khud se check mat karo. Pehle marking scheme padho, phir apni copy check karo — dekho examiner kis step ka mark deta hai.",
             "Jo sawaal galat hue, unke chapter ka lesson dobara padho. Sirf answer dekhna kaafi nahi.",
-            "Ab ASLI board papers pakdo — 2026 aur 2025 wale. ZIP mein 15-20 sets hain, roz ek set karo. Yahi asli difficulty hai.",
+            "Ab ASLI board papers pakdo — 2026 aur 2025 wale. ZIP mein 15-20 sets hain, roz ek set solve karo. Yahi asli difficulty hai.",
             "Aakhri hafte mein sirf notes aur formula sheet — naya kuch mat padho.",
           ].map((t, i) => (
             <li key={i} className="flex gap-3">

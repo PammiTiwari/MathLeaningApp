@@ -122,10 +122,10 @@ export default function LearnPage({ params }: { params: Promise<{ slug: string }
               </Link>
             ) : (
               <Link
-                href="/exam"
+                href="/papers"
                 className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-saffron py-3 text-sm font-bold text-white"
               >
-                Mock exam do
+                Board papers dekho
               </Link>
             )}
           </div>
