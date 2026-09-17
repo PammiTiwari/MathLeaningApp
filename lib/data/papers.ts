@@ -1,3 +1,61 @@
+
+/* ---------------------------------------------------------------
+ * ASLI BOARD PAPERS (Previous Year Questions)
+ * Yeh woh papers hain jo actual board exam mein aaye the.
+ * Har ZIP mein us saal ke saare sets hain (65-1-1, 65-2-1, 65-4-1 ...)
+ * plus visually-impaired candidates ka version.
+ * Source: cbse.gov.in — official, live-verified.
+ * ------------------------------------------------------------- */
+
+export type BoardPaper = {
+  id: string;
+  year: string;
+  url: string;
+  sizeMB: number;
+  sets: string;
+  compartment?: boolean;
+  note: string;
+};
+
+const QP = "https://www.cbse.gov.in/cbsenew/question-paper";
+
+export const BOARD_PAPERS: BoardPaper[] = [
+  {
+    id: "board-2026", year: "2026", url: `${QP}/2026/XII/Mathematics.zip`, sizeMB: 12,
+    sets: "Saare sets",
+    note: "Sabse latest board paper. Yahi se shuru karo — pattern aur difficulty dono abhi wali hai.",
+  },
+  {
+    id: "board-2025", year: "2025", url: `${QP}/2025/XII/MATHEMATICS.zip`, sizeMB: 70,
+    sets: "20 papers — 65-1-1 se 65-5-3 tak + VI candidates",
+    note: "8 March 2025 ko hua tha. Ismein 19 alag sets hain — matlab 19 poore papers practice ke liye.",
+  },
+  {
+    id: "board-2024", year: "2024", url: `${QP}/2024/XII/MATHEMATICS.zip`, sizeMB: 43,
+    sets: "Saare sets",
+    note: "Naye 38-question pattern ka doosra saal. Bahut relevant hai.",
+  },
+  {
+    id: "board-2023", year: "2023", url: `${QP}/2023/XII/MATHEMATICS.zip`, sizeMB: 31,
+    sets: "Saare sets",
+    note: "Yahin se 38-question, 5-section wala pattern shuru hua tha.",
+  },
+  {
+    id: "board-2022", year: "2022", url: `${QP}/2022/XII/Math.zip`, sizeMB: 18,
+    sets: "Term-wise sets",
+    note: "Purana pattern (COVID wala term system), par questions ab bhi practice ke kaam ke hain.",
+  },
+];
+
+export const COMPARTMENT_PAPERS: BoardPaper[] = [
+  { id: "comptt-2026", year: "2026", url: `${QP}/2026-COMPTT/XII/MATHEMATICS.zip`, sizeMB: 2, sets: "Compartment", compartment: true, note: "Compartment exam ka paper — extra practice." },
+  { id: "comptt-2025", year: "2025", url: `${QP}/2025-COMPTT/XII/Mathematics.zip`, sizeMB: 1, sets: "Compartment", compartment: true, note: "Same syllabus, alag questions." },
+  { id: "comptt-2024", year: "2024", url: `${QP}/2024-COMPTT/XII/Mathematics.zip`, sizeMB: 1, sets: "Compartment", compartment: true, note: "Same syllabus, alag questions." },
+  { id: "comptt-2023", year: "2023", url: `${QP}/2023-COMPTT/XII/Mathematics.zip`, sizeMB: 1, sets: "Compartment", compartment: true, note: "Same syllabus, alag questions." },
+];
+
+export const ALL_PAPERS_PAGE = "https://www.cbse.gov.in/cbsenew/question-paper.html";
+
 export type OfficialPaper = {
   id: string;
   year: string;

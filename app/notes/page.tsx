@@ -14,7 +14,7 @@ export default function NotesHome() {
       <PageHead
         eyebrow="Handwritten notes"
         title="Ek page, poora chapter"
-        sub="Har chapter ke short revision notes — jaise topper ki copy se photocopy karayi ho. Exam se ek raat pehle sirf yahi padhna kaafi hai. Print bhi kar sakte ho."
+        sub="Har chapter POORA cover kiya hai — definitions, saare formulas, aur har method ke step-by-step tareeke. Short rakha hai par kuch chhoda nahi. Exam se ek raat pehle sirf yahi kaafi hai. Print bhi kar sakte ho."
       />
 
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -36,6 +36,8 @@ export default function NotesHome() {
                 <p className="mt-0.5 font-display text-[15px] font-bold leading-snug text-white">{c.title}</p>
                 <p className="mt-2 flex items-center gap-1.5 text-[11px] text-white/40">
                   <NotebookPen size={11} /> {n?.pages.length ?? 1} page{(n?.pages.length ?? 1) > 1 ? "s" : ""}
+                  <span className="text-white/25">·</span>
+                  {n?.pages.reduce((a, pg) => a + pg.filter((b) => b.t === "h").length, 0)} sections
                 </p>
               </Card>
             </Link>
