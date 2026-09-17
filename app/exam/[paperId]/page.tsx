@@ -243,8 +243,8 @@ export default function ExamRunner({ params }: { params: Promise<{ paperId: stri
             <Link href="/exam" className="flex-1 rounded-xl border border-line py-3 text-sm font-bold text-body hover:bg-sunk">
               Aur papers
             </Link>
-            <Link href="/progress" className="flex-1 rounded-xl bg-primary py-3 text-sm font-bold text-white hover:bg-primaryDim">
-              Progress dekho
+            <Link href="/chapters" className="flex-1 rounded-xl bg-primary py-3 text-sm font-bold text-white hover:bg-primaryDim">
+              Weak chapters padho
             </Link>
           </div>
         </Card>

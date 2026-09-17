@@ -2,13 +2,11 @@
 
 import Link from "next/link";
 import { CHAPTERS, UNITS } from "@/lib/data/chapters";
-import { useProgress } from "@/lib/progress";
-import { PageHead, Card, Pill, Bar } from "@/components/ui";
+import { PageHead, Card, Pill } from "@/components/ui";
 import { getLesson } from "@/lib/data/lessons";
-import { Clock, CheckCircle2 } from "lucide-react";
+import { Clock, Layers } from "lucide-react";
 
 export default function ChaptersPage() {
-  const { p } = useProgress();
 
   return (
     <div>
@@ -20,22 +18,17 @@ export default function ChaptersPage() {
 
       {UNITS.map((unit) => {
         const chs = CHAPTERS.filter((c) => unit.chapters.includes(c.n));
-        const doneCount = chs.filter((c) => p.lessonDone.includes(c.slug)).length;
         return (
           <section key={unit.name} className="mb-9">
             <div className="mb-3 flex flex-wrap items-center gap-3">
               <h2 className="font-display text-lg font-bold text-head">{unit.name}</h2>
               <Pill color={unit.color}>{unit.marks} marks</Pill>
-              <span className="text-xs text-faint">{doneCount}/{chs.length} done</span>
-              <div className="ml-auto w-28"><Bar value={doneCount} max={chs.length} color={unit.color} /></div>
+              <span className="text-xs text-faint">{chs.length} chapter{chs.length > 1 ? "s" : ""}</span>
             </div>
 
             <div className="grid gap-3 md:grid-cols-2">
               {chs.map((c) => {
-                const lesson = getLesson(c.slug);
-                const beats = p.lessonBeats[c.slug] ?? 0;
-                const total = lesson?.beats.length ?? 1;
-                const finished = p.lessonDone.includes(c.slug);
+                const total = getLesson(c.slug)?.beats.length ?? 0;
                 return (
                   <Link key={c.slug} href={`/chapters/${c.slug}`}>
                     <Card className="card-hover h-full p-5">
@@ -51,7 +44,6 @@ export default function ChaptersPage() {
                             <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: c.color }}>
                               Chapter {c.n}
                             </span>
-                            {finished && <CheckCircle2 size={13} className="text-mint" />}
                           </div>
                           <h3 className="mt-0.5 font-display text-[16px] font-bold leading-snug text-head">
                             {c.title}
@@ -61,16 +53,10 @@ export default function ChaptersPage() {
 
                           <div className="mt-3 flex items-center gap-3 text-[11px] text-faint">
                             <span className="flex items-center gap-1"><Clock size={11} /> ~{Math.round(c.estMins / 60)}h</span>
-                            <span>{"🔥".repeat(c.difficulty)}</span>
+                            <span className="flex items-center gap-1"><Layers size={11} /> {total} steps</span>
                             <span>{c.topics.length} topics</span>
                           </div>
 
-                          {beats > 0 && !finished && (
-                            <div className="mt-2.5">
-                              <Bar value={beats} max={total} color={c.color} />
-                              <p className="mt-1 text-[10px] text-faint">{beats}/{total} steps</p>
-                            </div>
-                          )}
                         </div>
                       </div>
                     </Card>

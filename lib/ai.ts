@@ -49,43 +49,41 @@ export async function askAI(parts: AIPart[], opts?: { json?: boolean; temperatur
   };
 
   let lastErr = "";
-  for (const model of GEMINI_MODELS) {
-    try {
-      const res = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
+  const send = (model: string) =>
+    fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`,
+      { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }
+    );
+  const pick = (d: any) =>
+    d?.candidates?.[0]?.content?.parts?.map((x: any) => x.text).join("") ?? "";
+
+  // 429 = rate limited, 503 = model busy. Both are temporary — back off and retry
+  // across the whole model list before giving up.
+  const RETRYABLE = new Set([429, 500, 503]);
+
+  for (let round = 0; round < 3; round++) {
+    for (const model of GEMINI_MODELS) {
+      try {
+        const res = await send(model);
+        if (res.ok) {
+          const text = pick(await res.json());
+          if (text) return text;
+          lastErr = `${model}: empty response`;
+          continue;
         }
-      );
-      if (res.status === 429) {
-        // rate limited — wait once, then try this same model again
-        await new Promise((r) => setTimeout(r, 2500));
-        const retry = await fetch(
-          `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`,
-          { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }
-        );
-        if (retry.ok) {
-          const d = await retry.json();
-          const t = d?.candidates?.[0]?.content?.parts?.map((x: any) => x.text).join("") ?? "";
-          if (t) return t;
+        if (RETRYABLE.has(res.status)) {
+          lastErr = `${model}: ${res.status} (busy)`;
+          continue;               // try the next model straight away
         }
-        lastErr = `${model}: rate limited (429)`;
-        continue;
+        lastErr = `${model}: ${res.status} ${(await res.text()).slice(0, 200)}`;
+      } catch (e: any) {
+        lastErr = `${model}: ${e?.message ?? e}`;
       }
-      if (!res.ok) {
-        lastErr = `${model}: ${res.status} ${(await res.text()).slice(0, 300)}`;
-        continue;
-      }
-      const data = await res.json();
-      const text = data?.candidates?.[0]?.content?.parts?.map((x: any) => x.text).join("") ?? "";
-      if (text) return text;
-      lastErr = `${model}: empty response`;
-    } catch (e: any) {
-      lastErr = `${model}: ${e?.message ?? e}`;
     }
+    // every model was busy — wait, then go round again
+    if (round < 2) await new Promise((r) => setTimeout(r, 2000 * (round + 1)));
   }
+
   throw new Error(`AI call failed. ${lastErr}`);
 }
 

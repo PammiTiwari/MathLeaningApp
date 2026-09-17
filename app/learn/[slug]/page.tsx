@@ -19,7 +19,7 @@ export default function LearnPage({ params }: { params: Promise<{ slug: string }
   const ch = getChapter(slug);
   const lesson = getLesson(slug);
   const router = useRouter();
-  const { p, ready, setBeat, finishLesson, recordQuiz } = useProgress();
+  const { p, ready, setBeat } = useProgress();
 
   const [i, setI] = useState(0);
   const [started, setStarted] = useState(false);
@@ -43,7 +43,6 @@ export default function LearnPage({ params }: { params: Promise<{ slug: string }
     const n = Math.min(Math.max(i + d, 0), beats.length - 1);
     setI(n);
     setBeat(slug, n);
-    if (n === beats.length - 1) finishLesson(slug, lesson!.xp);
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
@@ -84,7 +83,7 @@ export default function LearnPage({ params }: { params: Promise<{ slug: string }
         </div>
       )}
       <div key={i} className="a-beat">
-        <BeatView beat={beat} color={ch.color} onQuiz={(right) => recordQuiz(slug, right)} />
+        <BeatView beat={beat} color={ch.color} />
       </div>
 
       {/* nav */}
@@ -149,7 +148,7 @@ export default function LearnPage({ params }: { params: Promise<{ slug: string }
   );
 }
 
-function BeatView({ beat, color, onQuiz }: { beat: Beat; color: string; onQuiz: (right: boolean) => void }) {
+function BeatView({ beat, color }: { beat: Beat; color: string }) {
   switch (beat.kind) {
     case "story":
       return (
@@ -177,7 +176,7 @@ function BeatView({ beat, color, onQuiz }: { beat: Beat; color: string; onQuiz: 
       return <ExampleView beat={beat} color={color} />;
 
     case "quiz":
-      return <QuizView beat={beat} color={color} onQuiz={onQuiz} />;
+      return <QuizView beat={beat} color={color} />;
 
     case "trap":
       return (
@@ -406,8 +405,8 @@ function ExampleView({ beat, color }: { beat: Extract<Beat, { kind: "example" }>
 }
 
 function QuizView({
-  beat, color, onQuiz,
-}: { beat: Extract<Beat, { kind: "quiz" }>; color: string; onQuiz: (right: boolean) => void }) {
+  beat, color,
+}: { beat: Extract<Beat, { kind: "quiz" }>; color: string }) {
   const [picked, setPicked] = useState<number | null>(null);
   const answered = picked !== null;
   const right = picked === beat.correct;
@@ -415,7 +414,6 @@ function QuizView({
   function choose(n: number) {
     if (answered) return;
     setPicked(n);
-    onQuiz(n === beat.correct);
   }
 
   return (
@@ -460,7 +458,7 @@ function QuizView({
           className={`a-rise mt-4 rounded-2xl border p-4 ${right ? "border-mint/35 bg-mintSoft" : "border-saffron/40 bg-saffronSoft"}`}
         >
           <p className={`mb-1.5 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider ${right ? "text-mint" : "text-saffron"}`}>
-            {right ? <><Trophy size={13} /> Shabaash! +5 XP</> : <><Lightbulb size={13} /> Koi baat nahi, dekho</>}
+            {right ? <><Trophy size={13} /> Shabaash!</> : <><Lightbulb size={13} /> Koi baat nahi, dekho</>}
           </p>
           <Rich text={beat.explain} className="text-[14px] leading-relaxed text-body" />
         </div>

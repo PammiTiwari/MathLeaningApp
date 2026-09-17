@@ -3,10 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { useProgress, levelOf } from "@/lib/progress";
 import {
-  Menu, X, Flame, ChevronDown, BookOpen, PlayCircle, NotebookPen,
-  FileText, Timer, Sparkles, Target, MessageCircleQuestion, TrendingUp,
+  Menu, X, ChevronDown, BookOpen, PlayCircle, NotebookPen,
+  FileText, Timer, Sparkles, Target, MessageCircleQuestion,
 } from "lucide-react";
 
 type Item = { href: string; label: string; desc: string; icon: any };
@@ -39,16 +38,13 @@ const GROUPS: Group[] = [
 
 const SOLO: Item[] = [
   { href: "/doubt", label: "Doubt pucho", desc: "AI tutor, 24×7", icon: MessageCircleQuestion },
-  { href: "/progress", label: "Progress", desc: "Kitna ho gaya, kitna baaki", icon: TrendingUp },
 ];
 
 export default function Nav() {
   const path = usePathname();
-  const { p, ready } = useProgress();
   const [open, setOpen] = useState<string | null>(null);   // desktop dropdown
   const [mobile, setMobile] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
-  const lvl = levelOf(p.xp);
 
   // close on route change, outside click, Escape
   useEffect(() => { setOpen(null); setMobile(false); }, [path]);
@@ -145,21 +141,6 @@ export default function Nav() {
 
         {/* ---- right: one compact stat chip ---- */}
         <div className="ml-auto flex items-center gap-2">
-          {ready && (
-            <Link
-              href="/progress"
-              title={`${p.streak} din ka streak · ${p.xp} XP · Level ${lvl.level} ${lvl.name}`}
-              className="hidden items-center gap-2 rounded-full border border-line bg-card py-1 pl-2.5 pr-3 transition hover:border-line2 sm:flex"
-            >
-              <span className="flex items-center gap-1 text-[12px] font-bold text-saffron">
-                <Flame size={12} /> {p.streak}
-              </span>
-              <span className="h-3.5 w-px bg-line" />
-              <span className="text-[12px] font-bold text-primary">
-                {p.xp} <span className="font-medium text-faint">XP</span>
-              </span>
-            </Link>
-          )}
           <button
             onClick={() => setMobile((v) => !v)}
             className="grid h-9 w-9 place-items-center rounded-lg border border-line bg-card text-body transition hover:bg-sunk md:hidden"
@@ -174,19 +155,6 @@ export default function Nav() {
       {mobile && (
         <div className="a-rise border-t border-line bg-card md:hidden">
           <div className="mx-auto max-w-6xl px-4 py-4 sm:px-6">
-            {ready && (
-              <Link
-                href="/progress"
-                className="mb-4 flex items-center justify-between rounded-xl border border-line bg-sunk px-4 py-3"
-              >
-                <span className="flex items-center gap-1.5 text-[13px] font-bold text-saffron">
-                  <Flame size={14} /> {p.streak} din streak
-                </span>
-                <span className="text-[13px] font-bold text-primary">
-                  {p.xp} XP <span className="font-medium text-faint">· Lv {lvl.level}</span>
-                </span>
-              </Link>
-            )}
 
             {[...GROUPS, { label: "Aur", items: SOLO }].map((g) => (
               <div key={g.label} className="mb-4 last:mb-0">

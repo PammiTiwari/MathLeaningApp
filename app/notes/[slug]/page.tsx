@@ -1,12 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { use, useEffect } from "react";
+import { use } from "react";
 import { notFound } from "next/navigation";
 import { getChapter, CHAPTERS } from "@/lib/data/chapters";
 import { notesFor } from "@/lib/data/notes";
 import type { NoteBlock } from "@/lib/data/note-types";
-import { useProgress } from "@/lib/progress";
 import { Formula, Rich } from "@/components/Tex";
 import { ArrowLeft, Printer, ArrowRight } from "lucide-react";
 
@@ -14,9 +13,7 @@ export default function NotePage({ params }: { params: Promise<{ slug: string }>
   const { slug } = use(params);
   const ch = getChapter(slug);
   const note = notesFor(slug);
-  const { markNote } = useProgress();
 
-  useEffect(() => { markNote(slug); /* eslint-disable-next-line */ }, [slug]);
 
   if (!ch || !note) notFound();
   const next = CHAPTERS.find((c) => c.n === ch.n + 1);
@@ -24,14 +21,14 @@ export default function NotePage({ params }: { params: Promise<{ slug: string }>
   return (
     <div className="mx-auto max-w-3xl">
       <div className="no-print mt-4 flex items-center justify-between">
-        <Link href="/notes" className="text-xs font-semibold text-white/40 hover:text-white">
+        <Link href="/notes" className="text-xs font-semibold text-muted transition hover:text-head">
           <ArrowLeft size={13} className="mr-1 inline" /> saare notes
         </Link>
         <div className="flex items-center gap-2">
-          <span className="text-[11px] text-white/35">{note.pages.length} page{note.pages.length > 1 ? "s" : ""}</span>
+          <span className="text-[11px] text-faint">{note.pages.length} page{note.pages.length > 1 ? "s" : ""}</span>
           <button
             onClick={() => window.print()}
-            className="flex items-center gap-1.5 rounded-lg border border-line px-3 py-1.5 text-xs font-semibold text-white/60 hover:bg-white/5"
+            className="flex items-center gap-1.5 rounded-lg border border-line bg-card px-3 py-1.5 text-xs font-semibold text-body transition hover:bg-sunk"
           >
             <Printer size={13} /> Print
           </button>
@@ -71,14 +68,14 @@ export default function NotePage({ params }: { params: Promise<{ slug: string }>
       ))}
 
       <div className="no-print mt-6 flex flex-wrap gap-3 pb-6">
-        <Link href={`/learn/${slug}`} className="flex-1 rounded-xl border border-line py-3 text-center text-sm font-bold text-white/70 hover:bg-white/5">
+        <Link href={`/learn/${slug}`} className="flex-1 rounded-xl border border-line bg-card py-3 text-center text-sm font-bold text-body shadow-soft transition hover:border-line2 hover:bg-sunk">
           Poora lesson padho
         </Link>
-        <Link href={`/formulas#${slug}`} className="flex-1 rounded-xl border border-line py-3 text-center text-sm font-bold text-white/70 hover:bg-white/5">
+        <Link href={`/formulas#${slug}`} className="flex-1 rounded-xl border border-line bg-card py-3 text-center text-sm font-bold text-body shadow-soft transition hover:border-line2 hover:bg-sunk">
           Formula sheet
         </Link>
         {next && (
-          <Link href={`/notes/${next.slug}`} className="flex flex-1 items-center justify-center gap-2 rounded-xl py-3 text-sm font-bold text-white"
+          <Link href={`/notes/${next.slug}`} className="flex flex-1 items-center justify-center gap-2 rounded-xl py-3 text-sm font-bold text-white shadow-soft transition hover:brightness-110"
             style={{ background: ch.color }}>
             Ch {next.n} notes <ArrowRight size={15} />
           </Link>

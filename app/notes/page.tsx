@@ -3,12 +3,10 @@
 import Link from "next/link";
 import { CHAPTERS } from "@/lib/data/chapters";
 import { notesFor } from "@/lib/data/notes";
-import { useProgress } from "@/lib/progress";
 import { PageHead, Card } from "@/components/ui";
-import { NotebookPen, CheckCircle2, Printer } from "lucide-react";
+import { NotebookPen, Printer } from "lucide-react";
 
 export default function NotesHome() {
-  const { p } = useProgress();
   return (
     <div>
       <PageHead
@@ -20,16 +18,12 @@ export default function NotesHome() {
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {CHAPTERS.map((c) => {
           const n = notesFor(c.slug);
-          const read = p.notesRead.includes(c.slug);
           return (
             <Link key={c.slug} href={`/notes/${c.slug}`}>
               <Card className="card-hover relative h-full overflow-hidden p-5">
                 <div className="absolute right-0 top-0 h-16 w-16 -translate-y-6 translate-x-6 rotate-45 opacity-[0.07]"
                   style={{ background: c.color }} />
-                <div className="flex items-start justify-between">
-                  <span className="text-2xl">{c.emoji}</span>
-                  {read && <CheckCircle2 size={15} className="text-mint" />}
-                </div>
+                <span className="block text-2xl">{c.emoji}</span>
                 <p className="mt-2.5 text-[10px] font-bold uppercase tracking-wider" style={{ color: c.color }}>
                   Chapter {c.n}
                 </p>

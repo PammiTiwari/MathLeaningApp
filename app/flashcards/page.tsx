@@ -3,16 +3,15 @@
 import { useMemo, useState } from "react";
 import { FLASHCARDS } from "@/lib/data/flashcards";
 import { CHAPTERS, getChapter } from "@/lib/data/chapters";
-import { useProgress } from "@/lib/progress";
 import { PageHead, Card, Bar, Pill } from "@/components/ui";
 import { RotateCcw, Check, X, Shuffle, ArrowRight } from "lucide-react";
 
 export default function Flashcards() {
-  const { p, toggleCard, addXp } = useProgress();
   const [filter, setFilter] = useState<string>("all");
   const [i, setI] = useState(0);
   const [flipped, setFlipped] = useState(false);
   const [order, setOrder] = useState<number[] | null>(null);
+  const [known, setKnown] = useState<Set<string>>(new Set());  // this session only
 
   const pool = useMemo(
     () => FLASHCARDS.map((c, idx) => ({ ...c, key: `${c.ch}-${idx}` })).filter((c) => filter === "all" || c.ch === filter),
@@ -21,13 +20,15 @@ export default function Flashcards() {
 
   const deck = useMemo(() => (order ? order.map((n) => pool[n]).filter(Boolean) : pool), [order, pool]);
   const card = deck[i];
-  const mastered = pool.filter((c) => p.cardsMastered.includes(c.key)).length;
+  const mastered = pool.filter((c) => known.has(c.key)).length;
 
   function next(got: boolean) {
     if (card) {
-      const already = p.cardsMastered.includes(card.key);
-      if (got && !already) { toggleCard(card.key); addXp(5); }
-      if (!got && already) toggleCard(card.key);
+      setKnown((prev) => {
+        const n = new Set(prev);
+        if (got) n.add(card.key); else n.delete(card.key);
+        return n;
+      });
     }
     setFlipped(false);
     setI((n) => (n + 1) % deck.length);
@@ -43,7 +44,7 @@ export default function Flashcards() {
       <PageHead
         eyebrow="Flashcards"
         title="5 minute revision"
-        sub="Sawaal dekho, dimaag mein jawab socho, phir card palto. Jo yaad hai use ✓ karo, jo nahi use ✗ — woh wapas aayega."
+        sub="Sawaal dekho, dimaag mein jawab socho, phir card palto. Jo yaad hai use ✓ karo, jo nahi use ✗. Ginti sirf is session ki hai — kuch save nahi hota."
       />
 
       <div className="no-print mb-5 flex flex-wrap gap-2">
@@ -75,7 +76,7 @@ export default function Flashcards() {
         <>
           <div className="mb-3 flex items-center justify-between text-xs text-faint">
             <span>Card {i + 1} / {deck.length}</span>
-            <span>{mastered} yaad ho gaye</span>
+            <span>{mastered} yaad hain</span>
           </div>
           <Bar value={mastered} max={pool.length} color="#22D3A5" />
 
@@ -105,7 +106,7 @@ export default function Flashcards() {
               </button>
               <button onClick={() => next(true)}
                 className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-mint py-3.5 text-sm font-bold text-white hover:brightness-110">
-                <Check size={16} /> Yaad tha! +5 XP
+                <Check size={16} /> Yaad tha
               </button>
             </div>
           ) : (

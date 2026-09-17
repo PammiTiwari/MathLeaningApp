@@ -5,14 +5,12 @@ import { use } from "react";
 import { notFound } from "next/navigation";
 import { getChapter } from "@/lib/data/chapters";
 import { KHAN_VIDEOS, KHAN_PLAYLISTS, khanAcademyUrl, topicVideosFor } from "@/lib/data/videos";
-import { useProgress } from "@/lib/progress";
 import { Card, Pill } from "@/components/ui";
-import { ArrowLeft, ExternalLink, PlayCircle, CheckCircle2, Youtube, GraduationCap } from "lucide-react";
+import { ArrowLeft, ExternalLink, PlayCircle, Youtube, GraduationCap } from "lucide-react";
 
 export default function ChapterVideos({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
   const ch = getChapter(slug);
-  const { p, markVideo } = useProgress();
   if (!ch) notFound();
 
   const khan = KHAN_VIDEOS[slug] ?? [];
@@ -54,7 +52,7 @@ export default function ChapterVideos({ params }: { params: Promise<{ slug: stri
           <h2 className="mb-4 mt-9 font-display text-lg font-bold text-head">Khan Academy ke videos</h2>
           <div className="grid gap-4 md:grid-cols-2">
             {khan.map((v) => (
-              <VideoCard key={v.id + v.title} v={v} watched={p.videosWatched.includes(v.id)} onWatch={() => markVideo(v.id)} />
+              <VideoCard key={v.id + v.title} v={v} />
             ))}
           </div>
         </>
@@ -67,7 +65,7 @@ export default function ChapterVideos({ params }: { params: Promise<{ slug: stri
           <p className="mb-3 text-xs text-faint">Revision ke liye — ek hi video mein poora chapter.</p>
           <div className="grid gap-4 md:grid-cols-2">
             {ch.videos.map((v) => (
-              <VideoCard key={v.id + v.title} v={v} watched={p.videosWatched.includes(v.id)} onWatch={() => markVideo(v.id)} />
+              <VideoCard key={v.id + v.title} v={v} />
             ))}
           </div>
         </>
@@ -125,7 +123,7 @@ export default function ChapterVideos({ params }: { params: Promise<{ slug: stri
   );
 }
 
-function VideoCard({ v, watched, onWatch }: { v: any; watched: boolean; onWatch: () => void }) {
+function VideoCard({ v }: { v: any }) {
   return (
     <Card className="overflow-hidden">
       <div className="relative aspect-video bg-black">
@@ -139,17 +137,7 @@ function VideoCard({ v, watched, onWatch }: { v: any; watched: boolean; onWatch:
       </div>
       <div className="p-4">
         <p className="text-[13.5px] font-semibold leading-snug text-head">{v.title}</p>
-        <div className="mt-1.5 flex items-center justify-between gap-2">
-          <span className="text-[11px] text-faint">{v.by} · {v.covers}</span>
-          <button
-            onClick={onWatch}
-            className={`flex shrink-0 items-center gap-1 rounded-lg px-2.5 py-1 text-[11px] font-bold transition ${
-              watched ? "bg-mintSoft text-mint" : "bg-sunk text-muted hover:bg-line/60"
-            }`}
-          >
-            <CheckCircle2 size={11} /> {watched ? "dekh liya" : "mark done"}
-          </button>
-        </div>
+        <p className="mt-1.5 text-[11px] text-faint">{v.by} · {v.covers}</p>
       </div>
     </Card>
   );

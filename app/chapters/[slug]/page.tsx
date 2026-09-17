@@ -9,18 +9,16 @@ import { formulasFor } from "@/lib/data/formulas";
 import { cardsFor } from "@/lib/data/flashcards";
 import { questionsFor } from "@/lib/data/questions";
 import { khanAcademyUrl, KHAN_VIDEOS, topicVideosFor } from "@/lib/data/videos";
-import { useProgress } from "@/lib/progress";
-import { Card, Pill, Bar } from "@/components/ui";
+import { Card, Pill } from "@/components/ui";
 import { Rich, Formula } from "@/components/Tex";
 import {
   BookOpen, PlayCircle, NotebookPen, Sparkles, Target, ArrowRight,
-  Lightbulb, ExternalLink, Clock, CheckCircle2,
+  Lightbulb, ExternalLink, Clock
 } from "lucide-react";
 
 export default function ChapterPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
   const ch = getChapter(slug);
-  const { p } = useProgress();
   if (!ch) notFound();
 
   const lesson = getLesson(slug);
@@ -29,9 +27,7 @@ export default function ChapterPage({ params }: { params: Promise<{ slug: string
   const qs = questionsFor(slug);
   const khan = KHAN_VIDEOS[slug] ?? [];
   const topicLinks = topicVideosFor(slug);
-  const beats = p.lessonBeats[slug] ?? 0;
-  const total = lesson?.beats.length ?? 1;
-  const finished = p.lessonDone.includes(slug);
+  const total = lesson?.beats.length ?? 0;
 
   return (
     <div>
@@ -45,7 +41,6 @@ export default function ChapterPage({ params }: { params: Promise<{ slug: string
         <div className="mt-3 flex items-center gap-2">
           <Pill color={ch.color}>Chapter {ch.n}</Pill>
           <Pill color="#6B6B7B">{ch.unit} · {ch.unitMarks} marks</Pill>
-          {finished && <Pill color="#22D3A5">✓ Done</Pill>}
         </div>
         <h1 className="mt-3 font-display text-[32px] font-extrabold leading-tight tracking-tight text-head sm:text-[42px]">
           {ch.title}
@@ -59,19 +54,13 @@ export default function ChapterPage({ params }: { params: Promise<{ slug: string
           <span>{ch.topics.length} topics</span>
         </div>
 
-        {beats > 0 && (
-          <div className="mt-4 max-w-sm">
-            <Bar value={finished ? total : beats} max={total} color={ch.color} />
-            <p className="mt-1 text-[11px] text-faint">{finished ? "Poora ho gaya!" : `${beats}/${total} steps`}</p>
-          </div>
-        )}
 
         <Link
           href={`/learn/${slug}`}
           className="mt-5 inline-flex items-center gap-2 rounded-xl px-5 py-3 text-sm font-bold text-head transition"
           style={{ background: ch.color }}
         >
-          {beats > 0 ? (finished ? "Dobara padho" : "Continue lesson") : "Lesson shuru karo"}
+          Lesson shuru karo
           <ArrowRight size={16} />
         </Link>
       </div>
