@@ -4,14 +4,23 @@
  */
 
 /**
- * Verified against the Generative Language API model list.
- * "gemini-2.0-flash" is NOT a valid id there and 404s — don't add it back.
+ * The free tier meters requests PER MODEL PER DAY (currently 20 each), not
+ * across the account. So the fallback chain doubles as a quota pool: when one
+ * model's day is spent it returns 429 and we simply move to the next.
+ *
+ * Ordered strongest-first — the lite models are the last resort because they
+ * are weaker at multi-step marking. Ids verified against the live model list;
+ * "gemini-2.0-flash" and "gemini-2.5-flash-lite" do NOT exist there.
  */
 const GEMINI_MODELS = [
   process.env.GEMINI_MODEL,        // optional override
+  "gemini-3-flash-preview",
   "gemini-3.5-flash",
   "gemini-2.5-flash",
   "gemini-flash-latest",
+  "gemini-3.1-flash-lite",
+  "gemini-3.5-flash-lite",
+  "gemini-flash-lite-latest",
 ].filter(Boolean) as string[];
 
 export type AIPart = { text: string } | { image: { mime: string; dataB64: string } };

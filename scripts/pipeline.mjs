@@ -16,12 +16,18 @@ if (!KEY) { console.error("no GEMINI_API_KEY"); process.exit(1); }
 const OUT_DIR = "lib/data/board-papers";
 mkdirSync(OUT_DIR, { recursive: true });
 
-const MODELS = ["gemini-2.5-flash", "gemini-flash-latest", "gemini-3.5-flash"];
+// free tier = 20 requests per model per day, so treat the list as a quota pool
+const MODELS = [
+  "gemini-3-flash-preview", "gemini-3.5-flash", "gemini-2.5-flash", "gemini-flash-latest",
+  "gemini-3.1-flash-lite", "gemini-3.5-flash-lite", "gemini-flash-lite-latest",
+];
+const exhausted = new Set();
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 async function call(parts, maxTokens = 60000) {
   for (let round = 1; round <= 5; round++) {
     for (const model of MODELS) {
+      if (exhausted.has(model)) continue;
       let res;
       try {
         res = await fetch(
@@ -42,9 +48,14 @@ async function call(parts, maxTokens = 60000) {
         if (t) return t;
         process.stderr.write("empty ");
       } else {
+        if (res.status === 429) {
+          const body = await res.text();
+          if (/PerDay/.test(body)) { exhausted.add(model); process.stderr.write(`${model}:spent `); continue; }
+        }
         process.stderr.write(`${res.status} `);
       }
     }
+    if (exhausted.size >= MODELS.length) throw new Error("every model's daily free quota is spent");
     const wait = 15000 * round;
     process.stderr.write(`| wait ${wait / 1000}s `);
     await sleep(wait);
