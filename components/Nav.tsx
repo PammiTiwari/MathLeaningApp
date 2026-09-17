@@ -37,7 +37,20 @@ export default function Nav() {
   const path = usePathname();
   const [open, setOpen] = useState<string | null>(null);   // desktop dropdown
   const [mobile, setMobile] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
+
+  // The home page opens with a dark full-bleed photograph, so the bar floats
+  // over it in white until you scroll past the fold.
+  const overHero = path === "/" && !scrolled && !mobile;
+
+  useEffect(() => {
+    if (path !== "/") { setScrolled(true); return; }
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [path]);
 
   // close on route change, outside click, Escape
   useEffect(() => { setOpen(null); setMobile(false); }, [path]);
@@ -62,14 +75,20 @@ export default function Nav() {
   const groupActive = (g: Group) => g.items.some((i) => isActive(i.href));
 
   return (
-    <header className="no-print sticky top-0 z-50 border-b border-line bg-page/85 backdrop-blur-xl">
+    <header
+      className={`no-print sticky top-0 z-50 transition-colors duration-300 ${
+        overHero
+          ? "border-b border-transparent bg-transparent"
+          : "border-b border-line bg-page/85 backdrop-blur-xl"
+      }`}
+    >
       <div ref={navRef} className="mx-auto flex h-14 w-full max-w-6xl items-center gap-2 px-4 sm:px-6">
         {/* ---- logo ---- */}
         <Link href="/" className="mr-1 flex shrink-0 items-center gap-2.5">
           <span className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-primary to-saffron shadow-soft">
             <BookOpen size={16} className="text-white" />
           </span>
-          <span className="font-display text-[16px] font-extrabold tracking-[-0.02em] text-head">
+          <span className={`font-display text-[16px] font-extrabold tracking-[-0.02em] transition-colors ${overHero ? "text-white" : "text-head"}`}>
             Himmat Rakh
           </span>
         </Link>
@@ -85,7 +104,9 @@ export default function Nav() {
                   onClick={() => setOpen(isOpen ? null : g.label)}
                   onMouseEnter={() => open && setOpen(g.label)}
                   className={`flex items-center gap-1 rounded-lg px-3 py-1.5 text-[13.5px] font-semibold transition ${
-                    active || isOpen ? "bg-primarySoft text-primary" : "text-body hover:bg-sunk hover:text-head"
+                    active || isOpen
+                      ? overHero ? "bg-white/15 text-white" : "bg-primarySoft text-primary"
+                      : overHero ? "text-white/85 hover:bg-white/10 hover:text-white" : "text-body hover:bg-sunk hover:text-head"
                   }`}
                   aria-expanded={isOpen}
                 >
@@ -129,7 +150,9 @@ export default function Nav() {
               key={s.href}
               href={s.href}
               className={`rounded-lg px-3 py-1.5 text-[13.5px] font-semibold transition ${
-                isActive(s.href) ? "bg-primarySoft text-primary" : "text-body hover:bg-sunk hover:text-head"
+                isActive(s.href)
+                  ? overHero ? "bg-white/15 text-white" : "bg-primarySoft text-primary"
+                  : overHero ? "text-white/85 hover:bg-white/10 hover:text-white" : "text-body hover:bg-sunk hover:text-head"
               }`}
             >
               {s.label}
@@ -142,13 +165,19 @@ export default function Nav() {
           <button
             onClick={logout}
             title="Logout"
-            className="hidden h-9 items-center gap-1.5 rounded-lg border border-line bg-card px-3 text-[12.5px] font-semibold text-muted transition hover:border-line2 hover:text-head sm:flex"
+            className={`hidden h-9 items-center gap-1.5 rounded-lg border px-3 text-[12.5px] font-semibold transition sm:flex ${
+              overHero
+                ? "border-white/25 bg-white/10 text-white/85 hover:bg-white/20 hover:text-white"
+                : "border-line bg-card text-muted hover:border-line2 hover:text-head"
+            }`}
           >
             <LogOut size={13} /> Logout
           </button>
           <button
             onClick={() => setMobile((v) => !v)}
-            className="grid h-9 w-9 place-items-center rounded-lg border border-line bg-card text-body transition hover:bg-sunk md:hidden"
+            className={`grid h-9 w-9 place-items-center rounded-lg border transition md:hidden ${
+              overHero ? "border-white/25 bg-white/10 text-white" : "border-line bg-card text-body hover:bg-sunk"
+            }`}
             aria-label="Menu"
           >
             {mobile ? <X size={17} /> : <Menu size={17} />}

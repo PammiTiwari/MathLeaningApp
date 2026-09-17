@@ -4,6 +4,8 @@ import { NOTES } from "@/lib/data/notes";
 import { PAPER_PATTERN, BOARD_PAPERS } from "@/lib/data/papers";
 import { Card, Bar, Pill } from "@/components/ui";
 import { Formula } from "@/components/Tex";
+import Hero from "@/components/Hero";
+import { IMAGES } from "@/lib/images";
 import {
   PlayCircle, NotebookPen, FileText, Sparkles,
   MessageCircleQuestion, Layers, ArrowRight, Clock, Printer, Check,
@@ -35,46 +37,15 @@ const NOTE_STATS = (() => {
 export default function Home() {
   return (
     <div>
-      {/* ---------- HERO ---------- */}
-      <section className="relative mt-5 overflow-hidden rounded-3xl border border-line bg-white p-6 shadow-soft sm:p-10">
-        <div className="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-primarySoft opacity-70 blur-3xl" />
-        <div className="pointer-events-none absolute -bottom-24 right-28 h-52 w-52 rounded-full bg-saffronSoft opacity-70 blur-3xl" />
-
-        <div className="relative max-w-2xl">
-          <Pill>CBSE Class 12 · Mathematics (041)</Pill>
-          <h1 className="mt-3 font-display text-[34px] font-extrabold leading-[1.1] tracking-[-0.025em] text-head sm:text-[46px]">
-            Himmat rakh -{" "}
-            <span className="bg-gradient-to-r from-primary via-[#7C5CFF] to-saffron bg-clip-text text-transparent">
-              Maths ho jayega.
-            </span>
-          </h1>
-          <p className="mt-4 text-[15.5px] leading-[1.7] text-muted">
-            Poora syllabus - 13 chapters, 80 marks. Har chapter basics se shuru hota hai aur derivations
-            aur board-level tough questions tak jaata hai. Saath mein asli CBSE board papers, handwritten
-            notes, formula sheet aur ek AI doubt solver.
-          </p>
-
-          <div className="mt-7 flex flex-wrap gap-3">
-            <Link
-              href="/chapters"
-              className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-bold text-white shadow-soft transition hover:bg-primaryDim"
-            >
-              Padhna shuru karo <ArrowRight size={16} />
-            </Link>
-            <Link
-              href="/papers"
-              className="inline-flex items-center gap-2 rounded-xl border border-line bg-card px-5 py-3 text-sm font-bold text-body transition hover:border-line2 hover:bg-sunk"
-            >
-              <FileText size={16} /> Board papers
-            </Link>
-          </div>
-        </div>
-      </section>
+      <Hero />
 
       {/* ---------- TILES ---------- */}
-      <h2 className="mb-4 mt-10 font-display text-[20px] font-bold tracking-[-0.01em] text-head">
-        Kahaan se shuru karein?
-      </h2>
+      <div className="mb-5 mt-14 text-center">
+        <h2 className="font-display text-[26px] font-extrabold tracking-[-0.02em] text-head">
+          Kahaan se shuru karein?
+        </h2>
+        <p className="mt-2 text-[14px] text-muted">Jo chahiye, ek click door hai.</p>
+      </div>
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
         {TILES.map((t) => (
           <Link key={t.href} href={t.href}>
@@ -148,8 +119,18 @@ export default function Home() {
             </div>
           </div>
 
-          {/* right: a real sheet, peeking in */}
-          <div className="relative min-h-[300px] overflow-hidden bg-sunk p-6 sm:p-8">
+          {/* right: a real sheet, peeking in over a photograph */}
+          <div
+            className="relative min-h-[320px] overflow-hidden p-6 sm:p-8"
+            style={{ background: IMAGES.notes.fallback }}
+          >
+            <img
+              src={IMAGES.notes.src(900)}
+              alt={IMAGES.notes.alt}
+              loading="lazy"
+              className="absolute inset-0 h-full w-full object-cover opacity-30"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-mintSoft/80 via-white/60 to-white/85" />
             <div className="paper absolute inset-x-6 top-7 rotate-[-1.4deg] rounded-lg px-5 py-5 shadow-lift sm:inset-x-8">
               <div className="paper-margin pl-4">
                 <p className="font-hand text-[13px] leading-tight text-[#7A8C9E]">Class 12 · Chapter 4 · Algebra</p>
@@ -169,7 +150,7 @@ export default function Home() {
                 </p>
               </div>
             </div>
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-sunk to-transparent" />
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white/90 to-transparent" />
           </div>
         </div>
       </section>
@@ -218,9 +199,37 @@ export default function Home() {
       </div>
 
       {/* ---------- BOARD PAPERS ---------- */}
-      <div className="mb-4 mt-10 flex items-end justify-between">
-        <h2 className="font-display text-[20px] font-bold tracking-[-0.01em] text-head">Asli board papers</h2>
-        <Link href="/papers" className="text-xs font-semibold text-primary hover:underline">saare papers →</Link>
+      <section
+        className="relative mt-14 overflow-hidden rounded-3xl border border-line"
+        style={{ background: IMAGES.papers.fallback }}
+      >
+        <img
+          src={IMAGES.papers.src(1400)}
+          alt={IMAGES.papers.alt}
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-[#0E0D18]/70" />
+        <div className="relative px-6 py-10 text-center sm:px-10 sm:py-12">
+          <h2 className="font-display text-[26px] font-extrabold tracking-[-0.02em] text-white">
+            Asli board papers
+          </h2>
+          <p className="mx-auto mt-2.5 max-w-xl text-[14.5px] leading-relaxed text-white/75">
+            Sample papers nahi. Yeh wahi papers hain jo asli board exam mein aaye the, seedha
+            CBSE ki apni website se. Har saal ke saare sets.
+          </p>
+          <Link
+            href="/papers"
+            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-white px-5 py-3 text-[13.5px] font-bold text-head transition hover:bg-white/90"
+          >
+            Saare papers dekho <ArrowRight size={15} />
+          </Link>
+        </div>
+      </section>
+
+      <div className="mb-4 mt-6 flex items-end justify-between">
+        <h3 className="font-display text-[17px] font-bold text-head">Latest do saal</h3>
+        <Link href="/papers" className="text-xs font-semibold text-primary hover:underline">saare →</Link>
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
         {BOARD_PAPERS.slice(0, 2).map((b) => (
@@ -238,9 +247,9 @@ export default function Home() {
       </div>
 
       {/* ---------- CHAPTERS ---------- */}
-      <div className="mb-4 mt-10 flex items-end justify-between">
-        <h2 className="font-display text-[20px] font-bold tracking-[-0.01em] text-head">Saare chapters</h2>
-        <Link href="/chapters" className="text-xs font-semibold text-primary hover:underline">poori list →</Link>
+      <div className="mb-5 mt-14 text-center">
+        <h2 className="font-display text-[26px] font-extrabold tracking-[-0.02em] text-head">Saare chapters</h2>
+        <p className="mt-2 text-[14px] text-muted">13 chapters, CBSE unit weightage ke saath.</p>
       </div>
       <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
         {CHAPTERS.map((c) => (
