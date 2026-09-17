@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { CHAPTERS, UNITS, getChapter } from "@/lib/data/chapters";
 import { NOTES } from "@/lib/data/notes";
-import { MOCK_PAPERS, PAPER_PATTERN } from "@/lib/data/papers";
+import { PAPER_PATTERN } from "@/lib/data/papers";
+import { MOCKS, MOCK_STATS } from "@/lib/data/mocks";
 import { Card, Bar, Pill } from "@/components/ui";
 import { Formula } from "@/components/Tex";
 import {
@@ -225,7 +226,7 @@ export default function Home() {
         <Link href="/exam" className="text-xs font-semibold text-primary hover:underline">saare papers →</Link>
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
-        {MOCK_PAPERS.slice(0, 2).map((m) => (
+        {MOCKS.slice(0, 2).map((m) => (
           <Link key={m.id} href={`/exam/${m.id}`}>
             <Card className="card-hover h-full p-5">
               <div className="mb-2 flex items-center gap-2">

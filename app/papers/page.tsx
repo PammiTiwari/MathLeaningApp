@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { OFFICIAL_PAPERS, BOARD_PAPERS, COMPARTMENT_PAPERS, SYLLABUS_PDF, CBSE_PYQ_PAGE, CBSE_SQP_ARCHIVE, ALL_PAPERS_PAGE, MOCK_PAPERS } from "@/lib/data/papers";
+import { OFFICIAL_PAPERS, BOARD_PAPERS, COMPARTMENT_PAPERS, SYLLABUS_PDF, CBSE_PYQ_PAGE, CBSE_SQP_ARCHIVE, ALL_PAPERS_PAGE } from "@/lib/data/papers";
+import { MOCKS } from "@/lib/data/mocks";
 import { PageHead, Card, Pill } from "@/components/ui";
 import { FileText, Download, ExternalLink, Timer, BookMarked, FolderArchive, Trophy } from "lucide-react";
 
@@ -119,7 +120,7 @@ export default function PapersPage() {
         PDF download karne ki zaroorat nahi — yeh papers app mein hi attempt karo, timer ke saath. Submit karte hi AI check kar dega.
       </p>
       <div className="grid gap-3 sm:grid-cols-2">
-        {MOCK_PAPERS.map((m) => (
+        {MOCKS.slice(0, 6).map((m) => (
           <Link key={m.id} href={`/exam/${m.id}`}>
             <Card className="card-hover flex h-full items-start gap-3 p-4">
               <Timer size={17} className="mt-0.5 shrink-0 text-saffron" />

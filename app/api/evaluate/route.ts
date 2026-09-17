@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { askAI, parseJSON, AIConfigError, aiConfigured } from "@/lib/ai";
-import { getQuestion } from "@/lib/data/questions";
+import { anyQuestion as getQuestion } from "@/lib/data/mocks";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;

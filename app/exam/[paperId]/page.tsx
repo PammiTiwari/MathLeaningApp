@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { use, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { notFound } from "next/navigation";
-import { MOCK_PAPERS } from "@/lib/data/papers";
-import { getQuestion, type Question } from "@/lib/data/questions";
+import { getMock, anyQuestion } from "@/lib/data/mocks";
+import type { Question } from "@/lib/data/questions";
 import { getChapter } from "@/lib/data/chapters";
 import { useProgress } from "@/lib/progress";
 import { Rich } from "@/components/Tex";
@@ -27,11 +27,11 @@ const SECTION_OF = (q: Question) =>
 
 export default function ExamRunner({ params }: { params: Promise<{ paperId: string }> }) {
   const { paperId } = use(params);
-  const paper = MOCK_PAPERS.find((m) => m.id === paperId);
+  const paper = getMock(paperId);
   const { addAttempt } = useProgress();
 
   const questions = useMemo(
-    () => (paper?.questionIds.map(getQuestion).filter(Boolean) as Question[]) ?? [],
+    () => (paper?.questionIds.map(anyQuestion).filter(Boolean) as Question[]) ?? [],
     [paper]
   );
 
