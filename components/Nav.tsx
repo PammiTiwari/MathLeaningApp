@@ -63,16 +63,25 @@ export default function Nav() {
   return (
     // transparent shell keeps the pill in the flow (so pages below start in the
     // right place) while the pill itself reads as floating
-    <header className="no-print sticky top-0 z-50 px-4 pb-3 pt-4">
+    <header className="no-print sticky top-0 z-50 px-3 pb-3 pt-4 sm:px-4">
       <div ref={navRef} className="mx-auto flex max-w-4xl justify-center">
-        <div className="flex h-[52px] items-center gap-1 rounded-full bg-[#141318] pl-1.5 pr-1.5 shadow-[0_8px_30px_rgba(16,15,24,0.28)] ring-1 ring-white/5">
-          {/* round logo badge */}
-          <Link
-            href="/"
-            aria-label="Himmat Rakh"
-            className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white transition hover:scale-[1.04]"
-          >
-            <BookOpen size={17} className="text-[#141318]" />
+        {/*
+          Same pill at every size. On a narrow screen it stretches to the full
+          width and carries the brand name, so it never collapses into a stub
+          floating in the middle; from md it hugs its links instead.
+        */}
+        <div className="flex h-[52px] w-full items-center justify-between gap-1 rounded-full bg-[#141318] px-1.5 shadow-[0_8px_30px_rgba(16,15,24,0.28)] ring-1 ring-white/5 md:w-auto md:justify-center">
+          {/* round logo badge, with the name beside it while there is room */}
+          <Link href="/" className="flex shrink-0 items-center gap-2.5 md:gap-0">
+            <span
+              aria-hidden
+              className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-white transition hover:scale-[1.04]"
+            >
+              <BookOpen size={17} className="text-[#141318]" />
+            </span>
+            <span className="font-display text-[15px] font-extrabold tracking-[-0.01em] text-white md:hidden">
+              Himmat Rakh
+            </span>
           </Link>
 
           {/* desktop links */}
@@ -161,7 +170,7 @@ export default function Nav() {
 
       {/* mobile sheet */}
       {mobile && (
-        <div className="a-rise mx-auto mt-3 max-w-md overflow-hidden rounded-2xl border border-line bg-card p-4 shadow-lift md:hidden">
+        <div className="a-rise mx-auto mt-2.5 max-w-4xl overflow-hidden rounded-2xl border border-line bg-card p-4 shadow-lift md:hidden">
           {[...GROUPS, { label: "Aur", items: SOLO }].map((g) => (
             <div key={g.label} className="mb-4">
               <p className="mb-1.5 px-1 text-[10.5px] font-bold uppercase tracking-[0.14em] text-faint">
