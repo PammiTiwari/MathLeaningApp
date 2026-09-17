@@ -62,6 +62,10 @@ export async function POST(req: NextRequest) {
       }
     } else {
       try {
+        // number the images so the model can match each one to its question
+        const imageIndex = new Map<string, number>();
+        needsAI.forEach((s) => { if (s.image) imageIndex.set(s.qid, imageIndex.size + 1); });
+
         const blocks = needsAI.map((s) => {
           const q = getQuestion(s.qid)!;
           return [
@@ -70,7 +74,9 @@ export async function POST(req: NextRequest) {
             q.parts ? `SUB-PARTS: ${q.parts.map((p, i) => `(${i + 1}) [${p.marks}m] ${p.q} => ${p.answer}`).join(" | ")}` : "",
             `MODEL ANSWER: ${q.answer}`,
             q.keySteps?.length ? `MARKING SCHEME STEPS:\n${q.keySteps.map((k) => "  • " + k).join("\n")}` : "",
-            `STUDENT ANSWER: ${s.answer?.trim() || (s.image ? "(see attached image of handwritten answer)" : "(left blank)")}`,
+            s.image
+              ? `STUDENT ANSWER: ${s.answer?.trim() || "(written by hand)"}\n[IMAGE ${imageIndex.get(s.qid)} below is this student's handwritten working for THIS question — ${q.id}]`
+              : `STUDENT ANSWER: ${s.answer?.trim() || "(left blank)"}`,
           ]
             .filter(Boolean)
             .join("\n");
@@ -83,7 +89,8 @@ Mark each question below. For each, return:
 - "feedback": 2-4 sentences in friendly Hinglish (Hindi-English mix, Roman script). Say what was right, exactly where marks were lost, and ONE specific thing to fix next time. Be encouraging but honest. Use maths notation in plain text or LaTeX with $...$.
 
 If the student's answer is blank, award 0 and briefly tell them the method they should have used.
-If an image is attached, read the handwritten working in it carefully and mark that.
+Images are attached AFTER the questions. Each one is labelled "IMAGE n — handwritten answer for question <id>". Match every image to its question by that label and mark that handwriting as the student's answer for that question only.
+If a question is a case study, the student's answer is given part by part as "(1) ... (2) ... (3) ...". Award each part's marks separately and say in the feedback which part lost marks.
 
 Return ONLY a JSON array, one object per question, in the same order:
 [{"qid":"...","awarded":0,"feedback":"..."}]
@@ -91,8 +98,12 @@ Return ONLY a JSON array, one object per question, in the same order:
 ${blocks.join("\n\n")}`;
 
         const parts: any[] = [{ text: prompt }];
+        // images are pushed in the same order they were numbered above
         for (const s of needsAI) {
-          if (s.image) parts.push({ image: s.image });
+          if (s.image) {
+            parts.push({ text: `--- IMAGE ${imageIndex.get(s.qid)} — handwritten answer for question ${s.qid} ---` });
+            parts.push({ image: s.image });
+          }
         }
 
         const raw = await askAI(parts, { json: true, temperature: 0.1 });

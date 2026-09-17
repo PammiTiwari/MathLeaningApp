@@ -3,7 +3,16 @@
  * Swap provider by changing AI_PROVIDER; the rest of the app only calls askAI().
  */
 
-const GEMINI_MODELS = ["gemini-2.5-flash", "gemini-2.0-flash"];
+/**
+ * Verified against the Generative Language API model list.
+ * "gemini-2.0-flash" is NOT a valid id there and 404s — don't add it back.
+ */
+const GEMINI_MODELS = [
+  process.env.GEMINI_MODEL,        // optional override
+  "gemini-3.5-flash",
+  "gemini-2.5-flash",
+  "gemini-flash-latest",
+].filter(Boolean) as string[];
 
 export type AIPart = { text: string } | { image: { mime: string; dataB64: string } };
 
@@ -50,6 +59,21 @@ export async function askAI(parts: AIPart[], opts?: { json?: boolean; temperatur
           body: JSON.stringify(body),
         }
       );
+      if (res.status === 429) {
+        // rate limited — wait once, then try this same model again
+        await new Promise((r) => setTimeout(r, 2500));
+        const retry = await fetch(
+          `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`,
+          { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) }
+        );
+        if (retry.ok) {
+          const d = await retry.json();
+          const t = d?.candidates?.[0]?.content?.parts?.map((x: any) => x.text).join("") ?? "";
+          if (t) return t;
+        }
+        lastErr = `${model}: rate limited (429)`;
+        continue;
+      }
       if (!res.ok) {
         lastErr = `${model}: ${res.status} ${(await res.text()).slice(0, 300)}`;
         continue;

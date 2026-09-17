@@ -14,7 +14,12 @@ import {
   ArrowLeft, ArrowRight, Trophy, RotateCcw,
 } from "lucide-react";
 
-type Ans = { text: string; imageName?: string; image?: { mime: string; dataB64: string } };
+type Ans = {
+  text: string;
+  parts?: Record<number, string>;            // case-study sub-answers
+  imageName?: string;
+  image?: { mime: string; dataB64: string };
+};
 type Marked = { qid: string; awarded: number; max: number; feedback: string };
 
 const SECTION_OF = (q: Question) =>
@@ -31,13 +36,19 @@ export default function ExamRunner({ params }: { params: Promise<{ paperId: stri
   );
 
   const [phase, setPhase] = useState<"brief" | "live" | "marking" | "result">("brief");
+  const [deadline, setDeadline] = useState<number | null>(null);
   const [left, setLeft] = useState((paper?.minutes ?? 0) * 60);
   const [i, setI] = useState(0);
   const [ans, setAns] = useState<Record<string, Ans>>({});
+  const [restored, setRestored] = useState(false);
   const [results, setResults] = useState<Marked[] | null>(null);
   const [overall, setOverall] = useState("");
   const [err, setErr] = useState("");
   const submitted = useRef(false);
+  const ansRef = useRef<Record<string, Ans>>({});
+  ansRef.current = ans;
+
+  const SAVE_KEY = `himmat-exam-${paperId}`;
 
   const submit = useCallback(async () => {
     if (submitted.current) return;
@@ -49,11 +60,16 @@ export default function ExamRunner({ params }: { params: Promise<{ paperId: stri
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          submissions: questions.map((q) => ({
-            qid: q.id,
-            answer: ans[q.id]?.text ?? "",
-            image: ans[q.id]?.image,
-          })),
+          submissions: questions.map((q) => {
+            const a = ansRef.current[q.id];
+            // a case study's sub-answers are stitched into one labelled answer
+            const text = q.parts
+              ? q.parts
+                  .map((pt, pi) => `(${pi + 1}) ${a?.parts?.[pi]?.trim() || "(not attempted)"}`)
+                  .join("\n")
+              : (a?.text ?? "");
+            return { qid: q.id, answer: text, image: a?.image };
+          }),
         }),
       });
       const data = await res.json();
@@ -76,24 +92,72 @@ export default function ExamRunner({ params }: { params: Promise<{ paperId: stri
       setPhase("live");
       submitted.current = false;
     }
-  }, [ans, questions, paperId, paper, addAttempt]);
+    try { localStorage.removeItem(SAVE_KEY); } catch {}
+  }, [questions, paperId, paper, addAttempt, SAVE_KEY]);
 
-  // countdown
+  // keep submit reachable from the timer without re-subscribing it
+  const submitRef = useRef(submit);
+  submitRef.current = submit;
+
+  // ---- countdown: derived from a fixed deadline, so typing can't disturb it ----
+  useEffect(() => {
+    if (phase !== "live" || !deadline) return;
+    const tick = () => {
+      const secs = Math.max(0, Math.round((deadline - Date.now()) / 1000));
+      setLeft(secs);
+      if (secs === 0) submitRef.current();
+    };
+    tick();
+    const t = setInterval(tick, 500);
+    return () => clearInterval(t);
+  }, [phase, deadline]);
+
+  // ---- restore an interrupted attempt ----
+  useEffect(() => {
+    if (restored) return;
+    setRestored(true);
+    try {
+      const raw = localStorage.getItem(SAVE_KEY);
+      if (!raw) return;
+      const saved = JSON.parse(raw);
+      if (!saved?.deadline || saved.deadline <= Date.now()) { localStorage.removeItem(SAVE_KEY); return; }
+      const mins = Math.ceil((saved.deadline - Date.now()) / 60000);
+      if (confirm(`Is paper ka adhoora attempt mila hai — ${mins} minute bache the. Wahin se continue karein?`)) {
+        setAns(saved.ans ?? {});
+        setI(saved.i ?? 0);
+        setDeadline(saved.deadline);
+        setPhase("live");
+      } else {
+        localStorage.removeItem(SAVE_KEY);
+      }
+    } catch {}
+  }, [restored, SAVE_KEY]);
+
+  // ---- autosave while live ----
+  useEffect(() => {
+    if (phase !== "live" || !deadline) return;
+    try { localStorage.setItem(SAVE_KEY, JSON.stringify({ deadline, ans, i })); } catch {}
+  }, [phase, deadline, ans, i, SAVE_KEY]);
+
+  // ---- warn before leaving mid-paper ----
   useEffect(() => {
     if (phase !== "live") return;
-    const t = setInterval(() => {
-      setLeft((s) => {
-        if (s <= 1) { clearInterval(t); submit(); return 0; }
-        return s - 1;
-      });
-    }, 1000);
-    return () => clearInterval(t);
-  }, [phase, submit]);
+    const h = (e: BeforeUnloadEvent) => { e.preventDefault(); e.returnValue = ""; };
+    window.addEventListener("beforeunload", h);
+    return () => window.removeEventListener("beforeunload", h);
+  }, [phase]);
 
   if (!paper) notFound();
 
   const q = questions[i];
-  const answeredCount = questions.filter((x) => (ans[x.id]?.text ?? "").trim() || ans[x.id]?.image).length;
+  const attempted = (qid: string) => {
+    const a = ans[qid];
+    if (!a) return false;
+    if (a.image) return true;
+    if ((a.text ?? "").trim()) return true;
+    return Object.values(a.parts ?? {}).some((t) => (t ?? "").trim());
+  };
+  const answeredCount = questions.filter((x) => attempted(x.id)).length;
 
   // ---------- BRIEF ----------
   if (phase === "brief") {
@@ -126,7 +190,7 @@ export default function ExamRunner({ params }: { params: Promise<{ paperId: stri
           </div>
 
           <button
-            onClick={() => setPhase("live")}
+            onClick={() => { setDeadline(Date.now() + paper.minutes * 60000); setPhase("live"); }}
             className="glow mt-6 w-full rounded-xl bg-primary py-3.5 text-sm font-bold text-white transition hover:bg-primaryDim"
           >
             Timer start karo — himmat rakh 💪
@@ -226,7 +290,20 @@ export default function ExamRunner({ params }: { params: Promise<{ paperId: stri
                   </div>
                 )}
 
-                {!qq.options && my?.text?.trim() && (
+                {qq.parts && my?.parts && (
+                  <div className="mt-3 space-y-2">
+                    {qq.parts.map((pt, pi) => (
+                      <div key={pi} className="rounded-xl border border-line bg-sunk p-3">
+                        <p className="mb-1 text-[11px] font-semibold text-muted">({pi + 1}) {pt.marks}m</p>
+                        <p className="whitespace-pre-wrap text-[13px] leading-relaxed text-body">
+                          {my.parts?.[pi]?.trim() || "— nahi kiya —"}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {!qq.options && !qq.parts && my?.text?.trim() && (
                   <div className="mt-3 rounded-xl border border-line bg-sunk p-3">
                     <p className="mb-1 text-[10px] font-bold uppercase tracking-wider text-faint">Tumhara answer</p>
                     <p className="whitespace-pre-wrap text-[13px] leading-relaxed text-body">{my.text}</p>
@@ -378,7 +455,7 @@ export default function ExamRunner({ params }: { params: Promise<{ paperId: stri
             <p className="mb-3 text-[11px] font-bold uppercase tracking-wider text-faint">Question map</p>
             <div className="grid grid-cols-5 gap-1.5">
               {questions.map((qq, n) => {
-                const done = (ans[qq.id]?.text ?? "").trim() || ans[qq.id]?.image;
+                const done = attempted(qq.id);
                 const cur = n === i;
                 return (
                   <button
@@ -401,6 +478,42 @@ export default function ExamRunner({ params }: { params: Promise<{ paperId: stri
           </Card>
         </div>
       </div>
+    </div>
+  );
+}
+
+function CaseAnswer({
+  q, value, onChange,
+}: { q: Question; value?: Ans; onChange: (v: Ans) => void }) {
+  const parts = q.parts ?? [];
+  const set = (pi: number, text: string) =>
+    onChange({ ...(value ?? { text: "" }), parts: { ...(value?.parts ?? {}), [pi]: text } });
+
+  return (
+    <div className="mt-5 space-y-4">
+      <p className="text-[11px] font-bold uppercase tracking-wider text-faint">
+        Har part ka answer alag likho
+      </p>
+      {parts.map((pt, pi) => (
+        <div key={pi} className="rounded-xl border border-line bg-sunk p-4">
+          <div className="mb-2.5 flex items-start gap-2">
+            <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-primary text-[10px] font-bold text-white">
+              {pi + 1}
+            </span>
+            <Rich text={pt.q} className="flex-1 text-[14px] leading-snug text-head" />
+            <span className="shrink-0 rounded bg-white px-1.5 py-0.5 text-[11px] font-semibold text-muted">
+              {pt.marks}m
+            </span>
+          </div>
+          <textarea
+            value={value?.parts?.[pi] ?? ""}
+            onChange={(e) => set(pi, e.target.value)}
+            rows={pt.marks >= 2 ? 5 : 3}
+            placeholder={`Part ${pi + 1} ka answer…`}
+            className="w-full resize-y rounded-lg border border-line bg-card p-3 font-mono text-[13px] leading-relaxed text-head placeholder:text-faint focus:border-primary focus:outline-none"
+          />
+        </div>
+      ))}
     </div>
   );
 }
