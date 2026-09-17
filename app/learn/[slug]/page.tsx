@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { use, useEffect, useMemo, useState } from "react";
 import { notFound, useRouter } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
 import { getChapter, CHAPTERS } from "@/lib/data/chapters";
 import { getLesson } from "@/lib/data/lessons";
 import type { Beat } from "@/lib/data/lesson-types";
@@ -65,17 +64,9 @@ export default function LearnPage({ params }: { params: Promise<{ slug: string }
         </div>
       </div>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={i}
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          transition={{ duration: 0.22 }}
-        >
-          <BeatView beat={beat} color={ch.color} onQuiz={(right) => recordQuiz(slug, right)} />
-        </motion.div>
-      </AnimatePresence>
+      <div key={i} className="a-beat">
+        <BeatView beat={beat} color={ch.color} onQuiz={(right) => recordQuiz(slug, right)} />
+      </div>
 
       {/* nav */}
       <div className="mt-8 flex items-center gap-3 pb-4">
@@ -223,12 +214,7 @@ function ExampleView({ beat, color }: { beat: Extract<Beat, { kind: "example" }>
 
       <div className="mt-5 space-y-3">
         {beat.steps.slice(0, shown).map((s, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="rounded-2xl border border-line bg-ink/40 p-4"
-          >
+          <div key={i} className="a-slide rounded-2xl border border-line bg-ink/40 p-4">
             <div className="flex items-start gap-3">
               <span
                 className="grid h-6 w-6 shrink-0 place-items-center rounded-full text-[11px] font-bold"
@@ -244,7 +230,7 @@ function ExampleView({ beat, color }: { beat: Extract<Beat, { kind: "example" }>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
 
@@ -257,15 +243,13 @@ function ExampleView({ beat, color }: { beat: Extract<Beat, { kind: "example" }>
           {shown === 0 ? "Pehla step dikhao" : `Next step (${shown}/${beat.steps.length})`}
         </button>
       ) : (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.97 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="mt-4 rounded-2xl border p-4 text-center"
+        <div
+          className="a-pop mt-4 rounded-2xl border p-4 text-center"
           style={{ borderColor: `${color}55`, background: `${color}12` }}
         >
           <p className="mb-1.5 text-[11px] font-bold uppercase tracking-[0.16em]" style={{ color }}>Answer</p>
           <Formula tex={beat.answer} className="text-white" />
-        </motion.div>
+        </div>
       )}
     </div>
   );
@@ -322,16 +306,14 @@ function QuizView({
       </div>
 
       {answered && (
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          className={`mt-4 rounded-2xl border p-4 ${right ? "border-mint/40 bg-mint/[0.08]" : "border-saffron/40 bg-saffron/[0.08]"}`}
+        <div
+          className={`a-rise mt-4 rounded-2xl border p-4 ${right ? "border-mint/40 bg-mint/[0.08]" : "border-saffron/40 bg-saffron/[0.08]"}`}
         >
           <p className={`mb-1.5 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider ${right ? "text-mint" : "text-saffron"}`}>
             {right ? <><Trophy size={13} /> Shabaash! +5 XP</> : <><Lightbulb size={13} /> Koi baat nahi, dekho</>}
           </p>
           <Rich text={beat.explain} className="text-[14px] leading-relaxed text-white/80" />
-        </motion.div>
+        </div>
       )}
     </div>
   );

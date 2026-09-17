@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { FLASHCARDS } from "@/lib/data/flashcards";
 import { CHAPTERS, getChapter } from "@/lib/data/chapters";
 import { useProgress } from "@/lib/progress";
@@ -81,27 +80,21 @@ export default function Flashcards() {
           <Bar value={mastered} max={pool.length} color="#22D3A5" />
 
           <div className="mt-5 [perspective:1400px]">
-            <AnimatePresence mode="wait">
-              <motion.button
-                key={`${card?.key}-${flipped}`}
-                initial={{ rotateY: flipped ? -90 : 90, opacity: 0 }}
-                animate={{ rotateY: 0, opacity: 1 }}
-                exit={{ rotateY: flipped ? 90 : -90, opacity: 0 }}
-                transition={{ duration: 0.22 }}
-                onClick={() => setFlipped((f) => !f)}
-                className={`flex min-h-[260px] w-full flex-col items-center justify-center rounded-3xl border p-8 text-center transition ${
-                  flipped ? "border-mint/40 bg-mint/[0.07]" : "card"
-                }`}
-              >
+            <button
+              key={`${card?.key}-${flipped}`}
+              onClick={() => setFlipped((f) => !f)}
+              className={`a-flip flex min-h-[260px] w-full flex-col items-center justify-center rounded-3xl border p-8 text-center ${
+                flipped ? "border-mint/40 bg-mint/[0.07]" : "card"
+              }`}
+            >
                 <Pill color={flipped ? "#22D3A5" : getChapter(card.ch)?.color}>
                   {flipped ? "Jawab" : getChapter(card.ch)?.title ?? "Sawaal"}
                 </Pill>
                 <p className={`mt-4 leading-relaxed ${flipped ? "text-[17px] text-white/90" : "font-display text-[21px] font-bold text-white"}`}>
                   {flipped ? card.back : card.front}
                 </p>
-                {!flipped && <p className="mt-6 text-xs text-white/30">tap karke palto ↻</p>}
-              </motion.button>
-            </AnimatePresence>
+              {!flipped && <p className="mt-6 text-xs text-white/30">tap karke palto ↻</p>}
+            </button>
           </div>
 
           {flipped ? (

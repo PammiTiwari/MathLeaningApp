@@ -63,6 +63,23 @@ body {
 
 .glow { box-shadow: 0 0 0 1px rgba(124,92,255,.35), 0 10px 40px -12px rgba(124,92,255,.55); }
 
+/* ---- animations (replaces framer-motion) ---- */
+@keyframes beat-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+@keyframes slide-in { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: none; } }
+@keyframes rise-in  { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+@keyframes pop-in   { from { opacity: 0; transform: scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes flip-in  { from { opacity: 0; transform: rotateY(75deg); } to { opacity: 1; transform: none; } }
+
+.a-beat  { animation: beat-in .24s cubic-bezier(.2,.7,.3,1) both; }
+.a-slide { animation: slide-in .22s ease-out both; }
+.a-rise  { animation: rise-in .22s ease-out both; }
+.a-pop   { animation: pop-in .2s ease-out both; }
+.a-flip  { animation: flip-in .24s cubic-bezier(.2,.7,.3,1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .a-beat, .a-slide, .a-rise, .a-pop, .a-flip, .animate-float { animation: none !important; }
+}
+
 @media print {
   .no-print { display: none !important; }
   body { background: #fff; }

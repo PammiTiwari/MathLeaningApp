@@ -4,9 +4,9 @@ import "./globals.css";
 import { ProgressProvider } from "@/lib/progress";
 import Nav from "@/components/Nav";
 
-const display = Outfit({ subsets: ["latin"], variable: "--font-display", weight: ["500", "600", "700", "800"] });
-const sans = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-sans", weight: ["400", "500", "600", "700"] });
-const hand = Caveat({ subsets: ["latin"], variable: "--font-hand", weight: ["400", "600", "700"] });
+const display = Outfit({ subsets: ["latin"], variable: "--font-display", weight: ["600", "800"] });
+const sans = Plus_Jakarta_Sans({ subsets: ["latin"], variable: "--font-sans", weight: ["400", "600", "700"] });
+const hand = Caveat({ subsets: ["latin"], variable: "--font-hand", weight: ["600"], display: "swap" });
 
 export const metadata: Metadata = {
   title: "Himmat Rakh — Class 12 Maths, Boards Ready",
