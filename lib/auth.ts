@@ -13,9 +13,19 @@
 export const COOKIE = "himmat_session";
 export const SESSION_DAYS = 30;
 
-export const AUTH_USER = process.env.AUTH_USER ?? "arnav";
-export const AUTH_PASS = process.env.AUTH_PASS ?? "123";
-const SECRET = process.env.AUTH_SECRET ?? "himmat-rakh-dev-secret-change-me";
+/**
+ * Pasting into a hosting dashboard very easily carries a trailing space or
+ * newline, and an empty box should mean "not set" rather than "the password is
+ * the empty string" - both would lock you out of your own app.
+ */
+function envValue(raw: string | undefined, fallback: string) {
+  const v = raw?.trim();
+  return v ? v : fallback;
+}
+
+export const AUTH_USER = envValue(process.env.AUTH_USER, "arnav");
+export const AUTH_PASS = envValue(process.env.AUTH_PASS, "123");
+const SECRET = envValue(process.env.AUTH_SECRET, "himmat-rakh-dev-secret-change-me");
 
 async function hmac(value: string) {
   const enc = new TextEncoder();
