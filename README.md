@@ -2,6 +2,8 @@
 
 **CBSE Class 12 Mathematics (041) ki poori taiyari - ek app mein.**
 
+🔗 **Live app: https://math-leaning-app.vercel.app**
+
 Fun Hinglish lessons jo basics se shuru hoke derivations aur board-level tough
 questions tak jaate hain, handwritten revision notes, CBSE ke asli board papers,
 formula sheet aur ek AI doubt solver.
@@ -59,6 +61,11 @@ Ek student ke liye kaafi. Bahut saare users ke liye Google AI Studio mein
 ---
 
 ## Vercel par deploy
+
+Ye app Vercel par live hai: **https://math-leaning-app.vercel.app**
+(is repo ki `main` branch se auto-deploy hoti hai).
+
+Apni copy chalani ho to:
 
 ```bash
 git init && git add -A && git commit -m "Himmat Rakh"
